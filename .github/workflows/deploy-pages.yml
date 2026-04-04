@@ -65,6 +65,9 @@ jobs:
       - name: Generate content
         run: pnpm build:content
 
+      - name: Check base-aware internal links
+        run: npm run check:paths
+
       - name: Build web app
         run: pnpm --filter web build
 

@@ -6,7 +6,8 @@
     "build:content": "node --import tsx scripts/build-content.ts",
     "dev:web": "pnpm --filter web dev",
     "check:web": "pnpm --filter web check",
-    "build:web": "pnpm --filter web build"
+    "build:web": "pnpm --filter web build",
+    "check:paths": "bash scripts/check-base-path.sh"
   },
   "devDependencies": {
     "tsx": "^4.21.0"
