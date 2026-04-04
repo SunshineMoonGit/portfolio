@@ -57,7 +57,10 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --prod=false
+
+      - name: Sync SvelteKit
+        run: pnpm --filter web prepare
 
       - name: Generate content
         run: pnpm build:content
