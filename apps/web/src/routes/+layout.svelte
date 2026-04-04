@@ -3,10 +3,12 @@
   import '../app.css'
   import { onMount } from 'svelte'
   import { onNavigate } from '$app/navigation'
+  import { page } from '$app/state'
   import { AppFooter, AppHeader } from '$lib'
 
   let { children } = $props()
   let navEl: HTMLElement | undefined = $state()
+  let isHome = $derived((page.url.pathname === base || page.url.pathname === base + '/') || page.url.pathname === '/')
 
   onMount(() => {
     const onScroll = () => {
@@ -41,12 +43,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 </svelte:head>
 
-<div class="pt-16">
+<div class={isHome ? '' : 'pt-16'}>
   <AppHeader bind:navEl />
 
-  <main class="mx-auto max-w-[680px] px-6 pb-24">
+  <main class={isHome ? '' : 'mx-auto max-w-[680px] px-6 pb-24'}>
     {@render children()}
   </main>
 
-  <AppFooter />
+  {#if !isHome}
+    <AppFooter />
+  {/if}
 </div>
