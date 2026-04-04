@@ -1,6 +1,6 @@
 <script lang="ts">
+  import { base } from '$app/paths'
   import '../app.css'
-  import favicon from '$lib/assets/favicon.svg'
   import { onMount } from 'svelte'
   import { onNavigate } from '$app/navigation'
   import { AppFooter, AppHeader } from '$lib'
@@ -28,10 +28,14 @@
       })
     })
   })
+
+  function withBase(path: string): string {
+    return `${base}${path}`
+  }
 </script>
 
 <svelte:head>
-  <link rel="icon" href={favicon} />
+  <link rel="icon" type="image/webp" href={withBase('/moon.webp')} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
