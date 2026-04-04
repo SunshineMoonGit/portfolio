@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { base } from '$app/paths'
   import { onMount } from 'svelte'
 
   let heroEl: HTMLElement
@@ -8,6 +9,10 @@
   let cursorGlow: HTMLElement
   let mouseX = 0
   let mouseY = 0
+
+  function withBase(path: string): string {
+    return `${base}${path}`
+  }
 
   onMount(() => {
     const handleMouse = (event: MouseEvent) => {
@@ -133,7 +138,7 @@
   ></div>
 
   <div class="relative mb-8 transition-transform duration-600 ease-out animate-[moonFloat_12s_ease-in-out_infinite]" bind:this={moon}>
-    <img src="/moon.png" alt="Moon" class="block w-[clamp(140px,20vw,240px)] h-auto drop-shadow-[0_0_60px_rgba(180,200,220,0.5)]" />
+    <img src={withBase('/moon.png')} alt="Moon" class="block w-[clamp(140px,20vw,240px)] h-auto drop-shadow-[0_0_60px_rgba(180,200,220,0.5)]" />
     <div class="absolute -inset-1/2 rounded-full bg-[radial-gradient(circle,rgba(180,200,230,0.18)_0%,rgba(180,200,230,0.05)_40%,transparent_65%)] -z-1 pointer-events-none"></div>
   </div>
 
