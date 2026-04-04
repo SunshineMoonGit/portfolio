@@ -1,0 +1,12 @@
+{
+  "slug": "oauth-oidc-saml",
+  "title": "OAuth, OIDC, SAML",
+  "category": "security",
+  "tags": ["인증", "SSO", "Keycloak", "OAuth", "OIDC"],
+  "summary": "SSO 관련 인증/인가 프로토콜 비교. OAuth는 권한 위임, OIDC는 로그인, SAML은 기업용",
+  "thumbnail": "",
+  "date": "2025-08-22",
+  "updatedAt": "2025-08-22T09:00:00.000000+00:00",
+  "content": "# OAuth, OIDC, SAML\n\n## OAuth\n\"이 앱이 내 정보에 접근해도 되는가?\" 에 대한 **권한 위임** 프로토콜\n\n- 로그인이 아닌, 정보 접근에 대한 허락\n- 예: 카카오 정보 제공 동의 화면\n\n## OIDC (OpenID Connect)\nOAuth + \"이 사람이 누구인지\" 확인 → **로그인** 기능\n\n- OAuth 위에 신원 확인(ID Token) 기능을 추가한 것\n- \"카카오로 로그인\"의 실제 구현은 OIDC\n- JSON 기반, 가볍고 현대적\n\n## SAML\n기업 내부 시스템용 인증 프로토콜\n\n- XML 기반으로 무겁고 복잡\n- 레거시 시스템 연동에 주로 사용\n- 신규 프로젝트에서는 OIDC를 선호\n\n## Keycloak OIDC 로그인 흐름 (Authorization Code Flow)\n\n1. 브라우저 → Keycloak: \"로그인 요청\"\n2. Keycloak → 브라우저: \"인증 완료, authorization code 발급\" (URL 콜백)\n3. 브라우저 → 서버: \"이 code를 받았음\"\n4. 서버 → Keycloak: \"이 code로 토큰 교환 요청\"\n5. Keycloak → 서버: \"JWT 토큰 발급\"\n6. 서버 → 브라우저: \"로그인 완료\"\n\n## 프로비저닝\nSSO 로그인 후 해당 서비스에 사용자 계정이 없을 때 자동으로 생성하는 것\n\n1. SSO 로그인 → sid 발급\n2. 서비스 접속 시 해당 사용자 존재 여부 확인\n3. 없으면 → SSO 서버에서 사용자 정보를 가져와 자동 계정 생성\n4. 있으면 → 기존 계정으로 로그인\n\n## code를 먼저 발급하는 이유\n- 콜백이 브라우저 URL을 통해 전달되는데, URL은 로그에 남거나 노출될 수 있음\n- 토큰을 URL에 직접 담으면 보안 위험\n- code는 일회용 교환권으로, 서버가 Keycloak에 직접 토큰을 요청\n- 토큰은 서버 ↔ Keycloak 간에만 교환됨 (브라우저를 거치지 않음)",
+  "sourcePath": "notes/OAuth-OIDC-SAML.md"
+}

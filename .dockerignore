@@ -1,0 +1,8 @@
+node_modules
+.svelte-kit
+apps/api/.venv
+apps/api/__pycache__
+.git
+vault
+!vault/project
+!vault/project/**

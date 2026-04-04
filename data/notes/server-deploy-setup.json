@@ -1,0 +1,12 @@
+{
+  "slug": "server-deploy-setup",
+  "title": "서버 배포 구성",
+  "category": "infra",
+  "tags": ["nginx", "DNS", "SSL", "Docker", "배포"],
+  "summary": "nginx, DNS, SSL, Docker 포트 관리 등 서비스 배포에 필요한 실전 구성 정리",
+  "thumbnail": "",
+  "date": "2025-08-10",
+  "updatedAt": "2025-08-10T09:00:00.000000+00:00",
+  "content": "# 서버 배포 구성\n\n## DNS 설정\n- **A 레코드**: 도메인 → IP 직접 연결\n- **CNAME**: 도메인 → 다른 도메인 (DDNS 사용 시)\n- 서브도메인은 각각 별도로 등록해야 함 (`mail`, `talk` 등)\n- 확인 명령어: `dig talk.datco-sb.kr`\n\n## Nginx 설정\n\n### sites-available vs sites-enabled\n- `sites-available/` = 설정 파일 보관소\n- `sites-enabled/` = 심볼릭 링크로 활성화된 설정만 참조\n- 비활성화 시 링크만 삭제하면 되고, 원본 파일은 보존\n\n```bash\n# 활성화\nsudo ln -s /etc/nginx/sites-available/talk.conf /etc/nginx/sites-enabled/\n# 비활성화\nsudo rm /etc/nginx/sites-enabled/talk.conf\n```\n\n### 리버스 프록시 설정\nNginx가 Host 헤더(도메인)로 요청을 구분하여 내부 서비스로 분배\n\n```nginx\nserver {\n    server_name talk.datco-sb.kr;\n    location / {\n        proxy_pass http://localhost:9006;\n    }\n}\n```\n\nWebSocket을 사용하는 서비스(Mattermost 등)는 `Upgrade`, `Connection` 헤더 설정 필요\n\n## SSL 인증서 (Let's Encrypt)\n- webroot 방식: `sudo certbot certonly --webroot -w /var/www/_letsencrypt -d 도메인`\n- Nginx에 아직 없는 인증서 경로를 참조하면 에러 → 443 블록 주석 처리 → 발급 → 해제\n- 90일 유효, cron으로 자동 갱신 설정\n\n## Docker 포트 관리\n- 같은 호스트에서 두 프로세스가 동일 포트를 동시에 사용할 수 없음\n- 컨테이너 내부 포트가 같아도 호스트 매핑 포트는 달라야 함: `9006:9005`\n- `docker-compose.override.yml`은 포트를 교체가 아닌 **추가**로 처리함\n- 환경변수 방식이 유연: `${WEBAPP_PORT:-9005}:9005` + `.env`로 관리\n\n## 전체 요청 흐름\n```\n사용자 → talk.datco-sb.kr (443)\n  → 공유기 포트포워딩\n    → 서버 Nginx (도메인 기반 판단)\n      → localhost:9006 (Docker 컨테이너)\n```",
+  "sourcePath": "notes/서버-배포-구성.md"
+}

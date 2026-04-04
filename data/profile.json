@@ -1,0 +1,28 @@
+{
+  "name": "sunshinemoon",
+  "headline": "",
+  "interests": ["backend", "security", "network", "infra", "git"],
+  "projects": [
+    {
+      "name": "키득키득",
+      "description": "부모-자녀가 함께하는 안전한 용돈 관리와 경제 교육 서비스. BLE 태깅 결제, AI 소비 분석.",
+      "period": "2025.08 – 2025.09",
+      "techs": ["Spring Boot", "Flutter", "React", "MySQL", "Redis"],
+      "url": "https://github.com/KDKDapplication"
+    },
+    {
+      "name": "Reciplay",
+      "description": "제스처 인식과 화상 수업을 결합한 상호작용형 요리 학습 플랫폼. LiveKit, STT 챗봇.",
+      "period": "2025.07 – 2025.08",
+      "techs": ["Next.js", "Spring Boot", "LiveKit", "TypeScript"],
+      "url": "https://github.com/Reciplay"
+    },
+    {
+      "name": "MoneyUp",
+      "description": "예·적금 비교부터 금융 AI 챗봇까지 제공하는 통합 금융 플랫폼.",
+      "period": "2025.05",
+      "techs": ["Vue.js", "Django", "OpenAI", "Python"],
+      "url": "https://github.com/MoneyUpUp"
+    }
+  ]
+}

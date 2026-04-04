@@ -1,0 +1,12 @@
+{
+  "slug": "tcp-udp",
+  "title": "TCP와 UDP",
+  "category": "network",
+  "tags": ["네트워크", "프로토콜", "전송계층"],
+  "summary": "데이터 전송 프로토콜. TCP는 수신 확인 후 재전송, UDP는 확인 없이 빠르게 전송",
+  "thumbnail": "",
+  "date": "2025-05-20",
+  "updatedAt": "2025-05-20T09:00:00.000000+00:00",
+  "content": "# TCP와 UDP\n\n## 프로토콜이란\n컴퓨터 간 데이터를 주고받기 위한 통신 규칙\n\n## TCP (Transmission Control Protocol)\n- 데이터를 보내고 \"잘 받았는지\" 확인하는 프로토콜\n- 수신 확인을 못 받으면 재전송\n- 순서 보장, 신뢰성 높음\n- 정확성이 중요한 곳에 사용: 웹 페이지, 파일 전송, API 통신\n\n## UDP (User Datagram Protocol)\n- 데이터를 보내고 확인하지 않는 프로토콜\n- 빠르지만 유실 가능\n- 속도가 중요한 곳에 사용: 실시간 영상, 게임, 음성 통화\n\n## TCP vs UDP 비교\n| | TCP | UDP |\n|---|---|---|\n| 연결 | 연결 수립 후 통신 (3-way handshake) | 비연결, 바로 전송 |\n| 수신 확인 | 확인 후 재전송 | 확인 없음 |\n| 순서 보장 | 보장 | 보장하지 않음 |\n| 속도 | 상대적으로 느림 | 빠름 |\n| 활용 | 웹, 파일 전송, 이메일 | 영상 스트리밍, 게임, VoIP |",
+  "sourcePath": "notes/TCP와-UDP.md"
+}

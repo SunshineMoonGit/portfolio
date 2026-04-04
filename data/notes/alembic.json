@@ -1,0 +1,12 @@
+{
+  "slug": "alembic",
+  "title": "Alembic",
+  "category": "backend",
+  "tags": ["Python", "SQLAlchemy", "마이그레이션", "데이터베이스"],
+  "summary": "SQLAlchemy와 함께 사용하는 DB 마이그레이션 도구. 스키마 변경 이력을 코드로 관리",
+  "thumbnail": "",
+  "date": "2025-09-20",
+  "updatedAt": "2025-09-20T09:00:00.000000+00:00",
+  "content": "# Alembic\n\n## 개요\n- SQLAlchemy와 함께 사용하는 DB 마이그레이션 도구\n- Git이 코드 변경을 추적하듯, DB 스키마 변경 이력을 관리\n- 테이블 추가/컬럼 수정 등을 파일로 남겨서 팀원끼리 DB 상태를 맞춤\n\n## 기본 명령어\n```bash\nalembic revision --autogenerate -m \"설명\"  # 변경 감지해서 마이그레이션 파일 생성\nalembic upgrade head    # 최신으로 적용\nalembic downgrade -1    # 한 단계 롤백\nalembic current         # 현재 버전 확인\nalembic history         # 전체 이력\n```\n\n## 마이그레이션 파일 구조\n```python\ndef upgrade():\n    op.create_table('user',\n        sa.Column('id', sa.Integer(), primary_key=True),\n        sa.Column('name', sa.String(50)),\n    )\n\ndef downgrade():\n    op.drop_table('user')\n```\n- `upgrade()` : 앞으로 적용 (스키마 변경)\n- `downgrade()` : 되돌리기 (롤백)\n\n## 주의할 점\n- autogenerate가 모든 변경을 감지하지는 않음 (타입 변경, view 등) → 생성 후 파일 반드시 확인\n- 팀 작업 시 동시에 마이그레이션을 만들면 충돌 발생 → `alembic merge heads`로 해결\n- DB URL은 환경변수로 분리하여 환경별로 다르게 설정\n\n## 데이터 마이그레이션\n스키마 변경뿐 아니라 기존 데이터 변환도 마이그레이션 파일 안에서 처리 가능\n```python\ndef upgrade():\n    op.add_column('user', sa.Column('full_name', sa.String()))\n    op.execute(\"UPDATE user SET full_name = first_name || ' ' || last_name\")\n```",
+  "sourcePath": "notes/Alembic.md"
+}

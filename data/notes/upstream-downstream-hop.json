@@ -1,0 +1,12 @@
+{
+  "slug": "upstream-downstream-hop",
+  "title": "Upstream, Downstream, Hop",
+  "category": "network",
+  "tags": ["네트워크", "프록시", "upstream", "downstream"],
+  "summary": "프록시/네트워크 흐름에서 upstream, downstream, hop의 의미와 기준점",
+  "thumbnail": "",
+  "date": "2025-06-12",
+  "updatedAt": "2025-06-12T09:00:00.000000+00:00",
+  "content": "# Upstream, Downstream, Hop\n\n## 개요\n네트워크 흐름에서 방향과 경유 단계를 나타내는 용어. 기준점에 따라 상대적으로 결정된다.\n\n## 정의\n- **Upstream**: 현재 노드 기준으로 요청을 넘기는 **다음** 단계 (서버 방향)\n- **Downstream**: 현재 노드 기준으로 요청을 보내온 **이전** 단계 (클라이언트 방향)\n- **Hop**: 라우터나 프록시 같은 경유지를 1개 지나는 단위\n\n## 예시\n```\nA → B → C → 서버\n```\n\n| B 기준 | 대상 |\n|---|---|\n| Upstream | C (다음 단계) |\n| Downstream | A (이전 단계) |\n| Hop 수 | A→서버 = 3 hop |\n\n## Nginx에서의 upstream\nNginx 설정에서 `upstream`은 요청을 전달할 백엔드 서버 그룹을 의미\n```nginx\nupstream backend {\n    server localhost:3000;\n    server localhost:3001;\n}\n```",
+  "sourcePath": "notes/Upstream-Downstream-Hop.md"
+}

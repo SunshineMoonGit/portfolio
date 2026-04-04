@@ -1,0 +1,278 @@
+{
+  "notes": {
+    "alembic": {
+      "related": [],
+      "backlinks": [],
+      "outgoing": []
+    },
+    "bff": {
+      "related": [
+        {
+          "slug": "oauth-oidc-saml",
+          "title": "OAuth, OIDC, SAML",
+          "score": 11,
+          "reason": "shared tags: 인증, 보안, sso"
+        },
+        {
+          "slug": "xss-csrf",
+          "title": "XSS와 CSRF",
+          "score": 8,
+          "reason": "shared tags: 인증, 보안"
+        },
+        {
+          "slug": "sandbox",
+          "title": "Sandbox",
+          "score": 3,
+          "reason": "shared tags: 보안"
+        }
+      ],
+      "backlinks": [],
+      "outgoing": []
+    },
+    "dns": {
+      "related": [
+        {
+          "slug": "nginx",
+          "title": "Nginx",
+          "score": 8,
+          "reason": "shared tags: 네트워크, 인프라"
+        },
+        {
+          "slug": "proxy",
+          "title": "Proxy",
+          "score": 5,
+          "reason": "shared tags: 네트워크"
+        },
+        {
+          "slug": "tcp-udp",
+          "title": "TCP와 UDP",
+          "score": 5,
+          "reason": "shared tags: 네트워크"
+        },
+        {
+          "slug": "upstream-downstream-hop",
+          "title": "Upstream-Downstream-Hop",
+          "score": 5,
+          "reason": "shared tags: 네트워크"
+        },
+        {
+          "slug": "server-deploy-setup",
+          "title": "서버 배포 구성",
+          "score": 3,
+          "reason": "shared tags: dns"
+        }
+      ],
+      "backlinks": [],
+      "outgoing": []
+    },
+    "git-rebase-worktree": {
+      "related": [],
+      "backlinks": [],
+      "outgoing": []
+    },
+    "nginx": {
+      "related": [
+        {
+          "slug": "dns",
+          "title": "DNS",
+          "score": 8,
+          "reason": "shared tags: 네트워크, 인프라"
+        },
+        {
+          "slug": "proxy",
+          "title": "Proxy",
+          "score": 5,
+          "reason": "shared tags: 네트워크"
+        },
+        {
+          "slug": "tcp-udp",
+          "title": "TCP와 UDP",
+          "score": 5,
+          "reason": "shared tags: 네트워크"
+        },
+        {
+          "slug": "upstream-downstream-hop",
+          "title": "Upstream-Downstream-Hop",
+          "score": 5,
+          "reason": "shared tags: 네트워크"
+        }
+      ],
+      "backlinks": [],
+      "outgoing": []
+    },
+    "oauth-oidc-saml": {
+      "related": [
+        {
+          "slug": "bff",
+          "title": "BFF (Backend For Frontend)",
+          "score": 11,
+          "reason": "shared tags: 인증, sso, 보안"
+        },
+        {
+          "slug": "xss-csrf",
+          "title": "XSS와 CSRF",
+          "score": 8,
+          "reason": "shared tags: 인증, 보안"
+        },
+        {
+          "slug": "sandbox",
+          "title": "Sandbox",
+          "score": 3,
+          "reason": "shared tags: 보안"
+        }
+      ],
+      "backlinks": [],
+      "outgoing": []
+    },
+    "proxy": {
+      "related": [
+        {
+          "slug": "upstream-downstream-hop",
+          "title": "Upstream-Downstream-Hop",
+          "score": 8,
+          "reason": "shared tags: 네트워크, 프록시"
+        },
+        {
+          "slug": "dns",
+          "title": "DNS",
+          "score": 5,
+          "reason": "shared tags: 네트워크"
+        },
+        {
+          "slug": "nginx",
+          "title": "Nginx",
+          "score": 5,
+          "reason": "shared tags: 네트워크"
+        },
+        {
+          "slug": "tcp-udp",
+          "title": "TCP와 UDP",
+          "score": 5,
+          "reason": "shared tags: 네트워크"
+        }
+      ],
+      "backlinks": [],
+      "outgoing": []
+    },
+    "sandbox": {
+      "related": [
+        {
+          "slug": "bff",
+          "title": "BFF (Backend For Frontend)",
+          "score": 3,
+          "reason": "shared tags: 보안"
+        },
+        {
+          "slug": "oauth-oidc-saml",
+          "title": "OAuth, OIDC, SAML",
+          "score": 3,
+          "reason": "shared tags: 보안"
+        },
+        {
+          "slug": "xss-csrf",
+          "title": "XSS와 CSRF",
+          "score": 3,
+          "reason": "shared tags: 보안"
+        }
+      ],
+      "backlinks": [],
+      "outgoing": []
+    },
+    "server-deploy-setup": {
+      "related": [
+        {
+          "slug": "dns",
+          "title": "DNS",
+          "score": 3,
+          "reason": "shared tags: dns"
+        }
+      ],
+      "backlinks": [],
+      "outgoing": []
+    },
+    "tcp-udp": {
+      "related": [
+        {
+          "slug": "dns",
+          "title": "DNS",
+          "score": 5,
+          "reason": "shared tags: 네트워크"
+        },
+        {
+          "slug": "nginx",
+          "title": "Nginx",
+          "score": 5,
+          "reason": "shared tags: 네트워크"
+        },
+        {
+          "slug": "proxy",
+          "title": "Proxy",
+          "score": 5,
+          "reason": "shared tags: 네트워크"
+        },
+        {
+          "slug": "upstream-downstream-hop",
+          "title": "Upstream-Downstream-Hop",
+          "score": 5,
+          "reason": "shared tags: 네트워크"
+        }
+      ],
+      "backlinks": [],
+      "outgoing": []
+    },
+    "upstream-downstream-hop": {
+      "related": [
+        {
+          "slug": "proxy",
+          "title": "Proxy",
+          "score": 8,
+          "reason": "shared tags: 네트워크, 프록시"
+        },
+        {
+          "slug": "dns",
+          "title": "DNS",
+          "score": 5,
+          "reason": "shared tags: 네트워크"
+        },
+        {
+          "slug": "nginx",
+          "title": "Nginx",
+          "score": 5,
+          "reason": "shared tags: 네트워크"
+        },
+        {
+          "slug": "tcp-udp",
+          "title": "TCP와 UDP",
+          "score": 5,
+          "reason": "shared tags: 네트워크"
+        }
+      ],
+      "backlinks": [],
+      "outgoing": []
+    },
+    "xss-csrf": {
+      "related": [
+        {
+          "slug": "bff",
+          "title": "BFF (Backend For Frontend)",
+          "score": 8,
+          "reason": "shared tags: 보안, 인증"
+        },
+        {
+          "slug": "oauth-oidc-saml",
+          "title": "OAuth, OIDC, SAML",
+          "score": 8,
+          "reason": "shared tags: 보안, 인증"
+        },
+        {
+          "slug": "sandbox",
+          "title": "Sandbox",
+          "score": 3,
+          "reason": "shared tags: 보안"
+        }
+      ],
+      "backlinks": [],
+      "outgoing": []
+    }
+  }
+}

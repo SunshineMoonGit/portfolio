@@ -1,0 +1,71 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-dark: #161a1f;
+  --color-dark-card: #20262c;
+  --color-border: #343d47;
+  --color-border-hover: #4b5663;
+  --color-gold: #d7a449;
+  --color-gold-light: #e6bb6a;
+  --color-muted: #acb5c0;
+  --color-subtle: #7f8a96;
+  --color-text: #e2e8ee;
+  --color-text-bright: #f7f9fb;
+  --color-text-dim: #c8d0d9;
+  --color-text-dark: #9aa4af;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+@layer base {
+  :root {
+    --color-dark: #161a1f;
+    --color-dark-card: #20262c;
+    --color-border: #343d47;
+    --color-border-hover: #4b5663;
+    --color-muted: #acb5c0;
+    --color-subtle: #7f8a96;
+    --color-text: #e2e8ee;
+    --color-text-bright: #f7f9fb;
+    --color-text-dim: #c8d0d9;
+    --color-text-dark: #9aa4af;
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background:
+      radial-gradient(circle at top, rgba(76, 93, 122, 0.12), transparent 34%),
+      var(--color-dark);
+    color: var(--color-text);
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  ::view-transition-old(root) {
+    animation: fade-out 150ms ease-out;
+  }
+
+  ::view-transition-new(root) {
+    animation: fade-in 150ms ease-in;
+  }
+
+  @keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}

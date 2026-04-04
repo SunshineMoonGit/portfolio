@@ -1,0 +1,15 @@
+node_modules/
+.pnpm-store/
+.env
+.DS_Store
+.playwright-mcp/
+portfolio_google_oauth.json
+.claude/
+.pids/
+
+# SvelteKit
+apps/web/.svelte-kit/
+apps/web/build/
+
+# Vault private/local metadata
+vault/

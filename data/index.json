@@ -1,0 +1,134 @@
+[
+  {
+    "slug": "tcp-udp",
+    "title": "TCP와 UDP",
+    "category": "network",
+    "tags": ["네트워크", "프로토콜", "전송계층"],
+    "summary": "데이터 전송 프로토콜. TCP는 수신 확인 후 재전송, UDP는 확인 없이 빠르게 전송",
+    "thumbnail": "",
+    "date": "2025-05-20",
+    "updatedAt": "2025-05-20T09:00:00.000000+00:00",
+    "sourcePath": "notes/TCP와-UDP.md"
+  },
+  {
+    "slug": "dns",
+    "title": "DNS",
+    "category": "network",
+    "tags": ["네트워크", "DNS", "인프라", "레코드"],
+    "summary": "도메인 이름을 IP 주소로 변환하는 시스템. 조회 흐름과 레코드 종류 정리",
+    "thumbnail": "",
+    "date": "2025-06-02",
+    "updatedAt": "2025-06-02T09:00:00.000000+00:00",
+    "sourcePath": "notes/DNS.md"
+  },
+  {
+    "slug": "proxy",
+    "title": "Proxy",
+    "category": "network",
+    "tags": ["네트워크", "프록시", "리버스 프록시", "CORS"],
+    "summary": "프록시와 리버스 프록시의 차이, CORS 우회에 프록시를 쓰는 이유",
+    "thumbnail": "",
+    "date": "2025-06-10",
+    "updatedAt": "2025-06-10T09:00:00.000000+00:00",
+    "sourcePath": "notes/Proxy.md"
+  },
+  {
+    "slug": "upstream-downstream-hop",
+    "title": "Upstream, Downstream, Hop",
+    "category": "network",
+    "tags": ["네트워크", "프록시", "upstream", "downstream"],
+    "summary": "프록시/네트워크 흐름에서 upstream, downstream, hop의 의미와 기준점",
+    "thumbnail": "",
+    "date": "2025-06-12",
+    "updatedAt": "2025-06-12T09:00:00.000000+00:00",
+    "sourcePath": "notes/Upstream-Downstream-Hop.md"
+  },
+  {
+    "slug": "nginx",
+    "title": "Nginx",
+    "category": "infra",
+    "tags": ["리버스 프록시", "로드 밸런싱", "웹서버", "인프라"],
+    "summary": "리버스 프록시 서버. 요청을 받아 적절한 서버로 전달하고 로드 밸런싱 수행",
+    "thumbnail": "",
+    "date": "2025-07-08",
+    "updatedAt": "2025-07-08T09:00:00.000000+00:00",
+    "sourcePath": "notes/Nginx.md"
+  },
+  {
+    "slug": "git-rebase-worktree",
+    "title": "Git rebase & worktree",
+    "category": "git",
+    "tags": ["git", "rebase", "worktree", "브랜치"],
+    "summary": "rebase로 히스토리를 일직선으로 정리하고, worktree로 멀티 브랜치 동시 작업",
+    "thumbnail": "",
+    "date": "2025-07-18",
+    "updatedAt": "2025-07-18T09:00:00.000000+00:00",
+    "sourcePath": "notes/Git-rebase-worktree.md"
+  },
+  {
+    "slug": "sandbox",
+    "title": "Sandbox",
+    "category": "devops",
+    "tags": ["격리환경", "Docker", "보안", "테스트"],
+    "summary": "코드를 실제 환경과 분리하여 안전하게 실행하는 격리 공간 개념 정리",
+    "thumbnail": "",
+    "date": "2025-07-25",
+    "updatedAt": "2025-07-25T09:00:00.000000+00:00",
+    "sourcePath": "notes/Sandbox.md"
+  },
+  {
+    "slug": "server-deploy-setup",
+    "title": "서버 배포 구성",
+    "category": "infra",
+    "tags": ["nginx", "DNS", "SSL", "Docker", "배포"],
+    "summary": "nginx, DNS, SSL, Docker 포트 관리 등 서비스 배포에 필요한 실전 구성 정리",
+    "thumbnail": "",
+    "date": "2025-08-10",
+    "updatedAt": "2025-08-10T09:00:00.000000+00:00",
+    "sourcePath": "notes/서버-배포-구성.md"
+  },
+  {
+    "slug": "oauth-oidc-saml",
+    "title": "OAuth, OIDC, SAML",
+    "category": "security",
+    "tags": ["인증", "SSO", "Keycloak", "OAuth", "OIDC"],
+    "summary": "SSO 관련 인증/인가 프로토콜 비교. OAuth는 권한 위임, OIDC는 로그인, SAML은 기업용",
+    "thumbnail": "",
+    "date": "2025-08-22",
+    "updatedAt": "2025-08-22T09:00:00.000000+00:00",
+    "sourcePath": "notes/OAuth-OIDC-SAML.md"
+  },
+  {
+    "slug": "xss-csrf",
+    "title": "XSS와 CSRF",
+    "category": "security",
+    "tags": ["보안", "웹보안", "쿠키", "XSS", "CSRF"],
+    "summary": "웹 보안 공격 두 가지. XSS는 쿠키를 읽는 공격, CSRF는 쿠키를 이용한 요청 위조",
+    "thumbnail": "",
+    "date": "2025-09-05",
+    "updatedAt": "2025-09-05T09:00:00.000000+00:00",
+    "sourcePath": "notes/XSS-CSRF.md"
+  },
+  {
+    "slug": "bff",
+    "title": "BFF (Backend For Frontend)",
+    "category": "backend",
+    "tags": ["아키텍처", "인증", "보안", "SSO", "httpOnly"],
+    "summary": "프론트엔드를 위한 전용 백엔드. accessToken을 서버에서 관리하고 브라우저엔 sid만 전달",
+    "thumbnail": "",
+    "date": "2025-09-12",
+    "updatedAt": "2025-09-12T09:00:00.000000+00:00",
+    "sourcePath": "notes/BFF.md"
+  },
+  {
+    "slug": "alembic",
+    "title": "Alembic",
+    "category": "backend",
+    "tags": ["Python", "SQLAlchemy", "마이그레이션", "데이터베이스"],
+    "summary": "SQLAlchemy와 함께 사용하는 DB 마이그레이션 도구. 스키마 변경 이력을 코드로 관리",
+    "thumbnail": "",
+    "date": "2025-09-20",
+    "updatedAt": "2025-09-20T09:00:00.000000+00:00",
+    "sourcePath": "notes/Alembic.md"
+  }
+]

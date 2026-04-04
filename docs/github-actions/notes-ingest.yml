@@ -1,0 +1,112 @@
+# notes 레포에 넣는 파일: .github/workflows/ingest.yml
+#
+# 필요한 Secrets (notes 레포 Settings → Secrets and variables → Actions):
+#   PORTFOLIO_API_URL  예) https://your-api.fly.dev
+#   INGEST_TOKEN       apps/api/.env의 INGEST_TOKEN과 동일한 값
+
+name: Ingest to Portfolio
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'public/**'
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # 이전 커밋과 비교하기 위해 2개 필요
+
+      - name: Detect changed files in public/
+        id: changed
+        run: |
+          git diff --name-status HEAD~1 HEAD -- 'public/**' > changed.txt
+          cat changed.txt
+
+      - name: Build and send ingest payload
+        env:
+          PORTFOLIO_API_URL: ${{ secrets.PORTFOLIO_API_URL }}
+          INGEST_TOKEN: ${{ secrets.INGEST_TOKEN }}
+        run: |
+          python3 - <<'EOF'
+          import os, json, subprocess, urllib.request
+
+          api_url = os.environ["PORTFOLIO_API_URL"]
+          token = os.environ["INGEST_TOKEN"]
+
+          files = []
+
+          with open("changed.txt") as f:
+            for line in f:
+              line = line.strip()
+              if not line:
+                continue
+
+              status, path = line.split("\t", 1)
+
+              # public/ 아래 Markdown만 처리
+              if not path.startswith("public/") or not path.endswith(".md"):
+                continue
+
+              # public/ 접두어 제거해서 sourcePath로 사용
+              source_path = path.removeprefix("public/")
+
+              if status == "D":
+                # 삭제된 파일: 이전 커밋에서 slug 추출
+                try:
+                  content = subprocess.check_output(
+                    ["git", "show", f"HEAD~1:{path}"], text=True
+                  )
+                  slug = None
+                  for raw_line in content.splitlines():
+                    if raw_line.startswith("slug:"):
+                      slug = raw_line.split(":", 1)[1].strip().strip('"')
+                      break
+                  files.append({
+                    "path": source_path,
+                    "slug": slug,
+                    "content": None,
+                    "action": "delete",
+                  })
+                except subprocess.CalledProcessError:
+                  print(f"Warning: could not read deleted file {path}, skipping")
+
+              else:
+                # 추가/수정된 파일
+                with open(path, encoding="utf-8") as mdf:
+                  content = mdf.read()
+                files.append({
+                  "path": source_path,
+                  "content": content,
+                  "action": "upsert",
+                })
+
+          if not files:
+            print("No eligible files changed, skipping ingest.")
+            exit(0)
+
+          payload = json.dumps({"files": files}).encode()
+          req = urllib.request.Request(
+            f"{api_url}/api/ingest",
+            data=payload,
+            headers={
+              "Content-Type": "application/json",
+              "X-Ingest-Token": token,
+            },
+            method="POST",
+          )
+
+          with urllib.request.urlopen(req) as res:
+            body = json.loads(res.read())
+            print("processed:", body.get("processed"))
+            if body.get("errors"):
+              print("errors:", body["errors"])
+              exit(1)
+
+          EOF

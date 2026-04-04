@@ -1,0 +1,82 @@
+name: Deploy Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      BASE_PATH: ${{ vars.PAGES_BASE_PATH != '' && vars.PAGES_BASE_PATH || github.event.repository.name }}
+      VAULT_SOURCE_DIR: vault-source
+      PUBLIC_GISCUS_REPO: ${{ vars.PUBLIC_GISCUS_REPO }}
+      PUBLIC_GISCUS_REPO_ID: ${{ vars.PUBLIC_GISCUS_REPO_ID }}
+      PUBLIC_GISCUS_CATEGORY: ${{ vars.PUBLIC_GISCUS_CATEGORY }}
+      PUBLIC_GISCUS_CATEGORY_ID: ${{ vars.PUBLIC_GISCUS_CATEGORY_ID }}
+      PUBLIC_GISCUS_MAPPING: ${{ vars.PUBLIC_GISCUS_MAPPING }}
+      PUBLIC_GISCUS_STRICT: ${{ vars.PUBLIC_GISCUS_STRICT }}
+      PUBLIC_GISCUS_REACTIONS_ENABLED: ${{ vars.PUBLIC_GISCUS_REACTIONS_ENABLED }}
+      PUBLIC_GISCUS_INPUT_POSITION: ${{ vars.PUBLIC_GISCUS_INPUT_POSITION }}
+      PUBLIC_GISCUS_LANG: ${{ vars.PUBLIC_GISCUS_LANG }}
+      PUBLIC_GISCUS_THEME: ${{ vars.PUBLIC_GISCUS_THEME }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Checkout vault content
+        uses: actions/checkout@v4
+        with:
+          repository: SunshineMoonGit/vault
+          token: ${{ secrets.VAULT_REPO_TOKEN }}
+          path: vault-source
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate content
+        run: pnpm build:content
+
+      - name: Build web app
+        run: pnpm --filter web build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: apps/web/build
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

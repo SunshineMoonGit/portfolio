@@ -1,0 +1,14 @@
+{
+  "name": "portfolio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:content": "node --import tsx scripts/build-content.ts",
+    "dev:web": "pnpm --filter web dev",
+    "check:web": "pnpm --filter web check",
+    "build:web": "pnpm --filter web build"
+  },
+  "devDependencies": {
+    "tsx": "^4.21.0"
+  }
+}
