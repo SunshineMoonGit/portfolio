@@ -19,7 +19,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      BASE_PATH: ${{ vars.PAGES_BASE_PATH != '' && vars.PAGES_BASE_PATH || github.event.repository.name }}
+      BASE_PATH: ${{ vars.PAGES_BASE_PATH }}
       VAULT_SOURCE_DIR: vault-source
       PUBLIC_GISCUS_REPO: ${{ vars.PUBLIC_GISCUS_REPO }}
       PUBLIC_GISCUS_REPO_ID: ${{ vars.PUBLIC_GISCUS_REPO_ID }}
