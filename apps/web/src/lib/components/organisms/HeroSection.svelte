@@ -492,14 +492,6 @@
     animation: charType 0.3s ease-out forwards;
   }
 
-  .typing-cursor {
-    opacity: 0;
-    animation: cursorAppear 0.1s ease-out 0.7s forwards, cursorBlink 0.8s step-end 0.7s 4;
-    color: var(--color-muted);
-    font-weight: 300;
-    margin-left: 1px;
-  }
-
   /* Sunshine letter-by-letter glow */
   .sunshine-text {
     display: inline-block;
@@ -581,11 +573,4 @@
     to { opacity: 1; filter: blur(0); transform: scale(1); }
   }
 
-  @keyframes cursorAppear {
-    to { opacity: 1; }
-  }
-
-  @keyframes cursorBlink {
-    50% { opacity: 0; }
-  }
 </style>
