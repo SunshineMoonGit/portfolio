@@ -164,8 +164,8 @@ function inferCategory(tags: string[], fallback = 'general'): string {
 	return fallback
 }
 
-function excerpt(content: string, maxLength = 140): string {
-	const plain = normalizeWhitespace(
+function stripMarkdown(content: string): string {
+	return normalizeWhitespace(
 		content
 			.replace(/^#+\s+/gm, '')
 			.replace(/```[\s\S]*?```/g, ' ')
@@ -173,8 +173,16 @@ function excerpt(content: string, maxLength = 140): string {
 			.replace(/!\[[^\]]*\]\([^)]+\)/g, ' ')
 			.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
 			.replace(/<[^>]+>/g, ' ')
+			.replace(/^\s*[-*]\s+/gm, '')
+			.replace(/^\s*\d+\.\s+/gm, '')
+			.replace(/[*_~]+/g, '')
+			.replace(/^\|.*\|$/gm, '')
+			.replace(/^\s*[-|:]+\s*$/gm, '')
 	)
+}
 
+function excerpt(content: string, maxLength = 140): string {
+	const plain = stripMarkdown(content)
 	return plain.length <= maxLength ? plain : `${plain.slice(0, maxLength).trim()}...`
 }
 
@@ -326,7 +334,7 @@ function buildSearchIndex(notes: NoteRecord[], projects: ProjectRecord[]): Searc
 			category: note.category,
 			tags: note.tags,
 			summary: note.summary,
-			content: note.content,
+			content: stripMarkdown(note.content),
 			sourcePath: note.sourcePath,
 			kind: 'note' as const
 		})),
@@ -336,7 +344,7 @@ function buildSearchIndex(notes: NoteRecord[], projects: ProjectRecord[]): Searc
 			category: 'project',
 			tags: project.techs,
 			summary: project.description,
-			content: project.content,
+			content: stripMarkdown(project.content),
 			sourcePath: `project/${project.name}.md`,
 			kind: 'project' as const
 		}))
