@@ -7,7 +7,6 @@
     MarkdownProse,
     NoteMeta,
     NotePager,
-    SurfaceCard,
     TableOfContents,
     getBacklinks,
     getRelatedNotes,
@@ -174,52 +173,38 @@
   {/if}
 </nav>
 
-{#if relatedNotes.length}
-  <section class="pt-12">
-    <div class="text-lg font-semibold text-text mb-4">Related Notes</div>
-    <div class="grid gap-3">
-      {#each relatedNotes as related}
-        <SurfaceCard href={getRelatedHref(related)} class="p-5 group">
-          <div class="flex items-start justify-between gap-4">
-            <div class="min-w-0">
-              <h2
-                class="text-base font-semibold text-text group-hover:text-text-bright transition-colors"
-              >
-                {related.title}
-              </h2>
-              {#if related.reason}
-                <p class="mt-1 text-sm text-muted leading-relaxed">
-                  {related.reason}
-                </p>
-              {/if}
-            </div>
-            <span class="text-xs text-subtle shrink-0">{related.score}</span>
-          </div>
-        </SurfaceCard>
-      {/each}
-    </div>
-  </section>
-{/if}
-
-{#if backlinks.length}
-  <section class="pt-12">
-    <div class="text-lg font-semibold text-text mb-4">Backlinks</div>
-    <div class="grid gap-3">
-      {#each backlinks as backlink}
-        <SurfaceCard href={getBacklinkHref(backlink)} class="p-5 group">
-          <h2
-            class="text-base font-semibold text-text group-hover:text-text-bright transition-colors"
-          >
-            {backlink.fromTitle}
-          </h2>
-          {#if backlink.context}
-            <p class="mt-1 text-sm text-muted leading-relaxed">
-              {backlink.context}
-            </p>
-          {/if}
-        </SurfaceCard>
-      {/each}
-    </div>
+{#if relatedNotes.length || backlinks.length}
+  <section class="pt-10 border-t border-border mt-10 xl:hidden">
+    {#if relatedNotes.length}
+      <div class="mb-6">
+        <p class="text-xs font-semibold text-subtle uppercase tracking-wider mb-3">Related Notes</p>
+        <div class="flex flex-wrap gap-2">
+          {#each relatedNotes as related}
+            <a href={getRelatedHref(related)} class="text-sm text-muted hover:text-gold transition-colors">
+              {related.title}
+            </a>
+            {#if relatedNotes.indexOf(related) < relatedNotes.length - 1}
+              <span class="text-border">·</span>
+            {/if}
+          {/each}
+        </div>
+      </div>
+    {/if}
+    {#if backlinks.length}
+      <div>
+        <p class="text-xs font-semibold text-subtle uppercase tracking-wider mb-3">Backlinks</p>
+        <div class="flex flex-wrap gap-2">
+          {#each backlinks as backlink}
+            <a href={getBacklinkHref(backlink)} class="text-sm text-muted hover:text-gold transition-colors">
+              {backlink.fromTitle}
+            </a>
+            {#if backlinks.indexOf(backlink) < backlinks.length - 1}
+              <span class="text-border">·</span>
+            {/if}
+          {/each}
+        </div>
+      </div>
+    {/if}
   </section>
 {/if}
 
