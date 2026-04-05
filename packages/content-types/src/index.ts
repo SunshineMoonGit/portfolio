@@ -5,8 +5,8 @@ export interface NoteIndex {
   tags: string[]
   summary: string
   thumbnail: string
-  date: string
-  updatedAt: string
+  created: string
+  updated: string
   sourcePath: string
 }
 

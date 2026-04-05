@@ -80,7 +80,7 @@
               {/each}
             </div>
 
-            <span class="text-xs text-subtle shrink-0 w-20 text-right max-sm:hidden">{note.date}</span>
+            <span class="text-xs text-subtle shrink-0 w-20 text-right max-sm:hidden">{note.created}</span>
           </a>
         {/each}
       </div>

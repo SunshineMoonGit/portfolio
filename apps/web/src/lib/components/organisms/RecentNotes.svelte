@@ -9,7 +9,7 @@
     summary?: string
     category: string
     thumbnail?: string
-    date: string
+    created: string
   }
 
   let { notes }: { notes: Note[] } = $props()
@@ -41,7 +41,7 @@
               <p class="text-xs text-muted mt-1 leading-relaxed">{note.summary}</p>
             {/if}
           </div>
-          <span class="text-[0.72rem] text-subtle whitespace-nowrap pt-0.5 max-sm:pt-0">{note.date}</span>
+          <span class="text-[0.72rem] text-subtle whitespace-nowrap pt-0.5 max-sm:pt-0">{note.created}</span>
         </SurfaceCard>
       </div>
     {/each}

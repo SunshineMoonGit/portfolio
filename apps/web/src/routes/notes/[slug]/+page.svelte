@@ -103,7 +103,7 @@
       {note.title}
     </h1>
     <div class="flex items-center gap-3">
-      <NoteMeta category={note.category} date={note.date} />
+      <NoteMeta category={note.category} created={note.created} />
     </div>
     {#if note.tags.length}
       <div class="mt-4 flex flex-wrap gap-1.5">

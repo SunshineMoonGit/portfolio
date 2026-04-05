@@ -32,7 +32,7 @@
       <div class="flex-1 min-w-0">
         <div class="flex justify-between items-center mb-2">
           <Badge tone="gold" uppercase>{note.category}</Badge>
-          <span class="text-[0.72rem] text-subtle">{note.date}</span>
+          <span class="text-[0.72rem] text-subtle">{note.created}</span>
         </div>
         <h2 class="text-lg font-semibold text-text mb-1.5 leading-snug group-hover:text-text-bright">{note.title}</h2>
         <p class="text-sm text-muted leading-relaxed mb-2.5">{note.summary}</p>

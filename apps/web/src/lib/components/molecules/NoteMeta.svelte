@@ -3,14 +3,14 @@
 
   let {
     category,
-    date
+    created
   }: {
     category: string
-    date: string
+    created: string
   } = $props()
 </script>
 
 <div class="flex gap-3 text-xs">
   <Badge tone="gold" uppercase>{category}</Badge>
-  <time class="text-subtle">{date}</time>
+  <time class="text-subtle">{created}</time>
 </div>

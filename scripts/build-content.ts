@@ -22,8 +22,8 @@ type NoteRecord = {
 	tags: string[]
 	summary: string
 	thumbnail: string
-	date: string
-	updatedAt: string
+	created: string
+	updated: string
 	sourcePath: string
 	content: string
 	prev: LinkRef | null
@@ -273,6 +273,8 @@ async function loadNotes(): Promise<NoteRecord[]> {
 		noteSlugLookup.set(slugifyNote(file), slug)
 		noteSlugLookup.set(slugifyNote(slug), slug)
 
+		const fallbackDate = fileStat.mtime.toISOString().slice(0, 10)
+
 		rawNotes.push({
 			slug,
 			title,
@@ -280,14 +282,14 @@ async function loadNotes(): Promise<NoteRecord[]> {
 			tags,
 			summary: String(meta.summary ?? excerpt(normalizedContent)),
 			thumbnail: String(meta.thumbnail ?? ''),
-			date: String(meta.date ?? fileStat.mtime.toISOString().slice(0, 10)),
-			updatedAt: fileStat.mtime.toISOString(),
+			created: String(meta.created ?? fallbackDate),
+			updated: String(meta.updated ?? fallbackDate),
 			sourcePath: path.posix.join('notes', file),
 			content: normalizedContent
 		})
 	}
 
-	rawNotes.sort((a, b) => a.date.localeCompare(b.date) || a.slug.localeCompare(b.slug))
+	rawNotes.sort((a, b) => b.created.localeCompare(a.created) || a.slug.localeCompare(b.slug))
 
 	return rawNotes.map((note, index, list) => ({
 		...note,
