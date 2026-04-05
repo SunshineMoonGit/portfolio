@@ -43,6 +43,10 @@ jobs:
           repository: SunshineMoonGit/vault
           token: ${{ secrets.VAULT_REPO_TOKEN }}
           path: vault-source
+          sparse-checkout: |
+            public
+            notes
+            project
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -61,17 +65,12 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --prod=false
 
-      - name: Sync SvelteKit
-        run: pnpm --filter web prepare
-
-      - name: Generate content
-        run: pnpm build:content
-
-      - name: Check base-aware internal links
-        run: npm run check:paths
-
-      - name: Build web app
-        run: pnpm --filter web build
+      - name: Build
+        run: |
+          pnpm --filter web prepare
+          pnpm build:content
+          npm run check:paths
+          pnpm --filter web build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

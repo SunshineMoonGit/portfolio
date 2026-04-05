@@ -16,7 +16,7 @@ patterns=(
 status=0
 
 for pattern in "${patterns[@]}"; do
-  if rg -n -F --glob '!apps/web/src/lib/generated/**' --glob '!apps/web/build/**' --glob '!apps/web/.svelte-kit/**' "$pattern" apps/web/src apps/web/static; then
+  if grep -rn -F --include='*.svelte' --include='*.ts' --include='*.js' --exclude-dir='generated' --exclude-dir='build' --exclude-dir='.svelte-kit' "$pattern" apps/web/src apps/web/static 2>/dev/null; then
     status=1
   fi
 done
