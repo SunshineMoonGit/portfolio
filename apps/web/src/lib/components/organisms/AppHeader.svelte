@@ -2,7 +2,7 @@
   import { base } from '$app/paths'
   import { page } from '$app/state'
 
-  let { navEl = $bindable() }: { navEl?: HTMLElement } = $props()
+  let { navEl = $bindable(), onsearch }: { navEl?: HTMLElement; onsearch?: () => void } = $props()
 
   let mobileOpen = $state(false)
   let pathname = $derived(page.url.pathname)
@@ -44,6 +44,10 @@
     <a href={withBase('/notes')} class="hover:text-text {activePath.startsWith('/notes') ? 'text-gold' : ''}">Notes</a>
     <a href={withBase('/contact')} class="hover:text-text {activePath.startsWith('/contact') ? 'text-gold' : ''}">Contact</a>
     <a href="https://github.com/SunshineMoonGit" target="_blank" rel="noopener noreferrer" class="hover:text-text">GitHub ↗</a>
+    <button onclick={onsearch} class="hover:text-text flex items-center gap-1.5 cursor-pointer" aria-label="Search">
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+      <kbd class="text-[0.55rem] text-subtle border border-border rounded px-1 py-0.5">⌘K</kbd>
+    </button>
   </div>
 </nav>
 

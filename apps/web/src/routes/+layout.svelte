@@ -59,7 +59,7 @@
 </svelte:head>
 
 <div class={isHome ? '' : 'pt-16'}>
-  <AppHeader bind:navEl />
+  <AppHeader bind:navEl onsearch={() => (searchOpen = true)} />
 
   <main class={isHome ? '' : isWide ? 'mx-auto max-w-[960px] px-6 pb-24' : 'mx-auto max-w-[680px] px-6 pb-24'}>
     {@render children()}

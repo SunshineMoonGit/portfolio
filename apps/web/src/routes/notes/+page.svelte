@@ -8,21 +8,8 @@
 
   let categories = $derived([...new Set(notes.map((n: NoteIndex) => n.category))].sort())
   let selected = $state<string | null>(null)
-  let search = $state('')
 
-  let categoryFiltered = $derived(selected ? notes.filter((n: NoteIndex) => n.category === selected) : notes)
-  let filtered = $derived(
-    search.trim()
-      ? categoryFiltered.filter((n: NoteIndex) => {
-          const q = search.trim().toLowerCase()
-          return (
-            n.title.toLowerCase().includes(q) ||
-            n.summary?.toLowerCase().includes(q) ||
-            n.tags.some((t: string) => t.toLowerCase().includes(q))
-          )
-        })
-      : categoryFiltered
-  )
+  let filtered = $derived(selected ? notes.filter((n: NoteIndex) => n.category === selected) : notes)
 
   function withBase(path: string): string {
     return `${base}${path}`
@@ -73,15 +60,6 @@
 
   <!-- Right content -->
   <div class="flex-1 min-w-0">
-    <div class="mb-5">
-      <input
-        type="text"
-        bind:value={search}
-        placeholder="Search notes..."
-        class="w-full bg-dark-card border border-border rounded-lg px-4 py-2.5 text-sm text-text placeholder:text-subtle/40 focus:border-gold/50 focus:shadow-[0_0_0_3px_rgba(215,164,73,0.08)] focus:outline-none transition-all"
-      />
-    </div>
-
     {#if filtered.length}
       <div class="space-y-0.5">
         {#each filtered as note}
