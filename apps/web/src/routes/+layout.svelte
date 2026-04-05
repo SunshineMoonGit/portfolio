@@ -4,9 +4,10 @@
   import { onMount } from 'svelte'
   import { onNavigate } from '$app/navigation'
   import { page } from '$app/state'
-  import { AppFooter, AppHeader } from '$lib'
+  import { AppFooter, AppHeader, SearchModal } from '$lib'
 
   let { children } = $props()
+  let searchOpen = $state(false)
   let navEl: HTMLElement | undefined = $state()
   let isHome = $derived((page.url.pathname === base || page.url.pathname === base + '/') || page.url.pathname === '/')
   let activePath = $derived(base && page.url.pathname.startsWith(base) ? page.url.pathname.slice(base.length) || '/' : page.url.pathname)
@@ -40,6 +41,15 @@
     return `${base}${path}`
   }
 </script>
+
+<svelte:window onkeydown={(e) => {
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+    e.preventDefault()
+    searchOpen = !searchOpen
+  }
+}} />
+
+<SearchModal bind:open={searchOpen} />
 
 <svelte:head>
   <link rel="icon" type="image/png" href={withBase('/favicon.png')} />

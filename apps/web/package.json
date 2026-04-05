@@ -26,6 +26,7 @@
 	},
 	"dependencies": {
 		"@portfolio/content-types": "workspace:*",
+		"fuse.js": "^7.3.0",
 		"marked": "^17.0.5"
 	}
 }
