@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { base } from '$app/paths'
   import { SurfaceCard } from '$lib'
+  import { withBase } from '$lib/utils'
 
   type AdjacentNote = {
     slug: string
@@ -15,9 +15,6 @@
     next?: AdjacentNote
   } = $props()
 
-  function withBase(path: string): string {
-    return `${base}${path}`
-  }
 </script>
 
 {#if prev || next}

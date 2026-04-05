@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { base } from '$app/paths'
   import { onMount } from 'svelte'
   import { Badge, SectionHeader, SurfaceCard } from '$lib'
+  import { withBase } from '$lib/utils'
   import { toProjectSlug } from '$lib/project-slug'
 
   type Project = {
@@ -14,10 +14,6 @@
 
   let { projects }: { projects: Project[] } = $props()
   let projectCards: HTMLElement[] = []
-
-  function withBase(path: string): string {
-    return `${base}${path}`
-  }
 
   onMount(() => {
     function handleCardMouse(event: MouseEvent) {

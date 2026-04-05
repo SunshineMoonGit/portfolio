@@ -5,6 +5,7 @@
   import { onNavigate } from '$app/navigation'
   import { page } from '$app/state'
   import { AppFooter, AppHeader, SearchModal } from '$lib'
+  import { withBase } from '$lib/utils'
 
   let { children } = $props()
   let searchOpen = $state(false)
@@ -37,9 +38,6 @@
     })
   })
 
-  function withBase(path: string): string {
-    return `${base}${path}`
-  }
 </script>
 
 <svelte:window onkeydown={(e) => {

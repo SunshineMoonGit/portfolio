@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { base } from '$app/paths'
   import type { NoteIndex } from '@portfolio/content-types'
   import { Badge, Seo, getNotes } from '$lib'
+  import { withBase } from '$lib/utils'
   import { getCategoryStyle } from '$lib/content-style'
 
   const notes = getNotes()
@@ -11,9 +11,6 @@
 
   let filtered = $derived(selected ? notes.filter((n: NoteIndex) => n.category === selected) : notes)
 
-  function withBase(path: string): string {
-    return `${base}${path}`
-  }
 
   function getCategoryCount(cat: string): number {
     return notes.filter((n: NoteIndex) => n.category === cat).length

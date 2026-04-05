@@ -1,6 +1,5 @@
 import { getProjectDetails, getNoteDetails } from '$lib'
-
-const SITE_URL = 'https://sunshinemoon.cloud'
+import { site } from '$lib/config'
 
 export const prerender = true
 
@@ -13,19 +12,19 @@ export function GET() {
   const urls = [
     ...staticPages.map((path) => `
     <url>
-      <loc>${SITE_URL}${path}/</loc>
+      <loc>${site.url}${path}/</loc>
       <changefreq>${path === '' ? 'weekly' : 'weekly'}</changefreq>
       <priority>${path === '' ? '1.0' : '0.8'}</priority>
     </url>`),
     ...projects.map((p) => `
     <url>
-      <loc>${SITE_URL}/projects/${p.slug}/</loc>
+      <loc>${site.url}/projects/${p.slug}/</loc>
       <changefreq>monthly</changefreq>
       <priority>0.7</priority>
     </url>`),
     ...notes.map((n) => `
     <url>
-      <loc>${SITE_URL}/notes/${n.slug}/</loc>
+      <loc>${site.url}/notes/${n.slug}/</loc>
       <changefreq>monthly</changefreq>
       <priority>0.6</priority>
     </url>`),

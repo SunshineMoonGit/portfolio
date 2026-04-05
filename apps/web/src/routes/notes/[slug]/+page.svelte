@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { base } from "$app/paths";
+  import { withBase } from "$lib/utils";
   import {
     Badge,
     Button,
@@ -77,10 +77,6 @@
       pre.appendChild(meta);
       pre.appendChild(button);
     });
-  }
-
-  function withBase(path: string): string {
-    return `${base}${path}`;
   }
 
   function getRelatedHref(link: RelatedLink): string {

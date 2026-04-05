@@ -1,17 +1,14 @@
 <script lang="ts">
-  import { base } from '$app/paths'
   import { marked } from 'marked'
   import type { PageData } from './$types'
   import { Button, MarkdownProse, Seo, TableOfContents } from '$lib'
+  import { withBase } from '$lib/utils'
 
   let { data }: { data: PageData } = $props()
   let { project } = $derived(data)
   let html = $derived(marked.parse(project.content) as string)
   let proseEl: HTMLElement | undefined = $state()
 
-  function withBase(path: string): string {
-    return `${base}${path}`
-  }
 </script>
 
 <Seo

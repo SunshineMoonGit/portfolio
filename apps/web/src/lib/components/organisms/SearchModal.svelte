@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { base } from '$app/paths'
   import { goto } from '$app/navigation'
+  import { withBase } from '$lib/utils'
   import { getCategoryStyle } from '$lib/content-style'
   import { searchDocuments, getAllCategories, getAllTags, highlightByIndices, getSnippet } from '$lib/search'
   import type { SearchResult, SearchFilters } from '$lib/search'
@@ -53,10 +53,6 @@
     results
     selectedIndex = 0
   })
-
-  function withBase(path: string): string {
-    return `${base}${path}`
-  }
 
   function getDocumentHref(doc: SearchDocument): string {
     const prefix = doc.kind === 'project' ? '/projects/' : '/notes/'

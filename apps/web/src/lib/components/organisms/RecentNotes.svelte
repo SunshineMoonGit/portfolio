@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { base } from '$app/paths'
   import { Badge, SectionHeader, SurfaceCard } from '$lib'
+  import { withBase } from '$lib/utils'
   import { getCategoryStyle } from '$lib/content-style'
 
   type Note = {
@@ -14,9 +14,6 @@
 
   let { notes }: { notes: Note[] } = $props()
 
-  function withBase(path: string): string {
-    return `${base}${path}`
-  }
 
 </script>
 

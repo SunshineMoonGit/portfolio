@@ -1,9 +1,10 @@
 <script lang="ts">
   import { page } from '$app/state'
   import { base } from '$app/paths'
+  import { site } from '$lib/config'
 
   let {
-    title = 'sunshinemoon',
+    title = site.name,
     description = 'Backend, Security, Infra에 관심 있는 개발자 sunshinemoon의 포트폴리오.',
     image = '',
     type = 'website' as 'website' | 'article',
@@ -14,12 +15,9 @@
     type?: 'website' | 'article'
   } = $props()
 
-  const SITE_NAME = 'sunshinemoon'
-  const SITE_URL = 'https://sunshinemoon.cloud'
-
-  let canonicalUrl = $derived(`${SITE_URL}${page.url.pathname}`)
-  let ogImage = $derived(image || `${SITE_URL}${base}/favicon.png`)
-  let fullTitle = $derived(title === SITE_NAME ? title : `${title} · ${SITE_NAME}`)
+  let canonicalUrl = $derived(`${site.url}${page.url.pathname}`)
+  let ogImage = $derived(image || `${site.url}${base}/favicon.png`)
+  let fullTitle = $derived(title === site.name ? title : `${title} · ${site.name}`)
 </script>
 
 <svelte:head>
@@ -32,7 +30,7 @@
   <meta property="og:title" content={fullTitle} />
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonicalUrl} />
-  <meta property="og:site_name" content={SITE_NAME} />
+  <meta property="og:site_name" content={site.name} />
   <meta property="og:image" content={ogImage} />
   <meta property="og:locale" content="ko_KR" />
 

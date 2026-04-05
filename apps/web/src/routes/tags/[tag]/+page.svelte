@@ -1,15 +1,12 @@
 <script lang="ts">
-  import { base } from '$app/paths'
   import type { PageData } from './$types'
   import { Badge, Button, Seo, SectionHeader, SurfaceCard } from '$lib'
+  import { withBase } from '$lib/utils'
   import { getCategoryStyle } from '$lib/content-style'
 
   let { data }: { data: PageData } = $props()
   let { tag, notes } = $derived(data)
 
-  function withBase(path: string): string {
-    return `${base}${path}`
-  }
 </script>
 
 <Seo

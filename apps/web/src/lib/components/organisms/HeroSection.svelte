@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { base } from '$app/paths'
   import { onMount } from 'svelte'
+  import { site } from '$lib/config'
+  import { withBase } from '$lib/utils'
 
   let heroEl: HTMLElement
   let moon: HTMLElement
@@ -9,10 +10,6 @@
   let cursorGlow: HTMLElement
   let mouseX = 0
   let mouseY = 0
-
-  function withBase(path: string): string {
-    return `${base}${path}`
-  }
 
   onMount(() => {
     const handleMouse = (event: MouseEvent) => {
@@ -419,7 +416,7 @@
       <span class="moon-name text-text">Moon</span>
     </h1>
     <a
-      href="https://github.com/SunshineMoonGit"
+      href={site.github}
       target="_blank"
       rel="noopener noreferrer"
       class="cta-btn mt-8 w-fit px-6 py-2.5 rounded-full border border-gold/50 text-gold text-sm font-medium hover:bg-gold/10 hover:border-gold hover:shadow-[0_0_20px_rgba(215,164,73,0.15)] transition-all duration-300"

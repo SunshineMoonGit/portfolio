@@ -1,12 +1,9 @@
 <script lang="ts">
-  import { base } from '$app/paths'
   import { Badge, Seo, SectionHeader, getProjectDetails } from '$lib'
+  import { withBase } from '$lib/utils'
 
   const projects = getProjectDetails()
 
-  function withBase(path: string): string {
-    return `${base}${path}`
-  }
 </script>
 
 <Seo
