@@ -34,7 +34,7 @@
             {#if note.thumbnail}
               <img src={note.thumbnail} alt="" class="w-full h-full object-cover rounded-[10px]" />
             {:else}
-              <span class="text-xl">{getCategoryStyle(note.category).icon}</span>
+              <span class="text-xs font-semibold text-subtle">{getCategoryStyle(note.category).label}</span>
             {/if}
           </div>
           <div class="flex-1 min-w-0">

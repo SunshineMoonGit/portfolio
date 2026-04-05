@@ -62,7 +62,7 @@
           class="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm transition-colors {selected === category ? 'bg-gold/10 text-gold' : 'text-muted hover:text-text hover:bg-dark-card/50'}"
         >
           <span class="flex items-center gap-2">
-            <span class="text-xs">{style.icon}</span>
+            <span class="text-xs">{style.label}</span>
             {category}
           </span>
           <span class="text-xs {selected === category ? 'text-gold/60' : 'text-subtle'}">{getCategoryCount(category)}</span>
@@ -90,7 +90,7 @@
               {#if note.thumbnail}
                 <img src={note.thumbnail} alt="" class="w-full h-full object-cover rounded-md" />
               {:else}
-                <span class="text-sm">{getCategoryStyle(note.category).icon}</span>
+                <span class="text-[0.6rem] font-semibold text-subtle">{getCategoryStyle(note.category).label}</span>
               {/if}
             </div>
 

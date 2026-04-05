@@ -28,7 +28,7 @@
         {#if note.thumbnail}
           <img src={note.thumbnail} alt="" class="w-full h-full object-cover rounded-xl" />
         {:else}
-          <span class="text-[1.4rem]">{getCategoryStyle(note.category).icon}</span>
+          <span class="text-xs font-semibold text-subtle">{getCategoryStyle(note.category).label}</span>
         {/if}
       </div>
       <div class="flex-1 min-w-0">
