@@ -4,7 +4,8 @@
   import { marked } from 'marked'
   import { onMount, tick } from 'svelte'
   import type { PageData } from './$types'
-  import { Badge, Button, GiscusComments, MarkdownProse, NoteMeta, NotePager, SectionHeader, SurfaceCard, getBacklinks, getRelatedNotes } from '$lib'
+  import { Badge, Button, GiscusComments, MarkdownProse, NoteMeta, NotePager, TableOfContents, SurfaceCard, getBacklinks, getRelatedNotes } from '$lib'
+  import { getCategoryStyle } from '$lib/content-style'
 
   let { data }: { data: PageData } = $props()
   let { note } = $derived(data)
@@ -106,9 +107,43 @@
   <MarkdownProse {html} bind:proseEl />
 </article>
 
+<!-- Fixed right sidebar -->
+<nav class="note-sidebar" aria-label="Note sidebar">
+  <!-- TOC -->
+  <TableOfContents {proseEl} />
+
+  <!-- Related Notes -->
+  {#if relatedNotes.length}
+    <div class="mt-6">
+      <p class="text-[0.65rem] font-semibold text-subtle uppercase tracking-wider mb-3">Related</p>
+      <ul class="flex flex-col gap-1">
+        {#each relatedNotes.slice(0, 5) as related}
+          <li>
+            <a href={getRelatedHref(related)} class="block text-[0.7rem] text-subtle hover:text-gold transition-colors truncate py-0.5 px-2">{related.title}</a>
+          </li>
+        {/each}
+      </ul>
+    </div>
+  {/if}
+
+  <!-- Backlinks -->
+  {#if backlinks.length}
+    <div class="mt-6">
+      <p class="text-[0.65rem] font-semibold text-subtle uppercase tracking-wider mb-3">Backlinks</p>
+      <ul class="flex flex-col gap-1">
+        {#each backlinks.slice(0, 5) as backlink}
+          <li>
+            <a href={getBacklinkHref(backlink)} class="block text-[0.7rem] text-subtle hover:text-gold transition-colors truncate py-0.5 px-2">{backlink.fromTitle}</a>
+          </li>
+        {/each}
+      </ul>
+    </div>
+  {/if}
+</nav>
+
 {#if relatedNotes.length}
   <section class="pt-12">
-    <SectionHeader title="Related Notes" meta={`${relatedNotes.length}개`} />
+    <div class="text-lg font-semibold text-text mb-4">Related Notes</div>
     <div class="grid gap-3">
       {#each relatedNotes as related}
         <SurfaceCard href={getRelatedHref(related)} class="p-5 group">
@@ -129,7 +164,7 @@
 
 {#if backlinks.length}
   <section class="pt-12">
-    <SectionHeader title="Backlinks" meta={`${backlinks.length}개`} />
+    <div class="text-lg font-semibold text-text mb-4">Backlinks</div>
     <div class="grid gap-3">
       {#each backlinks as backlink}
         <SurfaceCard href={getBacklinkHref(backlink)} class="p-5 group">
@@ -146,3 +181,33 @@
 <GiscusComments term={note.slug} />
 
 <NotePager prev={note.prev ?? undefined} next={note.next ?? undefined} />
+
+<style>
+  .note-sidebar {
+    position: fixed;
+    top: 100px;
+    right: calc((100vw - 680px) / 2 - 260px);
+    width: 220px;
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+
+  .note-sidebar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .note-sidebar :global(.toc) {
+    position: static !important;
+    right: auto !important;
+    top: auto !important;
+    width: 100% !important;
+    max-height: none !important;
+  }
+
+  @media (max-width: 1280px) {
+    .note-sidebar {
+      display: none;
+    }
+  }
+</style>

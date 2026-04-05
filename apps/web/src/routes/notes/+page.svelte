@@ -1,7 +1,7 @@
 <script lang="ts">
   import { base } from '$app/paths'
   import type { NoteIndex } from '@portfolio/content-types'
-  import { Badge, Button, SectionHeader, SurfaceCard, getNotes } from '$lib'
+  import { Badge, getNotes } from '$lib'
   import { getCategoryStyle } from '$lib/content-style'
 
   const notes = getNotes()
@@ -28,67 +28,88 @@
     return `${base}${path}`
   }
 
+  function getCategoryCount(cat: string): number {
+    return notes.filter((n: NoteIndex) => n.category === cat).length
+  }
 </script>
 
 <svelte:head>
   <title>Notes · sunshinemoon</title>
 </svelte:head>
 
-<div class="pt-14 pb-8">
-  <SectionHeader title="Notes" meta={`${filtered.length}개`} href={withBase('/search')} actionLabel="Search →" />
-</div>
-
-{#if categories.length > 1}
-  <div class="flex flex-wrap gap-1.5 mb-4">
-    <Button variant={selected === null ? 'primary' : 'ghost'} class="rounded-full" onclick={() => (selected = null)}>all</Button>
-    {#each categories as category}
-      <Button variant={selected === category ? 'primary' : 'ghost'} class="rounded-full" onclick={() => (selected = category)}>{category}</Button>
-    {/each}
+<div class="pt-14 pb-6">
+  <div class="flex items-baseline justify-between">
+    <h1 class="text-2xl font-bold text-text">Notes</h1>
+    <span class="text-sm text-subtle">{filtered.length}개</span>
   </div>
-{/if}
-
-<div class="mb-8">
-  <input
-    type="text"
-    bind:value={search}
-    placeholder="제목, 태그로 검색..."
-    class="w-full bg-dark border border-border rounded-lg px-4 py-2.5 text-sm text-text placeholder:text-subtle focus:border-gold focus:outline-none transition-colors"
-  />
 </div>
 
-{#if filtered.length}
-  <div class="grid gap-4">
-    {#each filtered as note}
-      <SurfaceCard href={withBase(`/notes/${note.slug}`)} class="flex items-start gap-5 p-6 hover:shadow-[0_0_30px_rgba(245,158,11,0.05)] max-sm:flex-col max-sm:gap-3 group">
-        <div class="w-14 h-14 rounded-xl flex items-center justify-center shrink-0 overflow-hidden" style="background: {note.thumbnail ? 'none' : getCategoryStyle(note.category).bg}">
-          {#if note.thumbnail}
-            <img src={note.thumbnail} alt="" class="w-full h-full object-cover rounded-xl" />
-          {:else}
-            <span class="text-[1.4rem]">{getCategoryStyle(note.category).icon}</span>
-          {/if}
-        </div>
-        <div class="flex-1 min-w-0">
-          <div class="flex justify-between items-center mb-2">
-            <Badge tone="gold" uppercase>{note.category}</Badge>
-            <span class="text-[0.72rem] text-subtle">{note.date}</span>
-          </div>
-          <h2 class="text-lg font-semibold text-text mb-1.5 leading-snug group-hover:text-text-bright">{note.title}</h2>
-          {#if note.summary}
-            <p class="text-sm text-muted leading-relaxed mb-2.5">{note.summary}</p>
-          {/if}
-          {#if note.tags.length}
-            <div class="flex flex-wrap gap-1.5">
-              {#each note.tags as tag}
-                <a href={withBase(`/tags/${encodeURIComponent(tag)}`)} class="inline-flex">
-                  <Badge>{tag}</Badge>
-                </a>
+<div class="flex gap-8 max-sm:flex-col">
+  <!-- Left sidebar -->
+  <aside class="w-48 shrink-0 max-sm:w-full">
+    <div class="sticky top-20 space-y-1">
+      <button
+        onclick={() => (selected = null)}
+        class="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm transition-colors {selected === null ? 'bg-gold/10 text-gold' : 'text-muted hover:text-text hover:bg-dark-card/50'}"
+      >
+        <span>All</span>
+        <span class="text-xs {selected === null ? 'text-gold/60' : 'text-subtle'}">{notes.length}</span>
+      </button>
+      {#each categories as category}
+        {@const style = getCategoryStyle(category)}
+        <button
+          onclick={() => (selected = selected === category ? null : category)}
+          class="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm transition-colors {selected === category ? 'bg-gold/10 text-gold' : 'text-muted hover:text-text hover:bg-dark-card/50'}"
+        >
+          <span class="flex items-center gap-2">
+            <span class="text-xs">{style.icon}</span>
+            {category}
+          </span>
+          <span class="text-xs {selected === category ? 'text-gold/60' : 'text-subtle'}">{getCategoryCount(category)}</span>
+        </button>
+      {/each}
+    </div>
+  </aside>
+
+  <!-- Right content -->
+  <div class="flex-1 min-w-0">
+    <div class="mb-5">
+      <input
+        type="text"
+        bind:value={search}
+        placeholder="Search notes..."
+        class="w-full bg-dark-card border border-border rounded-lg px-4 py-2.5 text-sm text-text placeholder:text-subtle/40 focus:border-gold/50 focus:shadow-[0_0_0_3px_rgba(215,164,73,0.08)] focus:outline-none transition-all"
+      />
+    </div>
+
+    {#if filtered.length}
+      <div class="space-y-0.5">
+        {#each filtered as note}
+          <a href={withBase(`/notes/${note.slug}`)} class="group flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-dark-card/50 transition-all">
+            <div class="w-8 h-8 rounded-md flex items-center justify-center shrink-0 overflow-hidden" style="background: {note.thumbnail ? 'none' : getCategoryStyle(note.category).bg}">
+              {#if note.thumbnail}
+                <img src={note.thumbnail} alt="" class="w-full h-full object-cover rounded-md" />
+              {:else}
+                <span class="text-sm">{getCategoryStyle(note.category).icon}</span>
+              {/if}
+            </div>
+
+            <div class="flex-1 min-w-0">
+              <h2 class="text-sm text-text truncate group-hover:text-gold transition-colors">{note.title}</h2>
+            </div>
+
+            <div class="flex items-center gap-2 shrink-0 max-sm:hidden">
+              {#each note.tags.slice(0, 2) as tag}
+                <Badge>{tag}</Badge>
               {/each}
             </div>
-          {/if}
-        </div>
-      </SurfaceCard>
-    {/each}
+
+            <span class="text-xs text-subtle shrink-0 w-20 text-right max-sm:hidden">{note.date}</span>
+          </a>
+        {/each}
+      </div>
+    {:else}
+      <p class="text-subtle text-sm py-8 text-center">검색 결과가 없습니다.</p>
+    {/if}
   </div>
-{:else}
-  <p class="text-subtle text-sm py-8">노트가 없습니다.</p>
-{/if}
+</div>

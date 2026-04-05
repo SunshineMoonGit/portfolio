@@ -9,6 +9,11 @@
   let { children } = $props()
   let navEl: HTMLElement | undefined = $state()
   let isHome = $derived((page.url.pathname === base || page.url.pathname === base + '/') || page.url.pathname === '/')
+  let activePath = $derived(base && page.url.pathname.startsWith(base) ? page.url.pathname.slice(base.length) || '/' : page.url.pathname)
+  let isWide = $derived(
+    activePath === '/projects' || activePath === '/projects/' ||
+    activePath === '/notes' || activePath === '/notes/'
+  )
 
   onMount(() => {
     const onScroll = () => {
@@ -46,7 +51,7 @@
 <div class={isHome ? '' : 'pt-16'}>
   <AppHeader bind:navEl />
 
-  <main class={isHome ? '' : 'mx-auto max-w-[680px] px-6 pb-24'}>
+  <main class={isHome ? '' : isWide ? 'mx-auto max-w-[960px] px-6 pb-24' : 'mx-auto max-w-[680px] px-6 pb-24'}>
     {@render children()}
   </main>
 

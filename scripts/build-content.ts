@@ -6,11 +6,8 @@ const VAULT_SOURCE_DIR = process.env.VAULT_SOURCE_DIR
 	? path.resolve(ROOT, process.env.VAULT_SOURCE_DIR)
 	: path.join(ROOT, 'vault')
 const NOTES_DIR = path.join(VAULT_SOURCE_DIR, 'public', 'notes')
-const PROJECTS_DIR = path.join(VAULT_SOURCE_DIR, 'project')
-const PROFILE_PATHS = [
-	path.join(VAULT_SOURCE_DIR, 'public', 'profile.json'),
-	path.join(ROOT, 'data', 'profile.json')
-]
+const PROJECTS_DIR = path.join(VAULT_SOURCE_DIR, 'public', 'project')
+const PROFILE_PATH = path.join(VAULT_SOURCE_DIR, 'public', 'profile.json')
 const OUTPUT_DIR = path.join(ROOT, 'apps', 'web', 'src', 'lib', 'generated')
 
 type LinkRef = {
@@ -240,13 +237,10 @@ async function pathExists(targetPath: string): Promise<boolean> {
 }
 
 async function loadProfile(): Promise<ProfileRecord> {
-	for (const profilePath of PROFILE_PATHS) {
-		if (await pathExists(profilePath)) {
-			return readJson<ProfileRecord>(profilePath)
-		}
+	if (!(await pathExists(PROFILE_PATH))) {
+		throw new Error(`Profile not found: ${PROFILE_PATH}`)
 	}
-
-	throw new Error('Profile source not found')
+	return readJson<ProfileRecord>(PROFILE_PATH)
 }
 
 async function loadNotes(): Promise<NoteRecord[]> {

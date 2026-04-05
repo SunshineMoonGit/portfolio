@@ -21,6 +21,14 @@
       lightboxAlt = img.alt || ''
     }
 
+    proseEl.querySelectorAll('table').forEach((table) => {
+      if (table.parentElement?.classList.contains('table-wrapper')) return
+      const wrapper = document.createElement('div')
+      wrapper.className = 'table-wrapper'
+      table.parentNode?.insertBefore(wrapper, table)
+      wrapper.appendChild(table)
+    })
+
     const images = proseEl.querySelectorAll('img')
     images.forEach((img) => {
       img.style.cursor = 'zoom-in'
@@ -96,7 +104,8 @@
   .prose :global(pre code) { display: block; background: none; padding: 0; color: #e8edf2; font-size: 0.85rem; line-height: 1.7; white-space: pre-wrap; overflow-wrap: anywhere; word-break: break-word; }
   .prose :global(.code-block-meta) { position: absolute; top: 0.8rem; left: 0.8rem; display: flex; align-items: center; gap: 0.5rem; }
   .prose :global(.code-language-label) { border: 1px solid #465262; border-radius: 999px; background: rgba(28, 35, 44, 0.94); color: #b2bcc6; padding: 0.35rem 0.75rem; font-size: 0.7rem; line-height: 1; text-transform: lowercase; }
-  .prose :global(table) { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.88rem; }
+  .prose :global(.table-wrapper) { overflow-x: auto; margin: 1.25rem 0; }
+  .prose :global(table) { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
   .prose :global(thead) { border-bottom: 2px solid #465262; }
   .prose :global(th) { color: #eef2f6; font-weight: 600; text-align: left; padding: 0.6rem 1rem; background: #1c232c; }
   .prose :global(td) { color: #bac5d0; padding: 0.6rem 1rem; border-bottom: 1px solid #36414d; }
