@@ -1,5 +1,41 @@
 {
   "notes": {
+    "abac": {
+      "related": [
+        {
+          "slug": "rbac",
+          "title": "RBAC (Role-Based Access Control)",
+          "score": 11,
+          "reason": "shared tags: 인가, 보안, 권한"
+        },
+        {
+          "slug": "opa",
+          "title": "OPA (Open Policy Agent)",
+          "score": 8,
+          "reason": "shared tags: 인가, 보안"
+        },
+        {
+          "slug": "bff",
+          "title": "BFF (Backend For Frontend)",
+          "score": 5,
+          "reason": "shared tags: 보안"
+        },
+        {
+          "slug": "oauth-oidc-saml",
+          "title": "OAuth, OIDC, SAML",
+          "score": 5,
+          "reason": "shared tags: 보안"
+        },
+        {
+          "slug": "sandbox",
+          "title": "Sandbox",
+          "score": 5,
+          "reason": "shared tags: 보안"
+        }
+      ],
+      "backlinks": [],
+      "outgoing": []
+    },
     "alembic": {
       "related": [],
       "backlinks": [],
@@ -20,9 +56,21 @@
           "reason": "shared tags: 인증, 보안"
         },
         {
-          "slug": "sandbox",
-          "title": "Sandbox",
-          "score": 3,
+          "slug": "abac",
+          "title": "ABAC (Attribute-Based Access Control)",
+          "score": 5,
+          "reason": "shared tags: 보안"
+        },
+        {
+          "slug": "opa",
+          "title": "OPA (Open Policy Agent)",
+          "score": 5,
+          "reason": "shared tags: 보안"
+        },
+        {
+          "slug": "rbac",
+          "title": "RBAC (Role-Based Access Control)",
+          "score": 5,
           "reason": "shared tags: 보안"
         }
       ],
@@ -38,28 +86,28 @@
           "reason": "shared tags: 네트워크, 인프라"
         },
         {
+          "slug": "서버-배포-구성",
+          "title": "서버 배포 구성",
+          "score": 5,
+          "reason": "shared tags: dns"
+        },
+        {
           "slug": "proxy",
           "title": "Proxy",
-          "score": 5,
+          "score": 3,
           "reason": "shared tags: 네트워크"
         },
         {
-          "slug": "tcp-udp",
+          "slug": "tcp와-udp",
           "title": "TCP와 UDP",
-          "score": 5,
+          "score": 3,
           "reason": "shared tags: 네트워크"
         },
         {
           "slug": "upstream-downstream-hop",
           "title": "Upstream-Downstream-Hop",
-          "score": 5,
-          "reason": "shared tags: 네트워크"
-        },
-        {
-          "slug": "server-deploy-setup",
-          "title": "서버 배포 구성",
           "score": 3,
-          "reason": "shared tags: dns"
+          "reason": "shared tags: 네트워크"
         }
       ],
       "backlinks": [],
@@ -81,20 +129,26 @@
         {
           "slug": "proxy",
           "title": "Proxy",
-          "score": 5,
+          "score": 3,
           "reason": "shared tags: 네트워크"
         },
         {
-          "slug": "tcp-udp",
+          "slug": "tcp와-udp",
           "title": "TCP와 UDP",
-          "score": 5,
+          "score": 3,
           "reason": "shared tags: 네트워크"
         },
         {
           "slug": "upstream-downstream-hop",
           "title": "Upstream-Downstream-Hop",
-          "score": 5,
+          "score": 3,
           "reason": "shared tags: 네트워크"
+        },
+        {
+          "slug": "서버-배포-구성",
+          "title": "서버 배포 구성",
+          "score": 2,
+          "reason": "same category: infra"
         }
       ],
       "backlinks": [],
@@ -115,9 +169,57 @@
           "reason": "shared tags: 인증, 보안"
         },
         {
+          "slug": "abac",
+          "title": "ABAC (Attribute-Based Access Control)",
+          "score": 5,
+          "reason": "shared tags: 보안"
+        },
+        {
+          "slug": "opa",
+          "title": "OPA (Open Policy Agent)",
+          "score": 5,
+          "reason": "shared tags: 보안"
+        },
+        {
+          "slug": "rbac",
+          "title": "RBAC (Role-Based Access Control)",
+          "score": 5,
+          "reason": "shared tags: 보안"
+        }
+      ],
+      "backlinks": [],
+      "outgoing": []
+    },
+    "opa": {
+      "related": [
+        {
+          "slug": "abac",
+          "title": "ABAC (Attribute-Based Access Control)",
+          "score": 8,
+          "reason": "shared tags: 인가, 보안"
+        },
+        {
+          "slug": "rbac",
+          "title": "RBAC (Role-Based Access Control)",
+          "score": 8,
+          "reason": "shared tags: 인가, 보안"
+        },
+        {
+          "slug": "bff",
+          "title": "BFF (Backend For Frontend)",
+          "score": 5,
+          "reason": "shared tags: 보안"
+        },
+        {
+          "slug": "oauth-oidc-saml",
+          "title": "OAuth, OIDC, SAML",
+          "score": 5,
+          "reason": "shared tags: 보안"
+        },
+        {
           "slug": "sandbox",
           "title": "Sandbox",
-          "score": 3,
+          "score": 5,
           "reason": "shared tags: 보안"
         }
       ],
@@ -133,22 +235,60 @@
           "reason": "shared tags: 네트워크, 프록시"
         },
         {
+          "slug": "tcp와-udp",
+          "title": "TCP와 UDP",
+          "score": 5,
+          "reason": "shared tags: 네트워크"
+        },
+        {
           "slug": "dns",
           "title": "DNS",
-          "score": 5,
+          "score": 3,
           "reason": "shared tags: 네트워크"
         },
         {
           "slug": "nginx",
           "title": "Nginx",
-          "score": 5,
+          "score": 3,
           "reason": "shared tags: 네트워크"
+        }
+      ],
+      "backlinks": [],
+      "outgoing": [
+        "upstream-downstream-hop"
+      ]
+    },
+    "rbac": {
+      "related": [
+        {
+          "slug": "abac",
+          "title": "ABAC (Attribute-Based Access Control)",
+          "score": 11,
+          "reason": "shared tags: 인가, 보안, 권한"
         },
         {
-          "slug": "tcp-udp",
-          "title": "TCP와 UDP",
+          "slug": "opa",
+          "title": "OPA (Open Policy Agent)",
+          "score": 8,
+          "reason": "shared tags: 인가, 보안"
+        },
+        {
+          "slug": "bff",
+          "title": "BFF (Backend For Frontend)",
           "score": 5,
-          "reason": "shared tags: 네트워크"
+          "reason": "shared tags: 보안"
+        },
+        {
+          "slug": "oauth-oidc-saml",
+          "title": "OAuth, OIDC, SAML",
+          "score": 5,
+          "reason": "shared tags: 보안"
+        },
+        {
+          "slug": "sandbox",
+          "title": "Sandbox",
+          "score": 5,
+          "reason": "shared tags: 보안"
         }
       ],
       "backlinks": [],
@@ -157,53 +297,41 @@
     "sandbox": {
       "related": [
         {
+          "slug": "abac",
+          "title": "ABAC (Attribute-Based Access Control)",
+          "score": 5,
+          "reason": "shared tags: 보안"
+        },
+        {
           "slug": "bff",
           "title": "BFF (Backend For Frontend)",
-          "score": 3,
+          "score": 5,
           "reason": "shared tags: 보안"
         },
         {
           "slug": "oauth-oidc-saml",
           "title": "OAuth, OIDC, SAML",
-          "score": 3,
+          "score": 5,
           "reason": "shared tags: 보안"
         },
         {
-          "slug": "xss-csrf",
-          "title": "XSS와 CSRF",
-          "score": 3,
+          "slug": "opa",
+          "title": "OPA (Open Policy Agent)",
+          "score": 5,
+          "reason": "shared tags: 보안"
+        },
+        {
+          "slug": "rbac",
+          "title": "RBAC (Role-Based Access Control)",
+          "score": 5,
           "reason": "shared tags: 보안"
         }
       ],
       "backlinks": [],
       "outgoing": []
     },
-    "server-deploy-setup": {
+    "tcp와-udp": {
       "related": [
-        {
-          "slug": "dns",
-          "title": "DNS",
-          "score": 3,
-          "reason": "shared tags: dns"
-        }
-      ],
-      "backlinks": [],
-      "outgoing": []
-    },
-    "tcp-udp": {
-      "related": [
-        {
-          "slug": "dns",
-          "title": "DNS",
-          "score": 5,
-          "reason": "shared tags: 네트워크"
-        },
-        {
-          "slug": "nginx",
-          "title": "Nginx",
-          "score": 5,
-          "reason": "shared tags: 네트워크"
-        },
         {
           "slug": "proxy",
           "title": "Proxy",
@@ -214,6 +342,18 @@
           "slug": "upstream-downstream-hop",
           "title": "Upstream-Downstream-Hop",
           "score": 5,
+          "reason": "shared tags: 네트워크"
+        },
+        {
+          "slug": "dns",
+          "title": "DNS",
+          "score": 3,
+          "reason": "shared tags: 네트워크"
+        },
+        {
+          "slug": "nginx",
+          "title": "Nginx",
+          "score": 3,
           "reason": "shared tags: 네트워크"
         }
       ],
@@ -229,25 +369,32 @@
           "reason": "shared tags: 네트워크, 프록시"
         },
         {
+          "slug": "tcp와-udp",
+          "title": "TCP와 UDP",
+          "score": 5,
+          "reason": "shared tags: 네트워크"
+        },
+        {
           "slug": "dns",
           "title": "DNS",
-          "score": 5,
+          "score": 3,
           "reason": "shared tags: 네트워크"
         },
         {
           "slug": "nginx",
           "title": "Nginx",
-          "score": 5,
-          "reason": "shared tags: 네트워크"
-        },
-        {
-          "slug": "tcp-udp",
-          "title": "TCP와 UDP",
-          "score": 5,
+          "score": 3,
           "reason": "shared tags: 네트워크"
         }
       ],
-      "backlinks": [],
+      "backlinks": [
+        {
+          "fromSlug": "proxy",
+          "fromTitle": "Proxy",
+          "toSlug": "upstream-downstream-hop",
+          "toTitle": "Upstream-Downstream-Hop"
+        }
+      ],
       "outgoing": []
     },
     "xss-csrf": {
@@ -265,10 +412,40 @@
           "reason": "shared tags: 보안, 인증"
         },
         {
-          "slug": "sandbox",
-          "title": "Sandbox",
-          "score": 3,
+          "slug": "abac",
+          "title": "ABAC (Attribute-Based Access Control)",
+          "score": 5,
           "reason": "shared tags: 보안"
+        },
+        {
+          "slug": "opa",
+          "title": "OPA (Open Policy Agent)",
+          "score": 5,
+          "reason": "shared tags: 보안"
+        },
+        {
+          "slug": "rbac",
+          "title": "RBAC (Role-Based Access Control)",
+          "score": 5,
+          "reason": "shared tags: 보안"
+        }
+      ],
+      "backlinks": [],
+      "outgoing": []
+    },
+    "서버-배포-구성": {
+      "related": [
+        {
+          "slug": "dns",
+          "title": "DNS",
+          "score": 5,
+          "reason": "shared tags: dns"
+        },
+        {
+          "slug": "nginx",
+          "title": "Nginx",
+          "score": 2,
+          "reason": "same category: infra"
         }
       ],
       "backlinks": [],

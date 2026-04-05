@@ -1,5 +1,6 @@
 export { default as Badge } from './atoms/Badge.svelte'
 export { default as Button } from './atoms/Button.svelte'
+export { default as Seo } from './atoms/Seo.svelte'
 export { default as AppFooter } from './organisms/AppFooter.svelte'
 export { default as AppHeader } from './organisms/AppHeader.svelte'
 export { default as GiscusComments } from './organisms/GiscusComments.svelte'

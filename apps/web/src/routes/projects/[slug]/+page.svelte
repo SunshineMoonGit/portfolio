@@ -2,7 +2,7 @@
   import { base } from '$app/paths'
   import { marked } from 'marked'
   import type { PageData } from './$types'
-  import { Button, MarkdownProse, TableOfContents } from '$lib'
+  import { Button, MarkdownProse, Seo, TableOfContents } from '$lib'
 
   let { data }: { data: PageData } = $props()
   let { project } = $derived(data)
@@ -14,9 +14,11 @@
   }
 </script>
 
-<svelte:head>
-  <title>{project.name} · Projects · sunshinemoon</title>
-</svelte:head>
+<Seo
+  title={`${project.name} · Projects`}
+  description={project.description}
+  image={project.image}
+/>
 
 <article>
   <header class="pt-12 pb-10">

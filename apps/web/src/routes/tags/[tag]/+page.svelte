@@ -1,7 +1,7 @@
 <script lang="ts">
   import { base } from '$app/paths'
   import type { PageData } from './$types'
-  import { Badge, Button, SectionHeader, SurfaceCard } from '$lib'
+  import { Badge, Button, Seo, SectionHeader, SurfaceCard } from '$lib'
   import { getCategoryStyle } from '$lib/content-style'
 
   let { data }: { data: PageData } = $props()
@@ -12,9 +12,10 @@
   }
 </script>
 
-<svelte:head>
-  <title>#{tag} · Tags · sunshinemoon</title>
-</svelte:head>
+<Seo
+  title={`#${tag} · Tags`}
+  description={`#${tag} 태그가 달린 노트 ${notes.length}개`}
+/>
 
 <div class="pt-14 pb-8">
   <Button href={withBase('/notes')} class="mb-6 rounded-full">← Notes</Button>

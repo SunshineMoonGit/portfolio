@@ -1,6 +1,6 @@
 <script lang="ts">
   import { base } from '$app/paths'
-  import { Badge, SectionHeader, getProjectDetails } from '$lib'
+  import { Badge, Seo, SectionHeader, getProjectDetails } from '$lib'
 
   const projects = getProjectDetails()
 
@@ -9,9 +9,10 @@
   }
 </script>
 
-<svelte:head>
-  <title>Projects · sunshinemoon</title>
-</svelte:head>
+<Seo
+  title="Projects"
+  description="sunshinemoon이 진행한 프로젝트 목록. Spring Boot, Next.js, Vue.js 등을 활용한 서비스 개발."
+/>
 
 <div class="pt-14 pb-10">
   <SectionHeader title="Projects" meta={`${projects.length}개`} />

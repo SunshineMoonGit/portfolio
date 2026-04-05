@@ -7,6 +7,7 @@
     MarkdownProse,
     NoteMeta,
     NotePager,
+    Seo,
     TableOfContents,
     getBacklinks,
     getRelatedNotes,
@@ -91,9 +92,11 @@
   }
 </script>
 
-<svelte:head>
-  <title>{note.title} · sunshinemoon</title>
-</svelte:head>
+<Seo
+  title={note.title}
+  description={note.summary ?? `${note.title} — ${note.category} 노트`}
+  type="article"
+/>
 
 <article>
   <header class="pt-12 pb-10">

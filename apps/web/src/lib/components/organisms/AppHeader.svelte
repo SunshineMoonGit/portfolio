@@ -42,7 +42,6 @@
   <div class="hidden sm:flex items-center gap-6 text-[0.85rem] text-muted">
     <a href={withBase('/projects')} class="hover:text-text {activePath.startsWith('/projects') ? 'text-gold' : ''}">Projects</a>
     <a href={withBase('/notes')} class="hover:text-text {activePath.startsWith('/notes') ? 'text-gold' : ''}">Notes</a>
-    <a href={withBase('/contact')} class="hover:text-text {activePath.startsWith('/contact') ? 'text-gold' : ''}">Contact</a>
     <a href="https://github.com/SunshineMoonGit" target="_blank" rel="noopener noreferrer" class="hover:text-text">GitHub ↗</a>
     <button onclick={onsearch} class="hover:text-text flex items-center gap-1.5 cursor-pointer" aria-label="Search">
       <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
@@ -59,7 +58,6 @@
     <div class="mobile-menu" onclick={(e) => e.stopPropagation()} onkeydown={(e) => e.stopPropagation()}>
       <a href={withBase('/projects')} class="mobile-link {activePath.startsWith('/projects') ? 'text-gold!' : ''}" onclick={closeMobile}>Projects</a>
       <a href={withBase('/notes')} class="mobile-link {activePath.startsWith('/notes') ? 'text-gold!' : ''}" onclick={closeMobile}>Notes</a>
-      <a href={withBase('/contact')} class="mobile-link {activePath.startsWith('/contact') ? 'text-gold!' : ''}" onclick={closeMobile}>Contact</a>
       <a href="https://github.com/SunshineMoonGit" target="_blank" rel="noopener noreferrer" class="mobile-link" onclick={closeMobile}>GitHub ↗</a>
     </div>
   </div>

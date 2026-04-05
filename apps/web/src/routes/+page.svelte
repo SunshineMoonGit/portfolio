@@ -1,9 +1,10 @@
 <script lang="ts">
-  import { HeroSection } from '$lib'
+  import { HeroSection, Seo } from '$lib'
 </script>
 
-<svelte:head>
-  <title>sunshinemoon</title>
-</svelte:head>
+<Seo
+  title="sunshinemoon"
+  description="Backend, Security, Infra에 관심 있는 개발자 sunshinemoon의 포트폴리오."
+/>
 
 <HeroSection />

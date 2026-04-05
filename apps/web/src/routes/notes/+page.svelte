@@ -1,7 +1,7 @@
 <script lang="ts">
   import { base } from '$app/paths'
   import type { NoteIndex } from '@portfolio/content-types'
-  import { Badge, getNotes } from '$lib'
+  import { Badge, Seo, getNotes } from '$lib'
   import { getCategoryStyle } from '$lib/content-style'
 
   const notes = getNotes()
@@ -20,9 +20,10 @@
   }
 </script>
 
-<svelte:head>
-  <title>Notes · sunshinemoon</title>
-</svelte:head>
+<Seo
+  title="Notes"
+  description="개발 노트 모음. Backend, Security, Network, Infra 등 다양한 주제의 학습 기록."
+/>
 
 <div class="pt-14 pb-6">
   <div class="flex items-baseline justify-between">
