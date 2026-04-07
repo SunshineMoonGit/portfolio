@@ -56,10 +56,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 </svelte:head>
 
-<div class={isHome ? '' : 'pt-16'}>
+<div class={isHome ? '' : 'min-h-screen flex flex-col pt-16'}>
   <AppHeader bind:navEl onsearch={() => (searchOpen = true)} />
 
-  <main class={isHome ? '' : isWide ? 'mx-auto max-w-[960px] px-6 pb-24' : 'mx-auto max-w-[680px] px-6 pb-24'}>
+  <main class={isHome ? '' : isWide ? 'mx-auto max-w-[960px] px-6 pb-24 flex-1' : 'mx-auto max-w-[680px] px-6 pb-24 flex-1'}>
     {@render children()}
   </main>
 
