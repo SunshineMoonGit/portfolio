@@ -21,7 +21,21 @@
   let { note } = $derived(data)
 
   function resolveWikiLinks(content: string): string {
-    return content.replace(/\[\[([^\]]+?)\]\]/g, (_, inner) => {
+    // Mask fenced code blocks and inline code before applying the wiki-link
+    // regex, so code samples like `[["name", "in", [...]]]` in a JSON example
+    // aren't mis-parsed as `[[Target]]` and turned into broken links.
+    const placeholders: string[] = []
+    const mask = (segment: string): string => {
+      const token = `\u0000WL${placeholders.length}\u0000`
+      placeholders.push(segment)
+      return token
+    }
+
+    const masked = content
+      .replace(/```[\s\S]*?```/g, mask)
+      .replace(/`[^`\n]+`/g, mask)
+
+    const replaced = masked.replace(/\[\[([^\]]+?)\]\]/g, (_, inner) => {
       // Obsidian-style table escape: `[[Target\|Alias]]` inside a markdown table
       // uses `\|` so the pipe survives the table parser. Unescape first, then
       // split on `|` as the alias separator.
@@ -32,6 +46,8 @@
       const label = alias ?? target
       return `[${label}](${withBase('/note/' + encodeURIComponent(slug))})`
     })
+
+    return replaced.replace(/\u0000WL(\d+)\u0000/g, (_, idx) => placeholders[Number(idx)])
   }
 
   let html = $derived(marked.parse(resolveWikiLinks(note.content)) as string)
