@@ -21,14 +21,17 @@
   let { note } = $derived(data)
 
   function resolveWikiLinks(content: string): string {
-    return content.replace(
-      /\[\[([^\]|]+?)(?:\|([^\]]+?))?\]\]/g,
-      (_, target, alias) => {
-        const slug = target.trim().toLowerCase()
-        const label = alias?.trim() ?? target.trim()
-        return `[${label}](${withBase('/note/' + encodeURIComponent(slug))})`
-      }
-    )
+    return content.replace(/\[\[([^\]]+?)\]\]/g, (_, inner) => {
+      // Obsidian-style table escape: `[[Target\|Alias]]` inside a markdown table
+      // uses `\|` so the pipe survives the table parser. Unescape first, then
+      // split on `|` as the alias separator.
+      const [rawTarget, rawAlias] = inner.replace(/\\\|/g, '|').split('|', 2)
+      const target = rawTarget.trim()
+      const alias = rawAlias?.trim()
+      const slug = target.toLowerCase()
+      const label = alias ?? target
+      return `[${label}](${withBase('/note/' + encodeURIComponent(slug))})`
+    })
   }
 
   let html = $derived(marked.parse(resolveWikiLinks(note.content)) as string)

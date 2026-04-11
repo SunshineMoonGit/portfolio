@@ -264,7 +264,8 @@ function extractLinkedSlugs(content: string, noteSlugLookup: Map<string, string>
 	const matches = new Set<string>()
 
 	for (const match of content.matchAll(/\[\[([^\]]+)\]\]/g)) {
-		const target = match[1]?.split('|')[0]?.trim()
+		// Unescape table-cell escapes (`\|` → `|`) before splitting on the alias separator.
+		const target = match[1]?.replace(/\\\|/g, '|').split('|', 2)[0]?.trim()
 		if (!target) continue
 		const normalized = slugifyNote(target)
 		const slug = noteSlugLookup.get(normalized)
