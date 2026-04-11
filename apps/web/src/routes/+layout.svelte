@@ -12,10 +12,14 @@
   let navEl: HTMLElement | undefined = $state()
   let isHome = $derived((page.url.pathname === base || page.url.pathname === base + '/') || page.url.pathname === '/')
   let activePath = $derived(base && page.url.pathname.startsWith(base) ? page.url.pathname.slice(base.length) || '/' : page.url.pathname)
-  let isWide = $derived(
-    activePath === '/projects' || activePath === '/projects/' ||
-    activePath === '/notes' || activePath === '/notes/' ||
-    activePath.startsWith('/notes/')
+  let mainClass = $derived(
+    activePath === '/note' || activePath.startsWith('/note/') ||
+    activePath === '/notes' || activePath === '/notes/' || activePath.startsWith('/notes/') ||
+    activePath.startsWith('/tags/')
+      ? 'mx-auto max-w-[1400px] px-6 pb-24 flex-1'
+      : activePath === '/projects' || activePath === '/projects/'
+      ? 'mx-auto max-w-[960px] px-6 pb-24 flex-1'
+        : 'mx-auto max-w-[680px] px-6 pb-24 flex-1'
   )
 
   onMount(() => {
@@ -60,7 +64,7 @@
 <div class={isHome ? '' : 'min-h-screen flex flex-col pt-16'}>
   <AppHeader bind:navEl onsearch={() => (searchOpen = true)} />
 
-  <main class={isHome ? '' : isWide ? 'mx-auto max-w-[960px] px-6 pb-24 flex-1' : 'mx-auto max-w-[680px] px-6 pb-24 flex-1'}>
+  <main class={isHome ? '' : mainClass}>
     {@render children()}
   </main>
 

@@ -1,13 +1,12 @@
 <script lang="ts">
   import type { NoteIndex } from '@portfolio/content-types'
-  import { Badge, CategoryTree, Seo, getCategoryTree, getNotes } from '$lib'
+  import { Seo, getNotes } from '$lib'
   import { withBase } from '$lib/utils'
-  import { getCategoryLabel, getCategoryStyle, isInCategory } from '$lib/content-style'
+  import { getCategoryLabel, isInCategory } from '$lib/content-style'
 
   let { selectedPath = null }: { selectedPath?: string | null } = $props()
 
   const notes = getNotes()
-  const tree = getCategoryTree()
 
   let filtered = $derived(
     notes.filter((note: NoteIndex) => isInCategory(note.category, selectedPath))
@@ -16,84 +15,58 @@
   let seoTitle = $derived(selectedPath ? `${heading} — Notes` : 'Notes')
   let seoDescription = $derived(
     selectedPath
-      ? `${heading} 카테고리의 개발 노트 모음.`
-      : '개발 노트 모음. AI, Backend, Network, Infra 등 다양한 주제의 학습 기록.'
+      ? `${heading} 카테고리의 개발 노트 아카이브.`
+      : '개발 노트 아카이브. AI, Backend, Network, Infra 등 다양한 주제의 학습 기록.'
   )
 </script>
 
 <Seo title={seoTitle} description={seoDescription} />
 
-<div class="pt-14 pb-6">
-  <div class="flex items-baseline justify-between">
-    <h1 class="text-2xl font-bold text-text">{heading}</h1>
-    <span class="text-sm text-subtle">{filtered.length}개</span>
-  </div>
-</div>
-
-<div class="flex gap-8 max-sm:flex-col">
-  <aside class="w-48 shrink-0 max-sm:w-full">
-    <div class="sticky top-20 space-y-1">
-      <a
-        href={withBase('/notes')}
-        class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors {selectedPath ===
-        null
-          ? 'bg-gold/10 text-gold'
-          : 'text-muted hover:text-text hover:bg-dark-card/50'}"
-      >
-        <span>All</span>
-        <span class="text-xs {selectedPath === null ? 'text-gold/60' : 'text-subtle'}">
-          {notes.length}
-        </span>
-      </a>
-      <CategoryTree nodes={tree} selected={selectedPath} />
-    </div>
-  </aside>
-
-  <div class="min-w-0 flex-1">
-    {#if filtered.length}
-      <div class="space-y-0.5">
-        {#each filtered as note}
+<div class="min-w-0">
+  {#if filtered.length}
+    <ul>
+      {#each filtered as note}
+        <li class="border-b border-border/40 last:border-b-0">
           <a
             href={withBase(`/note/${note.slug}`)}
-            class="group flex items-center gap-3 rounded-lg px-3 py-2.5 transition-all hover:bg-dark-card/50"
+            class="group block py-7 sm:py-8"
           >
-            <div
-              class="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-md"
-              style="background: {note.thumbnail ? 'none' : getCategoryStyle(note.category).bg}"
-            >
-              {#if note.thumbnail}
-                <img src={note.thumbnail} alt="" class="h-full w-full rounded-md object-cover" />
-              {:else}
-                <span class="text-[0.6rem] font-semibold text-subtle">
-                  {getCategoryStyle(note.category).label}
-                </span>
+            <h2 class="text-[1.08rem] font-semibold leading-snug text-text-bright transition-colors group-hover:text-gold sm:text-[1.18rem]">
+              {note.title}
+            </h2>
+
+            {#if note.subtitle}
+              <p class="mt-1.5 text-[0.9rem] leading-snug text-muted">
+                {note.subtitle}
+              </p>
+            {/if}
+
+            <div class="mt-5 flex items-center justify-between gap-4">
+              <div class="flex items-center gap-x-2 text-[0.7rem] text-subtle">
+                <time>{note.created}</time>
+                <span class="text-border/60" aria-hidden="true">·</span>
+                <span>{getCategoryLabel(note.category)}</span>
+              </div>
+
+              {#if note.tags.length}
+                <div class="flex flex-wrap justify-end gap-1.5">
+                  {#each note.tags.slice(0, 4) as tag}
+                    <span class="rounded-full border border-border/40 px-2 py-0.5 text-[0.65rem] text-subtle/70">
+                      {tag}
+                    </span>
+                  {/each}
+                </div>
               {/if}
             </div>
-
-            <div class="min-w-0 flex-1">
-              <h2 class="truncate text-sm text-text transition-colors group-hover:text-gold">
-                {note.title}
-              </h2>
-            </div>
-
-            <div class="flex shrink-0 items-center gap-2 max-sm:hidden">
-              {#each note.tags.slice(0, 2) as tag}
-                <Badge>{tag}</Badge>
-              {/each}
-            </div>
-
-            <span class="w-20 shrink-0 text-right text-xs text-subtle max-sm:hidden">
-              {note.created}
-            </span>
           </a>
-        {/each}
-      </div>
-    {:else}
-      <p class="py-8 text-center text-sm text-subtle">
-        {selectedPath
-          ? '이 카테고리에는 아직 노트가 없습니다.'
-          : '검색 결과가 없습니다.'}
+        </li>
+      {/each}
+    </ul>
+  {:else}
+    <div class="rounded-2xl border border-border/50 bg-white/[0.02] px-5 py-14 text-center">
+      <p class="text-sm text-subtle">
+        {selectedPath ? '이 카테고리에는 아직 노트가 없습니다.' : '검색 결과가 없습니다.'}
       </p>
-    {/if}
-  </div>
+    </div>
+  {/if}
 </div>

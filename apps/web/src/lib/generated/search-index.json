@@ -1,7 +1,7 @@
 [
   {
     "slug": "agentic-rag",
-    "title": "Agentic RAG — Agent가 검색을 반복하고 판단하는 RAG",
+    "title": "Agentic RAG",
     "category": "ai/agent",
     "tags": [
       "rag",
@@ -15,7 +15,7 @@
   },
   {
     "slug": "graphrag",
-    "title": "GraphRAG — 벡터 검색과 지식 그래프를 결합하는 RAG",
+    "title": "GraphRAG",
     "category": "ai/rag/graph",
     "tags": [
       "rag",
@@ -30,7 +30,7 @@
   },
   {
     "slug": "hybrid-search",
-    "title": "Hybrid Search — 벡터 검색과 키워드 검색 결합",
+    "title": "Hybrid Search",
     "category": "ai/rag/retrieval",
     "tags": [
       "rag",
@@ -45,7 +45,7 @@
   },
   {
     "slug": "mcp",
-    "title": "MCP (Model Context Protocol) — Agent와 도구를 잇는 표준",
+    "title": "MCP (Model Context Protocol)",
     "category": "ai/agent",
     "tags": [
       "ai",
@@ -60,7 +60,7 @@
   },
   {
     "slug": "rag",
-    "title": "RAG (Retrieval-Augmented Generation) — LLM에 외부 지식 주입 패턴",
+    "title": "RAG (Retrieval-Augmented Generation)",
     "category": "ai/rag",
     "tags": [
       "rag",
@@ -76,7 +76,7 @@
   },
   {
     "slug": "rag-한계와-보완",
-    "title": "RAG 한계와 보완 전략 — 청킹·할루시네이션 대응",
+    "title": "RAG 한계와 보완 전략",
     "category": "ai/rag",
     "tags": [
       "rag",
@@ -92,7 +92,7 @@
   },
   {
     "slug": "reranker",
-    "title": "Reranker — Cross-Encoder로 검색 결과 재평가",
+    "title": "Reranker",
     "category": "ai/rag/retrieval",
     "tags": [
       "rag",
@@ -108,7 +108,7 @@
   },
   {
     "slug": "frappe-fixture",
-    "title": "Frappe Fixture — migrate마다 데이터를 덮어쓰는 동기화 시스템",
+    "title": "Frappe Fixture",
     "category": "backend/database",
     "tags": [
       "frappe",
@@ -121,7 +121,7 @@
   },
   {
     "slug": "tree-sitter",
-    "title": "Tree-sitter — 에러에 강한 인크리멘털 파싱 라이브러리",
+    "title": "Tree-sitter",
     "category": "backend/tools",
     "tags": [
       "tree-sitter",
@@ -137,7 +137,7 @@
   },
   {
     "slug": "멀티테넌트-rbac-설계",
-    "title": "멀티테넌트 RBAC 설계 — 관리자 권한과 테넌트 격리 분리",
+    "title": "멀티테넌트 RBAC 설계",
     "category": "backend/auth/rbac",
     "tags": [
       "rbac",
@@ -152,7 +152,7 @@
   },
   {
     "slug": "abac",
-    "title": "ABAC — 속성 기반 접근 제어 모델",
+    "title": "ABAC",
     "category": "backend/auth/rbac",
     "tags": [
       "인가",
@@ -166,7 +166,7 @@
   },
   {
     "slug": "alembic",
-    "title": "Alembic — SQLAlchemy DB 마이그레이션 도구",
+    "title": "Alembic",
     "category": "backend/database",
     "tags": [
       "python",
@@ -179,7 +179,7 @@
   },
   {
     "slug": "api-gateway",
-    "title": "API Gateway — 단일 진입점으로 인증·인가·프록시 중앙 처리",
+    "title": "API Gateway",
     "category": "backend/gateway",
     "tags": [
       "아키텍처",
@@ -195,7 +195,7 @@
   },
   {
     "slug": "bff",
-    "title": "BFF (Backend For Frontend) — 프론트엔드 전용 백엔드로 토큰 보호",
+    "title": "BFF (Backend For Frontend)",
     "category": "backend/gateway",
     "tags": [
       "인증",
@@ -210,7 +210,7 @@
   },
   {
     "slug": "cors",
-    "title": "CORS — 브라우저의 Cross-Origin 차단 정책",
+    "title": "CORS",
     "category": "network/security",
     "tags": [
       "보안",
@@ -224,7 +224,7 @@
   },
   {
     "slug": "dns",
-    "title": "DNS — 도메인 이름 조회 원리와 레코드 종류",
+    "title": "DNS",
     "category": "network/basics",
     "tags": [
       "네트워크",
@@ -238,7 +238,7 @@
   },
   {
     "slug": "git-rebase-worktree",
-    "title": "Git rebase와 worktree — 히스토리 재작성과 멀티 브랜치 작업",
+    "title": "Git rebase와 worktree",
     "category": "git",
     "tags": [
       "git",
@@ -252,7 +252,7 @@
   },
   {
     "slug": "karpathy-llm-knowledge-bases",
-    "title": "Karpathy의 LLM Knowledge Bases — 마크다운 위키 기반 RAG 대안",
+    "title": "Karpathy의 LLM Knowledge Bases",
     "category": "ai/reference",
     "tags": [
       "llm",
@@ -266,7 +266,7 @@
   },
   {
     "slug": "nginx",
-    "title": "Nginx — 리버스 프록시와 로드 밸런싱",
+    "title": "Nginx",
     "category": "backend/gateway",
     "tags": [
       "네트워크",
@@ -280,7 +280,7 @@
   },
   {
     "slug": "oauth-oidc-saml",
-    "title": "OAuth, OIDC, SAML — SSO 인증 프로토콜 비교",
+    "title": "OAuth, OIDC, SAML",
     "category": "backend/auth/sso",
     "tags": [
       "인증",
@@ -295,7 +295,7 @@
   },
   {
     "slug": "opa",
-    "title": "OPA (Open Policy Agent) — 정책 코드 분리 엔진",
+    "title": "OPA (Open Policy Agent)",
     "category": "backend/auth/rbac",
     "tags": [
       "인가",
@@ -309,7 +309,7 @@
   },
   {
     "slug": "proxy",
-    "title": "Forward Proxy와 Reverse Proxy — 클라이언트 대리와 서버 대리",
+    "title": "Forward Proxy와 Reverse Proxy",
     "category": "network/proxy",
     "tags": [
       "네트워크",
@@ -323,7 +323,7 @@
   },
   {
     "slug": "rbac",
-    "title": "RBAC — 역할 기반 접근 제어 모델",
+    "title": "RBAC",
     "category": "backend/auth/rbac",
     "tags": [
       "인가",
@@ -337,7 +337,7 @@
   },
   {
     "slug": "sandbox",
-    "title": "Sandbox — Docker와 VM의 코드 격리 방식",
+    "title": "Sandbox",
     "category": "network/security",
     "tags": [
       "개발환경",
@@ -351,7 +351,7 @@
   },
   {
     "slug": "tcp와-udp",
-    "title": "TCP와 UDP — 전송 프로토콜 비교",
+    "title": "TCP와 UDP",
     "category": "network/basics",
     "tags": [
       "네트워크",
@@ -364,7 +364,7 @@
   },
   {
     "slug": "upstream-downstream-hop",
-    "title": "Upstream, Downstream, Hop — 네트워크 흐름 용어 정리",
+    "title": "Upstream, Downstream, Hop",
     "category": "network/basics",
     "tags": [
       "네트워크",
@@ -380,7 +380,7 @@
   },
   {
     "slug": "xss-csrf",
-    "title": "XSS와 CSRF — 쿠키를 읽는 공격과 사용하는 공격",
+    "title": "XSS와 CSRF",
     "category": "network/security",
     "tags": [
       "보안",
@@ -395,7 +395,7 @@
   },
   {
     "slug": "서버-배포-구성",
-    "title": "서버 배포 구성 — Nginx, DNS, SSL, Docker 실무 설정",
+    "title": "서버 배포 구성",
     "category": "infra/devops",
     "tags": [
       "nginx",

@@ -2,9 +2,13 @@
   import { onMount } from 'svelte'
 
   let {
-    proseEl
+    proseEl,
+    contentKey = '',
+    className = ''
   }: {
     proseEl?: HTMLElement
+    contentKey?: string
+    className?: string
   } = $props()
 
   type TocItem = { id: string; text: string; level: number }
@@ -13,6 +17,7 @@
   let activeId = $state('')
 
   $effect(() => {
+    contentKey
     if (!proseEl) return
     const headings = proseEl.querySelectorAll('h1, h2, h3')
     const result: TocItem[] = []
@@ -26,21 +31,25 @@
       })
     })
     items = result
+    activeId = result[0]?.id ?? ''
   })
 
   onMount(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            activeId = entry.target.id
-          }
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top))
+
+        if (visible.length) {
+          activeId = visible[0].target.id
         }
       },
       { rootMargin: '-80px 0px -70% 0px' }
     )
 
     $effect(() => {
+      contentKey
       if (!proseEl) return
       const headings = proseEl.querySelectorAll('h1, h2, h3')
       headings.forEach((el) => observer.observe(el))
@@ -53,20 +62,26 @@
   function scrollTo(id: string) {
     const el = document.getElementById(id)
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      el.scrollIntoView({
+        behavior: prefersReducedMotion ? 'auto' : 'smooth',
+        block: 'start'
+      })
     }
   }
 </script>
 
 {#if items.length > 2}
-  <nav class="toc" aria-label="Table of contents">
-    <p class="text-[0.65rem] font-semibold text-subtle uppercase tracking-wider mb-3">On this page</p>
-    <ul class="flex flex-col gap-1">
+  <nav aria-label="Table of contents" class={`space-y-2.5 ${className}`.trim()}>
+    <p class="text-[0.67rem] font-semibold uppercase tracking-[0.2em] text-text-dim/70">On this page</p>
+    <ul class="flex flex-col">
       {#each items as item}
         <li>
           <button
+            type="button"
             onclick={() => scrollTo(item.id)}
-            class="toc-item cursor-pointer text-left w-full truncate transition-colors duration-200"
+            aria-current={activeId === item.id ? 'location' : undefined}
+            class="toc-item w-full cursor-pointer truncate text-left transition-colors duration-150"
             class:active={activeId === item.id}
             style:padding-left="{(item.level - 1) * 12}px"
           >
@@ -79,27 +94,16 @@
 {/if}
 
 <style>
-  .toc {
-    position: fixed;
-    top: 100px;
-    right: calc((100vw - 680px) / 2 - 260px);
-    width: 220px;
-    max-height: calc(100vh - 140px);
-    overflow-y: auto;
-    scrollbar-width: none;
-  }
-
-  .toc::-webkit-scrollbar {
-    display: none;
-  }
-
   .toc-item {
-    font-size: 0.7rem;
-    line-height: 1.5;
-    padding: 3px 8px;
+    font-size: 0.72rem;
+    line-height: 1.6;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-right: 6px;
+    padding-left: 8px;
     color: var(--color-subtle);
-    border-left: 2px solid transparent;
-    border-radius: 0 4px 4px 0;
+    border-left: 1.5px solid transparent;
+    border-radius: 0 3px 3px 0;
   }
 
   .toc-item:hover {
@@ -109,12 +113,6 @@
   .toc-item.active {
     color: var(--color-gold);
     border-left-color: var(--color-gold);
-    background: rgba(215, 164, 73, 0.06);
-  }
-
-  @media (max-width: 1280px) {
-    .toc {
-      display: none;
-    }
+    background: rgba(215, 164, 73, 0.05);
   }
 </style>

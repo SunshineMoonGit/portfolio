@@ -19,6 +19,7 @@ type LinkRef = {
 type NoteRecord = {
 	slug: string
 	title: string
+	subtitle?: string
 	category: string
 	tags: string[]
 	summary: string
@@ -343,9 +344,12 @@ async function loadNotes(): Promise<NoteRecord[]> {
 
 		const fallbackDate = fileStat.mtime.toISOString().slice(0, 10)
 
+		const subtitle = typeof meta.subtitle === 'string' ? meta.subtitle.trim() : undefined
+
 		rawNotes.push({
 			slug,
 			title,
+			...(subtitle ? { subtitle } : {}),
 			category,
 			tags,
 			summary: String(meta.summary ?? excerpt(normalizedContent)),

@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { SurfaceCard } from '$lib'
   import { withBase } from '$lib/utils'
 
   type AdjacentNote = {
@@ -14,24 +13,40 @@
     prev?: AdjacentNote
     next?: AdjacentNote
   } = $props()
-
 </script>
 
 {#if prev || next}
-  <nav class="flex justify-between gap-4 mt-12 pt-8 border-t border-border">
-    {#if prev}
-      <SurfaceCard href={withBase(`/note/${prev.slug}`)} class="flex flex-col gap-1.5 max-w-[48%] p-4 px-5 group">
-        <span class="text-[0.7rem] text-text-dark uppercase tracking-widest">이전</span>
-        <span class="text-sm text-text-dim group-hover:text-text-bright transition-colors">{prev.title}</span>
-      </SurfaceCard>
-    {:else}
-      <span></span>
-    {/if}
-    {#if next}
-      <SurfaceCard href={withBase(`/note/${next.slug}`)} class="flex flex-col gap-1.5 max-w-[48%] p-4 px-5 text-right ml-auto group">
-        <span class="text-[0.7rem] text-text-dark uppercase tracking-widest">다음</span>
-        <span class="text-sm text-text-dim group-hover:text-text-bright transition-colors">{next.title}</span>
-      </SurfaceCard>
-    {/if}
+  <nav class="border-t border-border/50 pt-7" aria-label="Note pager">
+    <div class="grid gap-6 sm:grid-cols-2">
+      {#if prev}
+        <a
+          href={withBase(`/note/${prev.slug}`)}
+          class="group flex min-w-0 flex-col gap-2"
+          rel="prev"
+        >
+          <span class="flex items-center gap-1.5 text-[0.63rem] font-semibold uppercase tracking-[0.22em] text-subtle transition-colors group-hover:text-text-dim">
+            <span aria-hidden="true">←</span> Previous
+          </span>
+          <span class="text-[0.9rem] leading-snug text-text-dim transition-colors group-hover:text-text-bright">
+            {prev.title}
+          </span>
+        </a>
+      {/if}
+
+      {#if next}
+        <a
+          href={withBase(`/note/${next.slug}`)}
+          class="group flex min-w-0 flex-col gap-2 text-left sm:text-right {prev ? '' : 'sm:col-start-2'}"
+          rel="next"
+        >
+          <span class="flex items-center gap-1.5 text-[0.63rem] font-semibold uppercase tracking-[0.22em] text-subtle transition-colors group-hover:text-text-dim sm:justify-end">
+            Next <span aria-hidden="true">→</span>
+          </span>
+          <span class="text-[0.9rem] leading-snug text-text-dim transition-colors group-hover:text-text-bright">
+            {next.title}
+          </span>
+        </a>
+      {/if}
+    </div>
   </nav>
 {/if}

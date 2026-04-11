@@ -1,6 +1,7 @@
 export interface NoteIndex {
   slug: string
   title: string
+  subtitle?: string
   category: string
   tags: string[]
   summary: string
