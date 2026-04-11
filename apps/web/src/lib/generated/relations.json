@@ -1,455 +1,1534 @@
 {
   "notes": {
+    "agentic-rag": {
+      "related": [
+        {
+          "slug": "mcp",
+          "title": "MCP (Model Context Protocol) — Agent와 도구를 잇는 표준",
+          "score": 8,
+          "reason": "shared tags: ai, agent"
+        },
+        {
+          "slug": "graphrag",
+          "title": "GraphRAG — 벡터 검색과 지식 그래프를 결합하는 RAG",
+          "score": 6,
+          "reason": "shared tags: rag, ai"
+        },
+        {
+          "slug": "hybrid-search",
+          "title": "Hybrid Search — 벡터 검색과 키워드 검색 결합",
+          "score": 6,
+          "reason": "shared tags: rag, ai"
+        },
+        {
+          "slug": "rag",
+          "title": "RAG (Retrieval-Augmented Generation) — LLM에 외부 지식 주입 패턴",
+          "score": 6,
+          "reason": "shared tags: rag, ai"
+        },
+        {
+          "slug": "rag-한계와-보완",
+          "title": "RAG 한계와 보완 전략 — 청킹·할루시네이션 대응",
+          "score": 6,
+          "reason": "shared tags: rag, ai"
+        }
+      ],
+      "backlinks": [
+        {
+          "fromSlug": "mcp",
+          "fromTitle": "MCP (Model Context Protocol) — Agent와 도구를 잇는 표준",
+          "toSlug": "agentic-rag",
+          "toTitle": "Agentic RAG — Agent가 검색을 반복하고 판단하는 RAG"
+        },
+        {
+          "fromSlug": "rag",
+          "fromTitle": "RAG (Retrieval-Augmented Generation) — LLM에 외부 지식 주입 패턴",
+          "toSlug": "agentic-rag",
+          "toTitle": "Agentic RAG — Agent가 검색을 반복하고 판단하는 RAG"
+        },
+        {
+          "fromSlug": "rag-한계와-보완",
+          "fromTitle": "RAG 한계와 보완 전략 — 청킹·할루시네이션 대응",
+          "toSlug": "agentic-rag",
+          "toTitle": "Agentic RAG — Agent가 검색을 반복하고 판단하는 RAG"
+        },
+        {
+          "fromSlug": "karpathy-llm-knowledge-bases",
+          "fromTitle": "Karpathy의 LLM Knowledge Bases — 마크다운 위키 기반 RAG 대안",
+          "toSlug": "agentic-rag",
+          "toTitle": "Agentic RAG — Agent가 검색을 반복하고 판단하는 RAG"
+        }
+      ],
+      "outgoing": [
+        "rag",
+        "rag-한계와-보완",
+        "mcp",
+        "karpathy-llm-knowledge-bases"
+      ]
+    },
+    "graphrag": {
+      "related": [
+        {
+          "slug": "agentic-rag",
+          "title": "Agentic RAG — Agent가 검색을 반복하고 판단하는 RAG",
+          "score": 6,
+          "reason": "shared tags: rag, ai"
+        },
+        {
+          "slug": "hybrid-search",
+          "title": "Hybrid Search — 벡터 검색과 키워드 검색 결합",
+          "score": 6,
+          "reason": "shared tags: rag, ai"
+        },
+        {
+          "slug": "rag",
+          "title": "RAG (Retrieval-Augmented Generation) — LLM에 외부 지식 주입 패턴",
+          "score": 6,
+          "reason": "shared tags: rag, ai"
+        },
+        {
+          "slug": "rag-한계와-보완",
+          "title": "RAG 한계와 보완 전략 — 청킹·할루시네이션 대응",
+          "score": 6,
+          "reason": "shared tags: rag, ai"
+        },
+        {
+          "slug": "reranker",
+          "title": "Reranker — Cross-Encoder로 검색 결과 재평가",
+          "score": 6,
+          "reason": "shared tags: rag, ai"
+        }
+      ],
+      "backlinks": [
+        {
+          "fromSlug": "rag",
+          "fromTitle": "RAG (Retrieval-Augmented Generation) — LLM에 외부 지식 주입 패턴",
+          "toSlug": "graphrag",
+          "toTitle": "GraphRAG — 벡터 검색과 지식 그래프를 결합하는 RAG"
+        },
+        {
+          "fromSlug": "rag-한계와-보완",
+          "fromTitle": "RAG 한계와 보완 전략 — 청킹·할루시네이션 대응",
+          "toSlug": "graphrag",
+          "toTitle": "GraphRAG — 벡터 검색과 지식 그래프를 결합하는 RAG"
+        },
+        {
+          "fromSlug": "karpathy-llm-knowledge-bases",
+          "fromTitle": "Karpathy의 LLM Knowledge Bases — 마크다운 위키 기반 RAG 대안",
+          "toSlug": "graphrag",
+          "toTitle": "GraphRAG — 벡터 검색과 지식 그래프를 결합하는 RAG"
+        }
+      ],
+      "outgoing": [
+        "rag",
+        "rbac",
+        "rag-한계와-보완",
+        "hybrid-search",
+        "karpathy-llm-knowledge-bases"
+      ]
+    },
+    "hybrid-search": {
+      "related": [
+        {
+          "slug": "reranker",
+          "title": "Reranker — Cross-Encoder로 검색 결과 재평가",
+          "score": 14,
+          "reason": "shared tags: rag, ai, embedding, search"
+        },
+        {
+          "slug": "rag",
+          "title": "RAG (Retrieval-Augmented Generation) — LLM에 외부 지식 주입 패턴",
+          "score": 9,
+          "reason": "shared tags: rag, ai, embedding"
+        },
+        {
+          "slug": "rag-한계와-보완",
+          "title": "RAG 한계와 보완 전략 — 청킹·할루시네이션 대응",
+          "score": 9,
+          "reason": "shared tags: rag, ai, embedding"
+        },
+        {
+          "slug": "agentic-rag",
+          "title": "Agentic RAG — Agent가 검색을 반복하고 판단하는 RAG",
+          "score": 6,
+          "reason": "shared tags: rag, ai"
+        },
+        {
+          "slug": "graphrag",
+          "title": "GraphRAG — 벡터 검색과 지식 그래프를 결합하는 RAG",
+          "score": 6,
+          "reason": "shared tags: rag, ai"
+        }
+      ],
+      "backlinks": [
+        {
+          "fromSlug": "graphrag",
+          "fromTitle": "GraphRAG — 벡터 검색과 지식 그래프를 결합하는 RAG",
+          "toSlug": "hybrid-search",
+          "toTitle": "Hybrid Search — 벡터 검색과 키워드 검색 결합"
+        },
+        {
+          "fromSlug": "rag",
+          "fromTitle": "RAG (Retrieval-Augmented Generation) — LLM에 외부 지식 주입 패턴",
+          "toSlug": "hybrid-search",
+          "toTitle": "Hybrid Search — 벡터 검색과 키워드 검색 결합"
+        },
+        {
+          "fromSlug": "rag-한계와-보완",
+          "fromTitle": "RAG 한계와 보완 전략 — 청킹·할루시네이션 대응",
+          "toSlug": "hybrid-search",
+          "toTitle": "Hybrid Search — 벡터 검색과 키워드 검색 결합"
+        },
+        {
+          "fromSlug": "reranker",
+          "fromTitle": "Reranker — Cross-Encoder로 검색 결과 재평가",
+          "toSlug": "hybrid-search",
+          "toTitle": "Hybrid Search — 벡터 검색과 키워드 검색 결합"
+        }
+      ],
+      "outgoing": [
+        "rag",
+        "rag-한계와-보완",
+        "reranker"
+      ]
+    },
+    "mcp": {
+      "related": [
+        {
+          "slug": "agentic-rag",
+          "title": "Agentic RAG — Agent가 검색을 반복하고 판단하는 RAG",
+          "score": 8,
+          "reason": "shared tags: ai, agent"
+        },
+        {
+          "slug": "graphrag",
+          "title": "GraphRAG — 벡터 검색과 지식 그래프를 결합하는 RAG",
+          "score": 3,
+          "reason": "shared tags: ai"
+        },
+        {
+          "slug": "hybrid-search",
+          "title": "Hybrid Search — 벡터 검색과 키워드 검색 결합",
+          "score": 3,
+          "reason": "shared tags: ai"
+        },
+        {
+          "slug": "rag",
+          "title": "RAG (Retrieval-Augmented Generation) — LLM에 외부 지식 주입 패턴",
+          "score": 3,
+          "reason": "shared tags: ai"
+        },
+        {
+          "slug": "rag-한계와-보완",
+          "title": "RAG 한계와 보완 전략 — 청킹·할루시네이션 대응",
+          "score": 3,
+          "reason": "shared tags: ai"
+        }
+      ],
+      "backlinks": [
+        {
+          "fromSlug": "agentic-rag",
+          "fromTitle": "Agentic RAG — Agent가 검색을 반복하고 판단하는 RAG",
+          "toSlug": "mcp",
+          "toTitle": "MCP (Model Context Protocol) — Agent와 도구를 잇는 표준"
+        },
+        {
+          "fromSlug": "tree-sitter",
+          "fromTitle": "Tree-sitter — 에러에 강한 인크리멘털 파싱 라이브러리",
+          "toSlug": "mcp",
+          "toTitle": "MCP (Model Context Protocol) — Agent와 도구를 잇는 표준"
+        },
+        {
+          "fromSlug": "sandbox",
+          "fromTitle": "Sandbox — Docker와 VM의 코드 격리 방식",
+          "toSlug": "mcp",
+          "toTitle": "MCP (Model Context Protocol) — Agent와 도구를 잇는 표준"
+        }
+      ],
+      "outgoing": [
+        "agentic-rag",
+        "sandbox"
+      ]
+    },
+    "rag": {
+      "related": [
+        {
+          "slug": "rag-한계와-보완",
+          "title": "RAG 한계와 보완 전략 — 청킹·할루시네이션 대응",
+          "score": 14,
+          "reason": "shared tags: rag, llm, ai, embedding"
+        },
+        {
+          "slug": "hybrid-search",
+          "title": "Hybrid Search — 벡터 검색과 키워드 검색 결합",
+          "score": 9,
+          "reason": "shared tags: rag, ai, embedding"
+        },
+        {
+          "slug": "reranker",
+          "title": "Reranker — Cross-Encoder로 검색 결과 재평가",
+          "score": 9,
+          "reason": "shared tags: rag, ai, embedding"
+        },
+        {
+          "slug": "agentic-rag",
+          "title": "Agentic RAG — Agent가 검색을 반복하고 판단하는 RAG",
+          "score": 6,
+          "reason": "shared tags: rag, ai"
+        },
+        {
+          "slug": "graphrag",
+          "title": "GraphRAG — 벡터 검색과 지식 그래프를 결합하는 RAG",
+          "score": 6,
+          "reason": "shared tags: rag, ai"
+        }
+      ],
+      "backlinks": [
+        {
+          "fromSlug": "agentic-rag",
+          "fromTitle": "Agentic RAG — Agent가 검색을 반복하고 판단하는 RAG",
+          "toSlug": "rag",
+          "toTitle": "RAG (Retrieval-Augmented Generation) — LLM에 외부 지식 주입 패턴"
+        },
+        {
+          "fromSlug": "graphrag",
+          "fromTitle": "GraphRAG — 벡터 검색과 지식 그래프를 결합하는 RAG",
+          "toSlug": "rag",
+          "toTitle": "RAG (Retrieval-Augmented Generation) — LLM에 외부 지식 주입 패턴"
+        },
+        {
+          "fromSlug": "hybrid-search",
+          "fromTitle": "Hybrid Search — 벡터 검색과 키워드 검색 결합",
+          "toSlug": "rag",
+          "toTitle": "RAG (Retrieval-Augmented Generation) — LLM에 외부 지식 주입 패턴"
+        },
+        {
+          "fromSlug": "rag-한계와-보완",
+          "fromTitle": "RAG 한계와 보완 전략 — 청킹·할루시네이션 대응",
+          "toSlug": "rag",
+          "toTitle": "RAG (Retrieval-Augmented Generation) — LLM에 외부 지식 주입 패턴"
+        },
+        {
+          "fromSlug": "reranker",
+          "fromTitle": "Reranker — Cross-Encoder로 검색 결과 재평가",
+          "toSlug": "rag",
+          "toTitle": "RAG (Retrieval-Augmented Generation) — LLM에 외부 지식 주입 패턴"
+        },
+        {
+          "fromSlug": "karpathy-llm-knowledge-bases",
+          "fromTitle": "Karpathy의 LLM Knowledge Bases — 마크다운 위키 기반 RAG 대안",
+          "toSlug": "rag",
+          "toTitle": "RAG (Retrieval-Augmented Generation) — LLM에 외부 지식 주입 패턴"
+        }
+      ],
+      "outgoing": [
+        "rag-한계와-보완",
+        "hybrid-search",
+        "reranker",
+        "graphrag",
+        "agentic-rag",
+        "karpathy-llm-knowledge-bases"
+      ]
+    },
+    "rag-한계와-보완": {
+      "related": [
+        {
+          "slug": "rag",
+          "title": "RAG (Retrieval-Augmented Generation) — LLM에 외부 지식 주입 패턴",
+          "score": 14,
+          "reason": "shared tags: rag, llm, ai, embedding"
+        },
+        {
+          "slug": "hybrid-search",
+          "title": "Hybrid Search — 벡터 검색과 키워드 검색 결합",
+          "score": 9,
+          "reason": "shared tags: rag, ai, embedding"
+        },
+        {
+          "slug": "reranker",
+          "title": "Reranker — Cross-Encoder로 검색 결과 재평가",
+          "score": 9,
+          "reason": "shared tags: rag, ai, embedding"
+        },
+        {
+          "slug": "agentic-rag",
+          "title": "Agentic RAG — Agent가 검색을 반복하고 판단하는 RAG",
+          "score": 6,
+          "reason": "shared tags: rag, ai"
+        },
+        {
+          "slug": "graphrag",
+          "title": "GraphRAG — 벡터 검색과 지식 그래프를 결합하는 RAG",
+          "score": 6,
+          "reason": "shared tags: rag, ai"
+        }
+      ],
+      "backlinks": [
+        {
+          "fromSlug": "agentic-rag",
+          "fromTitle": "Agentic RAG — Agent가 검색을 반복하고 판단하는 RAG",
+          "toSlug": "rag-한계와-보완",
+          "toTitle": "RAG 한계와 보완 전략 — 청킹·할루시네이션 대응"
+        },
+        {
+          "fromSlug": "graphrag",
+          "fromTitle": "GraphRAG — 벡터 검색과 지식 그래프를 결합하는 RAG",
+          "toSlug": "rag-한계와-보완",
+          "toTitle": "RAG 한계와 보완 전략 — 청킹·할루시네이션 대응"
+        },
+        {
+          "fromSlug": "hybrid-search",
+          "fromTitle": "Hybrid Search — 벡터 검색과 키워드 검색 결합",
+          "toSlug": "rag-한계와-보완",
+          "toTitle": "RAG 한계와 보완 전략 — 청킹·할루시네이션 대응"
+        },
+        {
+          "fromSlug": "rag",
+          "fromTitle": "RAG (Retrieval-Augmented Generation) — LLM에 외부 지식 주입 패턴",
+          "toSlug": "rag-한계와-보완",
+          "toTitle": "RAG 한계와 보완 전략 — 청킹·할루시네이션 대응"
+        },
+        {
+          "fromSlug": "reranker",
+          "fromTitle": "Reranker — Cross-Encoder로 검색 결과 재평가",
+          "toSlug": "rag-한계와-보완",
+          "toTitle": "RAG 한계와 보완 전략 — 청킹·할루시네이션 대응"
+        },
+        {
+          "fromSlug": "karpathy-llm-knowledge-bases",
+          "fromTitle": "Karpathy의 LLM Knowledge Bases — 마크다운 위키 기반 RAG 대안",
+          "toSlug": "rag-한계와-보완",
+          "toTitle": "RAG 한계와 보완 전략 — 청킹·할루시네이션 대응"
+        }
+      ],
+      "outgoing": [
+        "rag",
+        "reranker",
+        "hybrid-search",
+        "agentic-rag",
+        "graphrag"
+      ]
+    },
+    "reranker": {
+      "related": [
+        {
+          "slug": "hybrid-search",
+          "title": "Hybrid Search — 벡터 검색과 키워드 검색 결합",
+          "score": 14,
+          "reason": "shared tags: rag, ai, embedding, search"
+        },
+        {
+          "slug": "rag",
+          "title": "RAG (Retrieval-Augmented Generation) — LLM에 외부 지식 주입 패턴",
+          "score": 9,
+          "reason": "shared tags: rag, ai, embedding"
+        },
+        {
+          "slug": "rag-한계와-보완",
+          "title": "RAG 한계와 보완 전략 — 청킹·할루시네이션 대응",
+          "score": 9,
+          "reason": "shared tags: rag, ai, embedding"
+        },
+        {
+          "slug": "agentic-rag",
+          "title": "Agentic RAG — Agent가 검색을 반복하고 판단하는 RAG",
+          "score": 6,
+          "reason": "shared tags: rag, ai"
+        },
+        {
+          "slug": "graphrag",
+          "title": "GraphRAG — 벡터 검색과 지식 그래프를 결합하는 RAG",
+          "score": 6,
+          "reason": "shared tags: rag, ai"
+        }
+      ],
+      "backlinks": [
+        {
+          "fromSlug": "hybrid-search",
+          "fromTitle": "Hybrid Search — 벡터 검색과 키워드 검색 결합",
+          "toSlug": "reranker",
+          "toTitle": "Reranker — Cross-Encoder로 검색 결과 재평가"
+        },
+        {
+          "fromSlug": "rag",
+          "fromTitle": "RAG (Retrieval-Augmented Generation) — LLM에 외부 지식 주입 패턴",
+          "toSlug": "reranker",
+          "toTitle": "Reranker — Cross-Encoder로 검색 결과 재평가"
+        },
+        {
+          "fromSlug": "rag-한계와-보완",
+          "fromTitle": "RAG 한계와 보완 전략 — 청킹·할루시네이션 대응",
+          "toSlug": "reranker",
+          "toTitle": "Reranker — Cross-Encoder로 검색 결과 재평가"
+        }
+      ],
+      "outgoing": [
+        "rag",
+        "hybrid-search",
+        "rag-한계와-보완"
+      ]
+    },
+    "frappe-fixture": {
+      "related": [
+        {
+          "slug": "alembic",
+          "title": "Alembic — SQLAlchemy DB 마이그레이션 도구",
+          "score": 2,
+          "reason": "same category: backend/database"
+        }
+      ],
+      "backlinks": [
+        {
+          "fromSlug": "alembic",
+          "fromTitle": "Alembic — SQLAlchemy DB 마이그레이션 도구",
+          "toSlug": "frappe-fixture",
+          "toTitle": "Frappe Fixture — migrate마다 데이터를 덮어쓰는 동기화 시스템"
+        }
+      ],
+      "outgoing": [
+        "alembic"
+      ]
+    },
+    "tree-sitter": {
+      "related": [],
+      "backlinks": [],
+      "outgoing": [
+        "mcp"
+      ]
+    },
+    "멀티테넌트-rbac-설계": {
+      "related": [
+        {
+          "slug": "abac",
+          "title": "ABAC — 속성 기반 접근 제어 모델",
+          "score": 8,
+          "reason": "shared tags: 인가, 보안"
+        },
+        {
+          "slug": "opa",
+          "title": "OPA (Open Policy Agent) — 정책 코드 분리 엔진",
+          "score": 8,
+          "reason": "shared tags: 인가, 보안"
+        },
+        {
+          "slug": "rbac",
+          "title": "RBAC — 역할 기반 접근 제어 모델",
+          "score": 8,
+          "reason": "shared tags: 인가, 보안"
+        },
+        {
+          "slug": "api-gateway",
+          "title": "API Gateway — 단일 진입점으로 인증·인가·프록시 중앙 처리",
+          "score": 3,
+          "reason": "shared tags: 인가"
+        },
+        {
+          "slug": "bff",
+          "title": "BFF (Backend For Frontend) — 프론트엔드 전용 백엔드로 토큰 보호",
+          "score": 3,
+          "reason": "shared tags: 보안"
+        }
+      ],
+      "backlinks": [
+        {
+          "fromSlug": "abac",
+          "fromTitle": "ABAC — 속성 기반 접근 제어 모델",
+          "toSlug": "멀티테넌트-rbac-설계",
+          "toTitle": "멀티테넌트 RBAC 설계 — 관리자 권한과 테넌트 격리 분리"
+        },
+        {
+          "fromSlug": "opa",
+          "fromTitle": "OPA (Open Policy Agent) — 정책 코드 분리 엔진",
+          "toSlug": "멀티테넌트-rbac-설계",
+          "toTitle": "멀티테넌트 RBAC 설계 — 관리자 권한과 테넌트 격리 분리"
+        },
+        {
+          "fromSlug": "rbac",
+          "fromTitle": "RBAC — 역할 기반 접근 제어 모델",
+          "toSlug": "멀티테넌트-rbac-설계",
+          "toTitle": "멀티테넌트 RBAC 설계 — 관리자 권한과 테넌트 격리 분리"
+        }
+      ],
+      "outgoing": [
+        "rbac",
+        "abac",
+        "opa"
+      ]
+    },
     "abac": {
       "related": [
         {
           "slug": "rbac",
-          "title": "RBAC (Role-Based Access Control)",
+          "title": "RBAC — 역할 기반 접근 제어 모델",
           "score": 11,
           "reason": "shared tags: 인가, 보안, 권한"
         },
         {
           "slug": "opa",
-          "title": "OPA (Open Policy Agent)",
+          "title": "OPA (Open Policy Agent) — 정책 코드 분리 엔진",
           "score": 8,
           "reason": "shared tags: 인가, 보안"
         },
         {
+          "slug": "멀티테넌트-rbac-설계",
+          "title": "멀티테넌트 RBAC 설계 — 관리자 권한과 테넌트 격리 분리",
+          "score": 8,
+          "reason": "shared tags: 인가, 보안"
+        },
+        {
+          "slug": "api-gateway",
+          "title": "API Gateway — 단일 진입점으로 인증·인가·프록시 중앙 처리",
+          "score": 3,
+          "reason": "shared tags: 인가"
+        },
+        {
           "slug": "bff",
-          "title": "BFF (Backend For Frontend)",
-          "score": 5,
-          "reason": "shared tags: 보안"
-        },
-        {
-          "slug": "oauth-oidc-saml",
-          "title": "OAuth, OIDC, SAML",
-          "score": 5,
-          "reason": "shared tags: 보안"
-        },
-        {
-          "slug": "sandbox",
-          "title": "Sandbox",
-          "score": 5,
+          "title": "BFF (Backend For Frontend) — 프론트엔드 전용 백엔드로 토큰 보호",
+          "score": 3,
           "reason": "shared tags: 보안"
         }
       ],
-      "backlinks": [],
-      "outgoing": []
+      "backlinks": [
+        {
+          "fromSlug": "멀티테넌트-rbac-설계",
+          "fromTitle": "멀티테넌트 RBAC 설계 — 관리자 권한과 테넌트 격리 분리",
+          "toSlug": "abac",
+          "toTitle": "ABAC — 속성 기반 접근 제어 모델"
+        },
+        {
+          "fromSlug": "opa",
+          "fromTitle": "OPA (Open Policy Agent) — 정책 코드 분리 엔진",
+          "toSlug": "abac",
+          "toTitle": "ABAC — 속성 기반 접근 제어 모델"
+        },
+        {
+          "fromSlug": "rbac",
+          "fromTitle": "RBAC — 역할 기반 접근 제어 모델",
+          "toSlug": "abac",
+          "toTitle": "ABAC — 속성 기반 접근 제어 모델"
+        }
+      ],
+      "outgoing": [
+        "rbac",
+        "opa",
+        "멀티테넌트-rbac-설계"
+      ]
     },
     "alembic": {
-      "related": [],
-      "backlinks": [],
-      "outgoing": []
+      "related": [
+        {
+          "slug": "frappe-fixture",
+          "title": "Frappe Fixture — migrate마다 데이터를 덮어쓰는 동기화 시스템",
+          "score": 2,
+          "reason": "same category: backend/database"
+        }
+      ],
+      "backlinks": [
+        {
+          "fromSlug": "frappe-fixture",
+          "fromTitle": "Frappe Fixture — migrate마다 데이터를 덮어쓰는 동기화 시스템",
+          "toSlug": "alembic",
+          "toTitle": "Alembic — SQLAlchemy DB 마이그레이션 도구"
+        }
+      ],
+      "outgoing": [
+        "frappe-fixture"
+      ]
+    },
+    "api-gateway": {
+      "related": [
+        {
+          "slug": "bff",
+          "title": "BFF (Backend For Frontend) — 프론트엔드 전용 백엔드로 토큰 보호",
+          "score": 8,
+          "reason": "shared tags: 아키텍처, 인증"
+        },
+        {
+          "slug": "xss-csrf",
+          "title": "XSS와 CSRF — 쿠키를 읽는 공격과 사용하는 공격",
+          "score": 6,
+          "reason": "shared tags: 인증, bff"
+        },
+        {
+          "slug": "abac",
+          "title": "ABAC — 속성 기반 접근 제어 모델",
+          "score": 3,
+          "reason": "shared tags: 인가"
+        },
+        {
+          "slug": "proxy",
+          "title": "Forward Proxy와 Reverse Proxy — 클라이언트 대리와 서버 대리",
+          "score": 3,
+          "reason": "shared tags: 프록시"
+        },
+        {
+          "slug": "oauth-oidc-saml",
+          "title": "OAuth, OIDC, SAML — SSO 인증 프로토콜 비교",
+          "score": 3,
+          "reason": "shared tags: 인증"
+        }
+      ],
+      "backlinks": [
+        {
+          "fromSlug": "bff",
+          "fromTitle": "BFF (Backend For Frontend) — 프론트엔드 전용 백엔드로 토큰 보호",
+          "toSlug": "api-gateway",
+          "toTitle": "API Gateway — 단일 진입점으로 인증·인가·프록시 중앙 처리"
+        },
+        {
+          "fromSlug": "nginx",
+          "fromTitle": "Nginx — 리버스 프록시와 로드 밸런싱",
+          "toSlug": "api-gateway",
+          "toTitle": "API Gateway — 단일 진입점으로 인증·인가·프록시 중앙 처리"
+        },
+        {
+          "fromSlug": "oauth-oidc-saml",
+          "fromTitle": "OAuth, OIDC, SAML — SSO 인증 프로토콜 비교",
+          "toSlug": "api-gateway",
+          "toTitle": "API Gateway — 단일 진입점으로 인증·인가·프록시 중앙 처리"
+        },
+        {
+          "fromSlug": "proxy",
+          "fromTitle": "Forward Proxy와 Reverse Proxy — 클라이언트 대리와 서버 대리",
+          "toSlug": "api-gateway",
+          "toTitle": "API Gateway — 단일 진입점으로 인증·인가·프록시 중앙 처리"
+        },
+        {
+          "fromSlug": "upstream-downstream-hop",
+          "fromTitle": "Upstream, Downstream, Hop — 네트워크 흐름 용어 정리",
+          "toSlug": "api-gateway",
+          "toTitle": "API Gateway — 단일 진입점으로 인증·인가·프록시 중앙 처리"
+        },
+        {
+          "fromSlug": "xss-csrf",
+          "fromTitle": "XSS와 CSRF — 쿠키를 읽는 공격과 사용하는 공격",
+          "toSlug": "api-gateway",
+          "toTitle": "API Gateway — 단일 진입점으로 인증·인가·프록시 중앙 처리"
+        }
+      ],
+      "outgoing": [
+        "bff",
+        "oauth-oidc-saml",
+        "xss-csrf",
+        "nginx"
+      ]
     },
     "bff": {
       "related": [
         {
           "slug": "oauth-oidc-saml",
-          "title": "OAuth, OIDC, SAML",
-          "score": 11,
+          "title": "OAuth, OIDC, SAML — SSO 인증 프로토콜 비교",
+          "score": 9,
           "reason": "shared tags: 인증, 보안, sso"
         },
         {
-          "slug": "xss-csrf",
-          "title": "XSS와 CSRF",
+          "slug": "api-gateway",
+          "title": "API Gateway — 단일 진입점으로 인증·인가·프록시 중앙 처리",
           "score": 8,
+          "reason": "shared tags: 인증, 아키텍처"
+        },
+        {
+          "slug": "xss-csrf",
+          "title": "XSS와 CSRF — 쿠키를 읽는 공격과 사용하는 공격",
+          "score": 6,
           "reason": "shared tags: 인증, 보안"
         },
         {
           "slug": "abac",
-          "title": "ABAC (Attribute-Based Access Control)",
-          "score": 5,
+          "title": "ABAC — 속성 기반 접근 제어 모델",
+          "score": 3,
           "reason": "shared tags: 보안"
         },
         {
-          "slug": "opa",
-          "title": "OPA (Open Policy Agent)",
-          "score": 5,
-          "reason": "shared tags: 보안"
-        },
-        {
-          "slug": "rbac",
-          "title": "RBAC (Role-Based Access Control)",
-          "score": 5,
+          "slug": "cors",
+          "title": "CORS — 브라우저의 Cross-Origin 차단 정책",
+          "score": 3,
           "reason": "shared tags: 보안"
         }
       ],
-      "backlinks": [],
-      "outgoing": []
+      "backlinks": [
+        {
+          "fromSlug": "api-gateway",
+          "fromTitle": "API Gateway — 단일 진입점으로 인증·인가·프록시 중앙 처리",
+          "toSlug": "bff",
+          "toTitle": "BFF (Backend For Frontend) — 프론트엔드 전용 백엔드로 토큰 보호"
+        },
+        {
+          "fromSlug": "oauth-oidc-saml",
+          "fromTitle": "OAuth, OIDC, SAML — SSO 인증 프로토콜 비교",
+          "toSlug": "bff",
+          "toTitle": "BFF (Backend For Frontend) — 프론트엔드 전용 백엔드로 토큰 보호"
+        },
+        {
+          "fromSlug": "xss-csrf",
+          "fromTitle": "XSS와 CSRF — 쿠키를 읽는 공격과 사용하는 공격",
+          "toSlug": "bff",
+          "toTitle": "BFF (Backend For Frontend) — 프론트엔드 전용 백엔드로 토큰 보호"
+        }
+      ],
+      "outgoing": [
+        "xss-csrf",
+        "api-gateway",
+        "oauth-oidc-saml",
+        "nginx"
+      ]
+    },
+    "cors": {
+      "related": [
+        {
+          "slug": "sandbox",
+          "title": "Sandbox — Docker와 VM의 코드 격리 방식",
+          "score": 5,
+          "reason": "shared tags: 보안"
+        },
+        {
+          "slug": "xss-csrf",
+          "title": "XSS와 CSRF — 쿠키를 읽는 공격과 사용하는 공격",
+          "score": 5,
+          "reason": "shared tags: 보안"
+        },
+        {
+          "slug": "abac",
+          "title": "ABAC — 속성 기반 접근 제어 모델",
+          "score": 3,
+          "reason": "shared tags: 보안"
+        },
+        {
+          "slug": "bff",
+          "title": "BFF (Backend For Frontend) — 프론트엔드 전용 백엔드로 토큰 보호",
+          "score": 3,
+          "reason": "shared tags: 보안"
+        },
+        {
+          "slug": "proxy",
+          "title": "Forward Proxy와 Reverse Proxy — 클라이언트 대리와 서버 대리",
+          "score": 3,
+          "reason": "shared tags: cors"
+        }
+      ],
+      "backlinks": [
+        {
+          "fromSlug": "proxy",
+          "fromTitle": "Forward Proxy와 Reverse Proxy — 클라이언트 대리와 서버 대리",
+          "toSlug": "cors",
+          "toTitle": "CORS — 브라우저의 Cross-Origin 차단 정책"
+        },
+        {
+          "fromSlug": "xss-csrf",
+          "fromTitle": "XSS와 CSRF — 쿠키를 읽는 공격과 사용하는 공격",
+          "toSlug": "cors",
+          "toTitle": "CORS — 브라우저의 Cross-Origin 차단 정책"
+        }
+      ],
+      "outgoing": [
+        "nginx",
+        "xss-csrf",
+        "proxy"
+      ]
     },
     "dns": {
       "related": [
         {
           "slug": "nginx",
-          "title": "Nginx",
-          "score": 8,
+          "title": "Nginx — 리버스 프록시와 로드 밸런싱",
+          "score": 6,
           "reason": "shared tags: 네트워크, 인프라"
         },
         {
-          "slug": "서버-배포-구성",
-          "title": "서버 배포 구성",
-          "score": 5,
-          "reason": "shared tags: dns"
-        },
-        {
-          "slug": "proxy",
-          "title": "Proxy",
-          "score": 3,
-          "reason": "shared tags: 네트워크"
-        },
-        {
           "slug": "tcp와-udp",
-          "title": "TCP와 UDP",
-          "score": 3,
+          "title": "TCP와 UDP — 전송 프로토콜 비교",
+          "score": 5,
           "reason": "shared tags: 네트워크"
         },
         {
           "slug": "upstream-downstream-hop",
-          "title": "Upstream-Downstream-Hop",
+          "title": "Upstream, Downstream, Hop — 네트워크 흐름 용어 정리",
+          "score": 5,
+          "reason": "shared tags: 네트워크"
+        },
+        {
+          "slug": "proxy",
+          "title": "Forward Proxy와 Reverse Proxy — 클라이언트 대리와 서버 대리",
           "score": 3,
           "reason": "shared tags: 네트워크"
+        },
+        {
+          "slug": "서버-배포-구성",
+          "title": "서버 배포 구성 — Nginx, DNS, SSL, Docker 실무 설정",
+          "score": 3,
+          "reason": "shared tags: dns"
         }
       ],
-      "backlinks": [],
-      "outgoing": []
+      "backlinks": [
+        {
+          "fromSlug": "tcp와-udp",
+          "fromTitle": "TCP와 UDP — 전송 프로토콜 비교",
+          "toSlug": "dns",
+          "toTitle": "DNS — 도메인 이름 조회 원리와 레코드 종류"
+        },
+        {
+          "fromSlug": "서버-배포-구성",
+          "fromTitle": "서버 배포 구성 — Nginx, DNS, SSL, Docker 실무 설정",
+          "toSlug": "dns",
+          "toTitle": "DNS — 도메인 이름 조회 원리와 레코드 종류"
+        }
+      ],
+      "outgoing": [
+        "tcp와-udp",
+        "서버-배포-구성",
+        "nginx"
+      ]
     },
     "git-rebase-worktree": {
       "related": [],
       "backlinks": [],
       "outgoing": []
     },
+    "karpathy-llm-knowledge-bases": {
+      "related": [
+        {
+          "slug": "rag",
+          "title": "RAG (Retrieval-Augmented Generation) — LLM에 외부 지식 주입 패턴",
+          "score": 6,
+          "reason": "shared tags: llm, rag"
+        },
+        {
+          "slug": "rag-한계와-보완",
+          "title": "RAG 한계와 보완 전략 — 청킹·할루시네이션 대응",
+          "score": 6,
+          "reason": "shared tags: llm, rag"
+        },
+        {
+          "slug": "agentic-rag",
+          "title": "Agentic RAG — Agent가 검색을 반복하고 판단하는 RAG",
+          "score": 3,
+          "reason": "shared tags: rag"
+        },
+        {
+          "slug": "graphrag",
+          "title": "GraphRAG — 벡터 검색과 지식 그래프를 결합하는 RAG",
+          "score": 3,
+          "reason": "shared tags: rag"
+        },
+        {
+          "slug": "hybrid-search",
+          "title": "Hybrid Search — 벡터 검색과 키워드 검색 결합",
+          "score": 3,
+          "reason": "shared tags: rag"
+        }
+      ],
+      "backlinks": [
+        {
+          "fromSlug": "agentic-rag",
+          "fromTitle": "Agentic RAG — Agent가 검색을 반복하고 판단하는 RAG",
+          "toSlug": "karpathy-llm-knowledge-bases",
+          "toTitle": "Karpathy의 LLM Knowledge Bases — 마크다운 위키 기반 RAG 대안"
+        },
+        {
+          "fromSlug": "graphrag",
+          "fromTitle": "GraphRAG — 벡터 검색과 지식 그래프를 결합하는 RAG",
+          "toSlug": "karpathy-llm-knowledge-bases",
+          "toTitle": "Karpathy의 LLM Knowledge Bases — 마크다운 위키 기반 RAG 대안"
+        },
+        {
+          "fromSlug": "rag",
+          "fromTitle": "RAG (Retrieval-Augmented Generation) — LLM에 외부 지식 주입 패턴",
+          "toSlug": "karpathy-llm-knowledge-bases",
+          "toTitle": "Karpathy의 LLM Knowledge Bases — 마크다운 위키 기반 RAG 대안"
+        }
+      ],
+      "outgoing": [
+        "rag",
+        "rag-한계와-보완",
+        "graphrag",
+        "agentic-rag"
+      ]
+    },
     "nginx": {
       "related": [
         {
           "slug": "dns",
-          "title": "DNS",
-          "score": 8,
+          "title": "DNS — 도메인 이름 조회 원리와 레코드 종류",
+          "score": 6,
           "reason": "shared tags: 네트워크, 인프라"
         },
         {
           "slug": "proxy",
-          "title": "Proxy",
+          "title": "Forward Proxy와 Reverse Proxy — 클라이언트 대리와 서버 대리",
           "score": 3,
           "reason": "shared tags: 네트워크"
         },
         {
           "slug": "tcp와-udp",
-          "title": "TCP와 UDP",
+          "title": "TCP와 UDP — 전송 프로토콜 비교",
           "score": 3,
           "reason": "shared tags: 네트워크"
         },
         {
           "slug": "upstream-downstream-hop",
-          "title": "Upstream-Downstream-Hop",
+          "title": "Upstream, Downstream, Hop — 네트워크 흐름 용어 정리",
           "score": 3,
           "reason": "shared tags: 네트워크"
         },
         {
-          "slug": "서버-배포-구성",
-          "title": "서버 배포 구성",
+          "slug": "api-gateway",
+          "title": "API Gateway — 단일 진입점으로 인증·인가·프록시 중앙 처리",
           "score": 2,
-          "reason": "same category: infra"
+          "reason": "same category: backend/gateway"
         }
       ],
-      "backlinks": [],
-      "outgoing": []
+      "backlinks": [
+        {
+          "fromSlug": "api-gateway",
+          "fromTitle": "API Gateway — 단일 진입점으로 인증·인가·프록시 중앙 처리",
+          "toSlug": "nginx",
+          "toTitle": "Nginx — 리버스 프록시와 로드 밸런싱"
+        },
+        {
+          "fromSlug": "bff",
+          "fromTitle": "BFF (Backend For Frontend) — 프론트엔드 전용 백엔드로 토큰 보호",
+          "toSlug": "nginx",
+          "toTitle": "Nginx — 리버스 프록시와 로드 밸런싱"
+        },
+        {
+          "fromSlug": "cors",
+          "fromTitle": "CORS — 브라우저의 Cross-Origin 차단 정책",
+          "toSlug": "nginx",
+          "toTitle": "Nginx — 리버스 프록시와 로드 밸런싱"
+        },
+        {
+          "fromSlug": "dns",
+          "fromTitle": "DNS — 도메인 이름 조회 원리와 레코드 종류",
+          "toSlug": "nginx",
+          "toTitle": "Nginx — 리버스 프록시와 로드 밸런싱"
+        },
+        {
+          "fromSlug": "proxy",
+          "fromTitle": "Forward Proxy와 Reverse Proxy — 클라이언트 대리와 서버 대리",
+          "toSlug": "nginx",
+          "toTitle": "Nginx — 리버스 프록시와 로드 밸런싱"
+        },
+        {
+          "fromSlug": "upstream-downstream-hop",
+          "fromTitle": "Upstream, Downstream, Hop — 네트워크 흐름 용어 정리",
+          "toSlug": "nginx",
+          "toTitle": "Nginx — 리버스 프록시와 로드 밸런싱"
+        },
+        {
+          "fromSlug": "서버-배포-구성",
+          "fromTitle": "서버 배포 구성 — Nginx, DNS, SSL, Docker 실무 설정",
+          "toSlug": "nginx",
+          "toTitle": "Nginx — 리버스 프록시와 로드 밸런싱"
+        }
+      ],
+      "outgoing": [
+        "api-gateway",
+        "proxy",
+        "서버-배포-구성",
+        "upstream-downstream-hop"
+      ]
     },
     "oauth-oidc-saml": {
       "related": [
         {
           "slug": "bff",
-          "title": "BFF (Backend For Frontend)",
-          "score": 11,
+          "title": "BFF (Backend For Frontend) — 프론트엔드 전용 백엔드로 토큰 보호",
+          "score": 9,
           "reason": "shared tags: 인증, sso, 보안"
         },
         {
           "slug": "xss-csrf",
-          "title": "XSS와 CSRF",
-          "score": 8,
+          "title": "XSS와 CSRF — 쿠키를 읽는 공격과 사용하는 공격",
+          "score": 6,
           "reason": "shared tags: 인증, 보안"
         },
         {
           "slug": "abac",
-          "title": "ABAC (Attribute-Based Access Control)",
-          "score": 5,
+          "title": "ABAC — 속성 기반 접근 제어 모델",
+          "score": 3,
           "reason": "shared tags: 보안"
         },
         {
-          "slug": "opa",
-          "title": "OPA (Open Policy Agent)",
-          "score": 5,
-          "reason": "shared tags: 보안"
+          "slug": "api-gateway",
+          "title": "API Gateway — 단일 진입점으로 인증·인가·프록시 중앙 처리",
+          "score": 3,
+          "reason": "shared tags: 인증"
         },
         {
-          "slug": "rbac",
-          "title": "RBAC (Role-Based Access Control)",
-          "score": 5,
+          "slug": "cors",
+          "title": "CORS — 브라우저의 Cross-Origin 차단 정책",
+          "score": 3,
           "reason": "shared tags: 보안"
         }
       ],
-      "backlinks": [],
-      "outgoing": []
+      "backlinks": [
+        {
+          "fromSlug": "api-gateway",
+          "fromTitle": "API Gateway — 단일 진입점으로 인증·인가·프록시 중앙 처리",
+          "toSlug": "oauth-oidc-saml",
+          "toTitle": "OAuth, OIDC, SAML — SSO 인증 프로토콜 비교"
+        },
+        {
+          "fromSlug": "bff",
+          "fromTitle": "BFF (Backend For Frontend) — 프론트엔드 전용 백엔드로 토큰 보호",
+          "toSlug": "oauth-oidc-saml",
+          "toTitle": "OAuth, OIDC, SAML — SSO 인증 프로토콜 비교"
+        },
+        {
+          "fromSlug": "rbac",
+          "fromTitle": "RBAC — 역할 기반 접근 제어 모델",
+          "toSlug": "oauth-oidc-saml",
+          "toTitle": "OAuth, OIDC, SAML — SSO 인증 프로토콜 비교"
+        }
+      ],
+      "outgoing": [
+        "bff",
+        "api-gateway",
+        "rbac",
+        "xss-csrf"
+      ]
     },
     "opa": {
       "related": [
         {
           "slug": "abac",
-          "title": "ABAC (Attribute-Based Access Control)",
+          "title": "ABAC — 속성 기반 접근 제어 모델",
           "score": 8,
           "reason": "shared tags: 인가, 보안"
         },
         {
           "slug": "rbac",
-          "title": "RBAC (Role-Based Access Control)",
+          "title": "RBAC — 역할 기반 접근 제어 모델",
           "score": 8,
           "reason": "shared tags: 인가, 보안"
         },
         {
+          "slug": "멀티테넌트-rbac-설계",
+          "title": "멀티테넌트 RBAC 설계 — 관리자 권한과 테넌트 격리 분리",
+          "score": 8,
+          "reason": "shared tags: 인가, 보안"
+        },
+        {
+          "slug": "api-gateway",
+          "title": "API Gateway — 단일 진입점으로 인증·인가·프록시 중앙 처리",
+          "score": 3,
+          "reason": "shared tags: 인가"
+        },
+        {
           "slug": "bff",
-          "title": "BFF (Backend For Frontend)",
-          "score": 5,
-          "reason": "shared tags: 보안"
-        },
-        {
-          "slug": "oauth-oidc-saml",
-          "title": "OAuth, OIDC, SAML",
-          "score": 5,
-          "reason": "shared tags: 보안"
-        },
-        {
-          "slug": "sandbox",
-          "title": "Sandbox",
-          "score": 5,
+          "title": "BFF (Backend For Frontend) — 프론트엔드 전용 백엔드로 토큰 보호",
+          "score": 3,
           "reason": "shared tags: 보안"
         }
       ],
-      "backlinks": [],
-      "outgoing": []
+      "backlinks": [
+        {
+          "fromSlug": "멀티테넌트-rbac-설계",
+          "fromTitle": "멀티테넌트 RBAC 설계 — 관리자 권한과 테넌트 격리 분리",
+          "toSlug": "opa",
+          "toTitle": "OPA (Open Policy Agent) — 정책 코드 분리 엔진"
+        },
+        {
+          "fromSlug": "abac",
+          "fromTitle": "ABAC — 속성 기반 접근 제어 모델",
+          "toSlug": "opa",
+          "toTitle": "OPA (Open Policy Agent) — 정책 코드 분리 엔진"
+        },
+        {
+          "fromSlug": "rbac",
+          "fromTitle": "RBAC — 역할 기반 접근 제어 모델",
+          "toSlug": "opa",
+          "toTitle": "OPA (Open Policy Agent) — 정책 코드 분리 엔진"
+        }
+      ],
+      "outgoing": [
+        "rbac",
+        "abac",
+        "멀티테넌트-rbac-설계"
+      ]
     },
     "proxy": {
       "related": [
         {
           "slug": "upstream-downstream-hop",
-          "title": "Upstream-Downstream-Hop",
-          "score": 8,
+          "title": "Upstream, Downstream, Hop — 네트워크 흐름 용어 정리",
+          "score": 6,
           "reason": "shared tags: 네트워크, 프록시"
         },
         {
-          "slug": "tcp와-udp",
-          "title": "TCP와 UDP",
-          "score": 5,
-          "reason": "shared tags: 네트워크"
+          "slug": "api-gateway",
+          "title": "API Gateway — 단일 진입점으로 인증·인가·프록시 중앙 처리",
+          "score": 3,
+          "reason": "shared tags: 프록시"
+        },
+        {
+          "slug": "cors",
+          "title": "CORS — 브라우저의 Cross-Origin 차단 정책",
+          "score": 3,
+          "reason": "shared tags: cors"
         },
         {
           "slug": "dns",
-          "title": "DNS",
+          "title": "DNS — 도메인 이름 조회 원리와 레코드 종류",
           "score": 3,
           "reason": "shared tags: 네트워크"
         },
         {
           "slug": "nginx",
-          "title": "Nginx",
-          "score": 3,
-          "reason": "shared tags: 네트워크"
-        }
-      ],
-      "backlinks": [],
-      "outgoing": [
-        "upstream-downstream-hop"
-      ]
-    },
-    "rbac": {
-      "related": [
-        {
-          "slug": "abac",
-          "title": "ABAC (Attribute-Based Access Control)",
-          "score": 11,
-          "reason": "shared tags: 인가, 보안, 권한"
-        },
-        {
-          "slug": "opa",
-          "title": "OPA (Open Policy Agent)",
-          "score": 8,
-          "reason": "shared tags: 인가, 보안"
-        },
-        {
-          "slug": "bff",
-          "title": "BFF (Backend For Frontend)",
-          "score": 5,
-          "reason": "shared tags: 보안"
-        },
-        {
-          "slug": "oauth-oidc-saml",
-          "title": "OAuth, OIDC, SAML",
-          "score": 5,
-          "reason": "shared tags: 보안"
-        },
-        {
-          "slug": "sandbox",
-          "title": "Sandbox",
-          "score": 5,
-          "reason": "shared tags: 보안"
-        }
-      ],
-      "backlinks": [],
-      "outgoing": []
-    },
-    "sandbox": {
-      "related": [
-        {
-          "slug": "abac",
-          "title": "ABAC (Attribute-Based Access Control)",
-          "score": 5,
-          "reason": "shared tags: 보안"
-        },
-        {
-          "slug": "bff",
-          "title": "BFF (Backend For Frontend)",
-          "score": 5,
-          "reason": "shared tags: 보안"
-        },
-        {
-          "slug": "oauth-oidc-saml",
-          "title": "OAuth, OIDC, SAML",
-          "score": 5,
-          "reason": "shared tags: 보안"
-        },
-        {
-          "slug": "opa",
-          "title": "OPA (Open Policy Agent)",
-          "score": 5,
-          "reason": "shared tags: 보안"
-        },
-        {
-          "slug": "rbac",
-          "title": "RBAC (Role-Based Access Control)",
-          "score": 5,
-          "reason": "shared tags: 보안"
-        }
-      ],
-      "backlinks": [],
-      "outgoing": []
-    },
-    "tcp와-udp": {
-      "related": [
-        {
-          "slug": "proxy",
-          "title": "Proxy",
-          "score": 5,
-          "reason": "shared tags: 네트워크"
-        },
-        {
-          "slug": "upstream-downstream-hop",
-          "title": "Upstream-Downstream-Hop",
-          "score": 5,
-          "reason": "shared tags: 네트워크"
-        },
-        {
-          "slug": "dns",
-          "title": "DNS",
-          "score": 3,
-          "reason": "shared tags: 네트워크"
-        },
-        {
-          "slug": "nginx",
-          "title": "Nginx",
-          "score": 3,
-          "reason": "shared tags: 네트워크"
-        }
-      ],
-      "backlinks": [],
-      "outgoing": []
-    },
-    "upstream-downstream-hop": {
-      "related": [
-        {
-          "slug": "proxy",
-          "title": "Proxy",
-          "score": 8,
-          "reason": "shared tags: 네트워크, 프록시"
-        },
-        {
-          "slug": "tcp와-udp",
-          "title": "TCP와 UDP",
-          "score": 5,
-          "reason": "shared tags: 네트워크"
-        },
-        {
-          "slug": "dns",
-          "title": "DNS",
-          "score": 3,
-          "reason": "shared tags: 네트워크"
-        },
-        {
-          "slug": "nginx",
-          "title": "Nginx",
+          "title": "Nginx — 리버스 프록시와 로드 밸런싱",
           "score": 3,
           "reason": "shared tags: 네트워크"
         }
       ],
       "backlinks": [
         {
-          "fromSlug": "proxy",
-          "fromTitle": "Proxy",
-          "toSlug": "upstream-downstream-hop",
-          "toTitle": "Upstream-Downstream-Hop"
+          "fromSlug": "cors",
+          "fromTitle": "CORS — 브라우저의 Cross-Origin 차단 정책",
+          "toSlug": "proxy",
+          "toTitle": "Forward Proxy와 Reverse Proxy — 클라이언트 대리와 서버 대리"
+        },
+        {
+          "fromSlug": "nginx",
+          "fromTitle": "Nginx — 리버스 프록시와 로드 밸런싱",
+          "toSlug": "proxy",
+          "toTitle": "Forward Proxy와 Reverse Proxy — 클라이언트 대리와 서버 대리"
+        },
+        {
+          "fromSlug": "upstream-downstream-hop",
+          "fromTitle": "Upstream, Downstream, Hop — 네트워크 흐름 용어 정리",
+          "toSlug": "proxy",
+          "toTitle": "Forward Proxy와 Reverse Proxy — 클라이언트 대리와 서버 대리"
         }
       ],
-      "outgoing": []
+      "outgoing": [
+        "nginx",
+        "cors",
+        "upstream-downstream-hop",
+        "api-gateway"
+      ]
+    },
+    "rbac": {
+      "related": [
+        {
+          "slug": "abac",
+          "title": "ABAC — 속성 기반 접근 제어 모델",
+          "score": 11,
+          "reason": "shared tags: 인가, 보안, 권한"
+        },
+        {
+          "slug": "opa",
+          "title": "OPA (Open Policy Agent) — 정책 코드 분리 엔진",
+          "score": 8,
+          "reason": "shared tags: 인가, 보안"
+        },
+        {
+          "slug": "멀티테넌트-rbac-설계",
+          "title": "멀티테넌트 RBAC 설계 — 관리자 권한과 테넌트 격리 분리",
+          "score": 8,
+          "reason": "shared tags: 인가, 보안"
+        },
+        {
+          "slug": "api-gateway",
+          "title": "API Gateway — 단일 진입점으로 인증·인가·프록시 중앙 처리",
+          "score": 3,
+          "reason": "shared tags: 인가"
+        },
+        {
+          "slug": "bff",
+          "title": "BFF (Backend For Frontend) — 프론트엔드 전용 백엔드로 토큰 보호",
+          "score": 3,
+          "reason": "shared tags: 보안"
+        }
+      ],
+      "backlinks": [
+        {
+          "fromSlug": "graphrag",
+          "fromTitle": "GraphRAG — 벡터 검색과 지식 그래프를 결합하는 RAG",
+          "toSlug": "rbac",
+          "toTitle": "RBAC — 역할 기반 접근 제어 모델"
+        },
+        {
+          "fromSlug": "멀티테넌트-rbac-설계",
+          "fromTitle": "멀티테넌트 RBAC 설계 — 관리자 권한과 테넌트 격리 분리",
+          "toSlug": "rbac",
+          "toTitle": "RBAC — 역할 기반 접근 제어 모델"
+        },
+        {
+          "fromSlug": "abac",
+          "fromTitle": "ABAC — 속성 기반 접근 제어 모델",
+          "toSlug": "rbac",
+          "toTitle": "RBAC — 역할 기반 접근 제어 모델"
+        },
+        {
+          "fromSlug": "oauth-oidc-saml",
+          "fromTitle": "OAuth, OIDC, SAML — SSO 인증 프로토콜 비교",
+          "toSlug": "rbac",
+          "toTitle": "RBAC — 역할 기반 접근 제어 모델"
+        },
+        {
+          "fromSlug": "opa",
+          "fromTitle": "OPA (Open Policy Agent) — 정책 코드 분리 엔진",
+          "toSlug": "rbac",
+          "toTitle": "RBAC — 역할 기반 접근 제어 모델"
+        }
+      ],
+      "outgoing": [
+        "abac",
+        "opa",
+        "멀티테넌트-rbac-설계",
+        "oauth-oidc-saml"
+      ]
+    },
+    "sandbox": {
+      "related": [
+        {
+          "slug": "cors",
+          "title": "CORS — 브라우저의 Cross-Origin 차단 정책",
+          "score": 5,
+          "reason": "shared tags: 보안"
+        },
+        {
+          "slug": "xss-csrf",
+          "title": "XSS와 CSRF — 쿠키를 읽는 공격과 사용하는 공격",
+          "score": 5,
+          "reason": "shared tags: 보안"
+        },
+        {
+          "slug": "abac",
+          "title": "ABAC — 속성 기반 접근 제어 모델",
+          "score": 3,
+          "reason": "shared tags: 보안"
+        },
+        {
+          "slug": "bff",
+          "title": "BFF (Backend For Frontend) — 프론트엔드 전용 백엔드로 토큰 보호",
+          "score": 3,
+          "reason": "shared tags: 보안"
+        },
+        {
+          "slug": "oauth-oidc-saml",
+          "title": "OAuth, OIDC, SAML — SSO 인증 프로토콜 비교",
+          "score": 3,
+          "reason": "shared tags: 보안"
+        }
+      ],
+      "backlinks": [
+        {
+          "fromSlug": "mcp",
+          "fromTitle": "MCP (Model Context Protocol) — Agent와 도구를 잇는 표준",
+          "toSlug": "sandbox",
+          "toTitle": "Sandbox — Docker와 VM의 코드 격리 방식"
+        },
+        {
+          "fromSlug": "서버-배포-구성",
+          "fromTitle": "서버 배포 구성 — Nginx, DNS, SSL, Docker 실무 설정",
+          "toSlug": "sandbox",
+          "toTitle": "Sandbox — Docker와 VM의 코드 격리 방식"
+        }
+      ],
+      "outgoing": [
+        "서버-배포-구성",
+        "mcp"
+      ]
+    },
+    "tcp와-udp": {
+      "related": [
+        {
+          "slug": "dns",
+          "title": "DNS — 도메인 이름 조회 원리와 레코드 종류",
+          "score": 5,
+          "reason": "shared tags: 네트워크"
+        },
+        {
+          "slug": "upstream-downstream-hop",
+          "title": "Upstream, Downstream, Hop — 네트워크 흐름 용어 정리",
+          "score": 5,
+          "reason": "shared tags: 네트워크"
+        },
+        {
+          "slug": "proxy",
+          "title": "Forward Proxy와 Reverse Proxy — 클라이언트 대리와 서버 대리",
+          "score": 3,
+          "reason": "shared tags: 네트워크"
+        },
+        {
+          "slug": "nginx",
+          "title": "Nginx — 리버스 프록시와 로드 밸런싱",
+          "score": 3,
+          "reason": "shared tags: 네트워크"
+        }
+      ],
+      "backlinks": [
+        {
+          "fromSlug": "dns",
+          "fromTitle": "DNS — 도메인 이름 조회 원리와 레코드 종류",
+          "toSlug": "tcp와-udp",
+          "toTitle": "TCP와 UDP — 전송 프로토콜 비교"
+        }
+      ],
+      "outgoing": [
+        "dns",
+        "upstream-downstream-hop"
+      ]
+    },
+    "upstream-downstream-hop": {
+      "related": [
+        {
+          "slug": "proxy",
+          "title": "Forward Proxy와 Reverse Proxy — 클라이언트 대리와 서버 대리",
+          "score": 6,
+          "reason": "shared tags: 네트워크, 프록시"
+        },
+        {
+          "slug": "dns",
+          "title": "DNS — 도메인 이름 조회 원리와 레코드 종류",
+          "score": 5,
+          "reason": "shared tags: 네트워크"
+        },
+        {
+          "slug": "tcp와-udp",
+          "title": "TCP와 UDP — 전송 프로토콜 비교",
+          "score": 5,
+          "reason": "shared tags: 네트워크"
+        },
+        {
+          "slug": "api-gateway",
+          "title": "API Gateway — 단일 진입점으로 인증·인가·프록시 중앙 처리",
+          "score": 3,
+          "reason": "shared tags: 프록시"
+        },
+        {
+          "slug": "nginx",
+          "title": "Nginx — 리버스 프록시와 로드 밸런싱",
+          "score": 3,
+          "reason": "shared tags: 네트워크"
+        }
+      ],
+      "backlinks": [
+        {
+          "fromSlug": "nginx",
+          "fromTitle": "Nginx — 리버스 프록시와 로드 밸런싱",
+          "toSlug": "upstream-downstream-hop",
+          "toTitle": "Upstream, Downstream, Hop — 네트워크 흐름 용어 정리"
+        },
+        {
+          "fromSlug": "proxy",
+          "fromTitle": "Forward Proxy와 Reverse Proxy — 클라이언트 대리와 서버 대리",
+          "toSlug": "upstream-downstream-hop",
+          "toTitle": "Upstream, Downstream, Hop — 네트워크 흐름 용어 정리"
+        },
+        {
+          "fromSlug": "tcp와-udp",
+          "fromTitle": "TCP와 UDP — 전송 프로토콜 비교",
+          "toSlug": "upstream-downstream-hop",
+          "toTitle": "Upstream, Downstream, Hop — 네트워크 흐름 용어 정리"
+        }
+      ],
+      "outgoing": [
+        "nginx",
+        "proxy",
+        "api-gateway"
+      ]
     },
     "xss-csrf": {
       "related": [
         {
+          "slug": "api-gateway",
+          "title": "API Gateway — 단일 진입점으로 인증·인가·프록시 중앙 처리",
+          "score": 6,
+          "reason": "shared tags: 인증, bff"
+        },
+        {
           "slug": "bff",
-          "title": "BFF (Backend For Frontend)",
-          "score": 8,
+          "title": "BFF (Backend For Frontend) — 프론트엔드 전용 백엔드로 토큰 보호",
+          "score": 6,
           "reason": "shared tags: 보안, 인증"
         },
         {
           "slug": "oauth-oidc-saml",
-          "title": "OAuth, OIDC, SAML",
-          "score": 8,
+          "title": "OAuth, OIDC, SAML — SSO 인증 프로토콜 비교",
+          "score": 6,
           "reason": "shared tags: 보안, 인증"
         },
         {
-          "slug": "abac",
-          "title": "ABAC (Attribute-Based Access Control)",
+          "slug": "cors",
+          "title": "CORS — 브라우저의 Cross-Origin 차단 정책",
           "score": 5,
           "reason": "shared tags: 보안"
         },
         {
-          "slug": "opa",
-          "title": "OPA (Open Policy Agent)",
-          "score": 5,
-          "reason": "shared tags: 보안"
-        },
-        {
-          "slug": "rbac",
-          "title": "RBAC (Role-Based Access Control)",
+          "slug": "sandbox",
+          "title": "Sandbox — Docker와 VM의 코드 격리 방식",
           "score": 5,
           "reason": "shared tags: 보안"
         }
       ],
-      "backlinks": [],
-      "outgoing": []
+      "backlinks": [
+        {
+          "fromSlug": "api-gateway",
+          "fromTitle": "API Gateway — 단일 진입점으로 인증·인가·프록시 중앙 처리",
+          "toSlug": "xss-csrf",
+          "toTitle": "XSS와 CSRF — 쿠키를 읽는 공격과 사용하는 공격"
+        },
+        {
+          "fromSlug": "bff",
+          "fromTitle": "BFF (Backend For Frontend) — 프론트엔드 전용 백엔드로 토큰 보호",
+          "toSlug": "xss-csrf",
+          "toTitle": "XSS와 CSRF — 쿠키를 읽는 공격과 사용하는 공격"
+        },
+        {
+          "fromSlug": "cors",
+          "fromTitle": "CORS — 브라우저의 Cross-Origin 차단 정책",
+          "toSlug": "xss-csrf",
+          "toTitle": "XSS와 CSRF — 쿠키를 읽는 공격과 사용하는 공격"
+        },
+        {
+          "fromSlug": "oauth-oidc-saml",
+          "fromTitle": "OAuth, OIDC, SAML — SSO 인증 프로토콜 비교",
+          "toSlug": "xss-csrf",
+          "toTitle": "XSS와 CSRF — 쿠키를 읽는 공격과 사용하는 공격"
+        }
+      ],
+      "outgoing": [
+        "cors",
+        "bff",
+        "api-gateway"
+      ]
     },
     "서버-배포-구성": {
       "related": [
         {
           "slug": "dns",
-          "title": "DNS",
-          "score": 5,
+          "title": "DNS — 도메인 이름 조회 원리와 레코드 종류",
+          "score": 3,
           "reason": "shared tags: dns"
-        },
-        {
-          "slug": "nginx",
-          "title": "Nginx",
-          "score": 2,
-          "reason": "same category: infra"
         }
       ],
-      "backlinks": [],
-      "outgoing": []
+      "backlinks": [
+        {
+          "fromSlug": "dns",
+          "fromTitle": "DNS — 도메인 이름 조회 원리와 레코드 종류",
+          "toSlug": "서버-배포-구성",
+          "toTitle": "서버 배포 구성 — Nginx, DNS, SSL, Docker 실무 설정"
+        },
+        {
+          "fromSlug": "nginx",
+          "fromTitle": "Nginx — 리버스 프록시와 로드 밸런싱",
+          "toSlug": "서버-배포-구성",
+          "toTitle": "서버 배포 구성 — Nginx, DNS, SSL, Docker 실무 설정"
+        },
+        {
+          "fromSlug": "sandbox",
+          "fromTitle": "Sandbox — Docker와 VM의 코드 격리 방식",
+          "toSlug": "서버-배포-구성",
+          "toTitle": "서버 배포 구성 — Nginx, DNS, SSL, Docker 실무 설정"
+        }
+      ],
+      "outgoing": [
+        "dns",
+        "nginx",
+        "sandbox"
+      ]
     }
   }
 }

@@ -24,7 +24,7 @@
     {#each notes.slice(0, 4) as note, index}
       <div class="reveal-child" style="--delay: {index * 0.08}s">
         <SurfaceCard
-          href={withBase(`/notes/${note.slug}`)}
+          href={withBase(`/note/${note.slug}`)}
           class="flex items-start gap-4 p-5 no-underline hover:translate-x-1 max-sm:flex-col max-sm:gap-2 group"
         >
           <div class="w-12 h-12 rounded-[10px] flex items-center justify-center shrink-0 overflow-hidden" style="background: {note.thumbnail ? 'none' : getCategoryStyle(note.category).bg}">

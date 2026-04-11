@@ -21,7 +21,7 @@
 
 <div class="grid gap-4">
   {#each notes as note}
-    <SurfaceCard href={withBase(`/notes/${note.slug}`)} class="flex items-start gap-5 p-6 hover:shadow-[0_0_30px_rgba(245,158,11,0.05)] max-sm:flex-col max-sm:gap-3 group">
+    <SurfaceCard href={withBase(`/note/${note.slug}`)} class="flex items-start gap-5 p-6 hover:shadow-[0_0_30px_rgba(245,158,11,0.05)] max-sm:flex-col max-sm:gap-3 group">
       <div class="w-14 h-14 rounded-xl flex items-center justify-center shrink-0 overflow-hidden" style="background: {note.thumbnail ? 'none' : getCategoryStyle(note.category).bg}">
         {#if note.thumbnail}
           <img src={note.thumbnail} alt="" class="w-full h-full object-cover rounded-xl" />

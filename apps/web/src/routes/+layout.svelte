@@ -14,7 +14,8 @@
   let activePath = $derived(base && page.url.pathname.startsWith(base) ? page.url.pathname.slice(base.length) || '/' : page.url.pathname)
   let isWide = $derived(
     activePath === '/projects' || activePath === '/projects/' ||
-    activePath === '/notes' || activePath === '/notes/'
+    activePath === '/notes' || activePath === '/notes/' ||
+    activePath.startsWith('/notes/')
   )
 
   onMount(() => {

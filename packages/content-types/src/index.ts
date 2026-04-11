@@ -51,6 +51,15 @@ export interface TagPage {
   notes: NoteIndex[]
 }
 
+export interface CategoryNode {
+  path: string
+  segment: string
+  depth: number
+  children: CategoryNode[]
+  directCount: number
+  totalCount: number
+}
+
 export interface Project {
   name: string
   description: string

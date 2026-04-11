@@ -24,7 +24,7 @@ export function GET() {
     </url>`),
     ...notes.map((n) => `
     <url>
-      <loc>${site.url}/notes/${n.slug}/</loc>
+      <loc>${site.url}/note/${n.slug}/</loc>
       <changefreq>monthly</changefreq>
       <priority>0.6</priority>
     </url>`),

@@ -1,5 +1,6 @@
 import { access, mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises'
 import path from 'node:path'
+import type { CategoryNode } from '@portfolio/content-types'
 
 const ROOT = path.resolve(import.meta.dirname, '..')
 const VAULT_SOURCE_DIR = process.env.VAULT_SOURCE_DIR
@@ -154,14 +155,70 @@ function normalizeProjectKey(value: string): string {
 	return value.trim().toLowerCase()
 }
 
-function inferCategory(tags: string[], fallback = 'general'): string {
-	const normalized = tags.map((tag) => tag.toLowerCase())
-	if (normalized.includes('보안') || normalized.includes('security')) return 'security'
-	if (normalized.includes('git') || normalized.includes('rebase') || normalized.includes('worktree')) return 'git'
-	if (normalized.includes('인프라') || normalized.includes('nginx') || normalized.includes('docker')) return 'infra'
-	if (normalized.includes('네트워크') || normalized.includes('dns') || normalized.includes('프록시')) return 'network'
-	if (normalized.includes('python') || normalized.includes('데이터베이스')) return 'backend'
-	return fallback
+function normalizeCategoryPath(value: string): string {
+	return value
+		.split('/')
+		.map((segment) => segment.trim().toLowerCase())
+		.filter(Boolean)
+		.join('/')
+}
+
+function buildCategoryTree(notes: NoteRecord[]): CategoryNode[] {
+	type MutableNode = {
+		path: string
+		segment: string
+		depth: number
+		children: Map<string, MutableNode>
+		directCount: number
+	}
+
+	const roots = new Map<string, MutableNode>()
+
+	for (const note of notes) {
+		const segments = note.category.split('/').filter(Boolean)
+		if (segments.length === 0) continue
+
+		let currentLevel = roots
+		let pathAccumulator = ''
+
+		segments.forEach((segment, index) => {
+			pathAccumulator = pathAccumulator ? `${pathAccumulator}/${segment}` : segment
+			let node = currentLevel.get(segment)
+			if (!node) {
+				node = {
+					path: pathAccumulator,
+					segment,
+					depth: index,
+					children: new Map(),
+					directCount: 0
+				}
+				currentLevel.set(segment, node)
+			}
+			if (index === segments.length - 1) {
+				node.directCount += 1
+			}
+			currentLevel = node.children
+		})
+	}
+
+	function finalize(node: MutableNode): CategoryNode {
+		const children = [...node.children.values()]
+			.sort((a, b) => a.segment.localeCompare(b.segment))
+			.map(finalize)
+		const descendantCount = children.reduce((sum, child) => sum + child.totalCount, 0)
+		return {
+			path: node.path,
+			segment: node.segment,
+			depth: node.depth,
+			children,
+			directCount: node.directCount,
+			totalCount: node.directCount + descendantCount
+		}
+	}
+
+	return [...roots.values()]
+		.sort((a, b) => a.segment.localeCompare(b.segment))
+		.map(finalize)
 }
 
 function stripMarkdown(content: string): string {
@@ -267,7 +324,18 @@ async function loadNotes(): Promise<NoteRecord[]> {
 		const tags = Array.isArray(meta.tags)
 			? meta.tags.map((tag) => normalizeTag(String(tag))).filter(Boolean)
 			: []
-		const category = String(meta.category ?? inferCategory(tags)).trim().toLowerCase()
+
+		const rawCategory = typeof meta.category === 'string' ? meta.category.trim() : ''
+		if (!rawCategory) {
+			throw new Error(
+				`[build-content] ${file} is missing \`category\`. Every note must declare a path-style category (e.g. "ai/rag").`
+			)
+		}
+		const category = normalizeCategoryPath(rawCategory)
+		if (!category) {
+			throw new Error(`[build-content] ${file} has an empty \`category\` after normalization.`)
+		}
+
 		const normalizedContent = normalizeWhitespace(content)
 
 		noteSlugLookup.set(slugifyNote(file), slug)
@@ -429,16 +497,20 @@ async function main() {
 	const projects = await loadProjects(profile)
 	const searchIndex = buildSearchIndex(notes, projects)
 	const relations = buildRelations(notes)
+	const categoryTree = buildCategoryTree(notes)
 
 	await Promise.all([
 		writeGeneratedJson('profile.json', profile),
 		writeGeneratedJson('notes.json', notes),
 		writeGeneratedJson('projects.json', projects),
 		writeGeneratedJson('search-index.json', searchIndex),
-		writeGeneratedJson('relations.json', relations)
+		writeGeneratedJson('relations.json', relations),
+		writeGeneratedJson('category-tree.json', categoryTree)
 	])
 
-	console.log(`Generated ${notes.length} notes, ${projects.length} projects, ${searchIndex.length} search documents.`)
+	console.log(
+		`Generated ${notes.length} notes, ${projects.length} projects, ${searchIndex.length} search documents, ${categoryTree.length} root categories.`
+	)
 }
 
 main().catch((error) => {

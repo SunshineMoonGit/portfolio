@@ -1,5 +1,23 @@
 [
   {
+    "slug": "mirocell",
+    "name": "Mirocell",
+    "title": "Mirocell",
+    "subtitle": "vault 노트를 RAG로 연결하는 개인 지식 Agent 시스템",
+    "description": "마크다운 노트를 벡터화하고, 새 문서의 태깅/요약/연결을 자동 제안하며, 노트 기반 Q&A를 제공하는 RAG + Agent 시스템",
+    "period": "2026.04 ~",
+    "image": "",
+    "techs": [
+      "Python",
+      "FastAPI",
+      "ChromaDB",
+      "Ollama",
+      "sentence-transformers"
+    ],
+    "url": "https://github.com/SunshineMoonGit/mirocell",
+    "content": "## 기술 스택\n\n| 분류 | 기술 |\n|------|------|\n| Language | Python 3.13 |\n| Framework | FastAPI, Pydantic |\n| 임베딩 | sentence-transformers (multilingual-e5-small, 로컬) |\n| 벡터 DB | ChromaDB (로컬) |\n| LLM | Ollama (gemma4:e4b, 로컬) |\n\n## 핵심 기능\n\n### Ingest — 노트 벡터화\n\nvault의 마크다운 노트를 읽어서 frontmatter 파싱 → 섹션별 청킹 → 로컬 임베딩 모델로 벡터 변환 → ChromaDB에 저장하는 파이프라인.\n\n### Agent — 새 노트 분석\n\n새 노트를 넣으면 기존 벡터DB에서 유사 노트를 검색하고, LLM이 태그 추천 / 요약 생성 / 관련 노트 연결을 제안한다.\n\n### Q&A — 질문-답변\n\n자연어 질문을 임베딩해서 벡터 유사도로 관련 청크를 검색하고, 검색된 내용을 컨텍스트로 LLM에 전달해 답변을 생성한다.\n\n## 구조\n\n```\nmirocell/\n├── main.py          ← CLI 진입점\n├── ingest/          ← 문서 로드, 청킹, 임베딩\n│   ├── loader.py\n│   ├── chunker.py\n│   └── embedder.py\n├── agent/           ← 태깅, 요약, 관련 노트 연결\n│   ├── connector.py\n│   └── analyzer.py\n├── search/          ← 벡터 검색, Q&A\n│   └── query.py\n└── chroma_data/     ← 벡터 DB (로컬 저장)\n```\n\n## 사용\n\n```bash\npython main.py ingest              # vault 노트 전체 벡터화\npython main.py agent new_note.md   # 새 노트 태그/요약/관련노트 추천\npython main.py ask \"RBAC가 뭐야?\"   # 노트 기반 질문-답변\n```\n\n## 설계 포인트\n\n- 임베딩과 LLM 모두 로컬 실행. 외부 API 의존 없이 오프라인 동작\n- vault 노트의 `##` 헤딩 구조를 활용한 의미 단위 청킹\n- 기존 태그 목록을 LLM에 함께 전달해서 태깅 일관성 유지"
+  },
+  {
     "slug": "moneyup",
     "name": "MoneyUp",
     "title": "MoneyUp",

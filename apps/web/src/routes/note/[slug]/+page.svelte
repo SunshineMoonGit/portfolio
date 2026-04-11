@@ -2,10 +2,9 @@
   import { withBase } from "$lib/utils";
   import {
     Badge,
-    Button,
+    CategoryBreadcrumb,
     GiscusComments,
     MarkdownProse,
-    NoteMeta,
     NotePager,
     Seo,
     TableOfContents,
@@ -80,11 +79,11 @@
   }
 
   function getRelatedHref(link: RelatedLink): string {
-    return withBase(`/notes/${link.slug}`);
+    return withBase(`/note/${link.slug}`);
   }
 
   function getBacklinkHref(link: Backlink): string {
-    return withBase(`/notes/${link.fromSlug}`);
+    return withBase(`/note/${link.fromSlug}`);
   }
 </script>
 
@@ -96,14 +95,16 @@
 
 <article>
   <header class="pt-12 pb-10">
-    <Button href={withBase("/notes")} class="mb-6 rounded-full">← Notes</Button>
+    <div class="mb-6">
+      <CategoryBreadcrumb path={note.category} />
+    </div>
     <h1
       class="text-[clamp(1.5rem,5vw,2rem)] font-bold leading-tight text-text-bright tracking-tight mb-3"
     >
       {note.title}
     </h1>
-    <div class="flex items-center gap-3">
-      <NoteMeta category={note.category} created={note.created} />
+    <div class="flex items-center gap-3 text-xs text-subtle">
+      <span>{note.created}</span>
     </div>
     {#if note.tags.length}
       <div class="mt-4 flex flex-wrap gap-1.5">

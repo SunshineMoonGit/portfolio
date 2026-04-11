@@ -55,7 +55,7 @@
   })
 
   function getDocumentHref(doc: SearchDocument): string {
-    const prefix = doc.kind === 'project' ? '/projects/' : '/notes/'
+    const prefix = doc.kind === 'project' ? '/projects/' : '/note/'
     return withBase(`${prefix}${doc.slug}`)
   }
 

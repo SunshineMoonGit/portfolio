@@ -10,6 +10,19 @@
   ],
   "projects": [
     {
+      "name": "Mirocell",
+      "description": "vault 노트를 RAG로 연결하고, 새 문서의 태깅/요약/연결을 자동 제안하는 개인 지식 Agent 시스템.",
+      "period": "2026.04 ~",
+      "techs": [
+        "Python",
+        "FastAPI",
+        "ChromaDB",
+        "Ollama",
+        "sentence-transformers"
+      ],
+      "url": "https://github.com/SunshineMoonGit/mirocell"
+    },
+    {
       "name": "키득키득",
       "description": "부모-자녀가 함께하는 안전한 용돈 관리와 경제 교육 서비스. BLE 태깅 결제, AI 소비 분석.",
       "period": "2025.08 – 2025.09",
