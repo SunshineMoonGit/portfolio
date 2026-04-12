@@ -74,7 +74,7 @@ export function getSearchIndex(): SearchDocument[] {
 
 export function getAllCategories(): string[] {
 	const set = new Set(searchIndex.map((d) => d.category))
-	return [...set].sort()
+	return [...set].sort((a, b) => a.localeCompare(b))
 }
 
 export function getAllTags(): { tag: string; count: number }[] {
@@ -90,7 +90,7 @@ export function getAllTags(): { tag: string; count: number }[] {
 }
 
 function escapeHtml(text: string): string {
-	return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+	return text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
 }
 
 export function highlightByIndices(text: string, indices: readonly [number, number][]): string {
@@ -100,7 +100,7 @@ export function highlightByIndices(text: string, indices: readonly [number, numb
 	const merged: [number, number][] = []
 
 	for (const [start, end] of sorted) {
-		const last = merged[merged.length - 1]
+		const last = merged.at(-1)
 		if (last && start <= last[1] + 1) {
 			last[1] = Math.max(last[1], end)
 		} else {

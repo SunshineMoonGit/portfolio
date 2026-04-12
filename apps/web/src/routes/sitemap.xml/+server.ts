@@ -13,7 +13,7 @@ export function GET() {
     ...staticPages.map((path) => `
     <url>
       <loc>${site.url}${path}/</loc>
-      <changefreq>${path === '' ? 'weekly' : 'weekly'}</changefreq>
+      <changefreq>weekly</changefreq>
       <priority>${path === '' ? '1.0' : '0.8'}</priority>
     </url>`),
     ...projects.map((p) => `

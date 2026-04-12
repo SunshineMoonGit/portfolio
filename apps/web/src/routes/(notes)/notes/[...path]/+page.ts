@@ -20,7 +20,7 @@ export function entries() {
 export function load({ params }) {
   // SvelteKit's trailingSlash config adds a trailing slash to prerendered
   // rest params, so `ai/rag` comes in as `ai/rag/`. Normalize before matching.
-  const path = (params.path ?? '').replace(/\/+$/, '').replace(/^\/+/, '') || null
+  const path = (params.path ?? '').replace(/\/+$/, '').replace(/^\/+/, '') || null // NOSONAR: simple trim regex, no backtracking risk
 
   if (!path) {
     return { selectedPath: null }

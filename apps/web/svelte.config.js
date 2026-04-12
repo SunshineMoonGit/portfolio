@@ -3,7 +3,7 @@ import { relative, sep } from 'node:path';
 
 const rawBasePath = process.env.BASE_PATH ?? ''
 const basePath = rawBasePath
-	? `/${rawBasePath.replace(/^\/+|\/+$/g, '')}`
+	? `/${rawBasePath.replace(/^\/+|\/+$/g, '')}` // NOSONAR: simple trim regex, no backtracking risk
 	: ''
 
 /** @type {import('@sveltejs/kit').Config} */

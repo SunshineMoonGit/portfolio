@@ -12,5 +12,8 @@ apps/web/.svelte-kit/
 apps/web/build/
 apps/web/src/lib/generated/
 
+# SonarQube
+.scannerwork/
+
 # Vault private/local metadata
 vault/
